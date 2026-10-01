@@ -1,0 +1,40 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+         Schema::create('maintenance_settings', function (Blueprint $table) {
+            $table->id();
+
+            $table->boolean('maintenance_mode')
+                ->default(false);
+
+            $table->text('maintenance_message')
+                ->nullable();
+
+            $table->boolean('allow_super_admin_access')
+                ->default(true);
+
+            $table->unsignedInteger('log_retention_days')
+                ->default(30);
+
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('maintenance_settings');
+    }
+};

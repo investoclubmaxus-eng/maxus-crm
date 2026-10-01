@@ -1,0 +1,1514 @@
+/* =========================================================
+   MAINTENANCE PAGE
+========================================================= */
+
+.maintenance-page {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 4px 0 30px;
+    color: #102d55;
+    box-sizing: border-box;
+}
+
+.maintenance-page *,
+.maintenance-page *::before,
+.maintenance-page *::after {
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.maintenance-page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.maintenance-title-area {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    min-width: 0;
+}
+
+.maintenance-title-icon {
+    width: 58px;
+    height: 58px;
+    min-width: 58px;
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #0876f9;
+
+    background: linear-gradient(
+        145deg,
+        #eef6ff,
+        #e3f0ff
+    );
+}
+
+.maintenance-title-area h1 {
+    margin: 0 0 5px;
+
+    font-size: 24px;
+    line-height: 1.25;
+    font-weight: 700;
+
+    color: #102d55;
+}
+
+.maintenance-title-area p {
+    margin: 0;
+
+    font-size: 13px;
+    line-height: 1.5;
+
+    color: #6d84a5;
+}
+
+.maintenance-breadcrumb {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 9px;
+
+    font-size: 12px;
+    color: #7690b3;
+}
+
+.maintenance-breadcrumb span:not(.breadcrumb-arrow) {
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.maintenance-breadcrumb span:not(.breadcrumb-arrow):hover {
+    color: #0876f9;
+}
+
+.maintenance-breadcrumb strong {
+    color: #456487;
+    font-weight: 600;
+}
+
+.breadcrumb-arrow {
+    color: #a9bbd2;
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   ONE MAIN CONTAINER
+========================================================= */
+
+.maintenance-main-container {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1fr)
+        350px;
+
+    background: #ffffff;
+
+    border: 1px solid #dfeafb;
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   LEFT CONTENT
+========================================================= */
+
+.maintenance-left-content {
+    min-width: 0;
+    border-right: 1px solid #e3ecf8;
+}
+
+
+/* =========================================================
+   COMMON SECTION
+========================================================= */
+
+.maintenance-section {
+    padding: 24px;
+    border-bottom: 1px solid #e5edf8;
+}
+
+.maintenance-section:last-child {
+    border-bottom: 0;
+}
+
+.maintenance-section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+
+    margin-bottom: 22px;
+}
+
+.maintenance-section-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    color: #0876f9;
+
+    background: linear-gradient(
+        145deg,
+        #f0f7ff,
+        #e4f0ff
+    );
+}
+
+.maintenance-section-header > div:nth-child(2) {
+    min-width: 0;
+    flex: 1;
+}
+
+.maintenance-section-header h2 {
+    margin: 1px 0 4px;
+
+    font-size: 15px;
+    line-height: 1.35;
+    font-weight: 700;
+
+    color: #102d55;
+}
+
+.maintenance-section-header p {
+    margin: 0;
+
+    max-width: 650px;
+
+    font-size: 11.5px;
+    line-height: 1.55;
+
+    color: #6d84a5;
+}
+
+
+/* =========================================================
+   SYSTEM ONLINE BADGE
+========================================================= */
+
+.system-online-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    flex-shrink: 0;
+
+    padding: 7px 12px;
+
+    border-radius: 18px;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    color: #087e59;
+    background: #effaf5;
+}
+
+.system-online-badge span {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #0ca678;
+}
+
+.system-online-badge.maintenance-active {
+    color: #b56a00;
+    background: #fff7e8;
+}
+
+.system-online-badge.maintenance-active span {
+    background: #f59f00;
+}
+
+
+/* =========================================================
+   MAINTENANCE MODE
+========================================================= */
+
+.maintenance-mode-content {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1fr)
+        315px;
+
+    gap: 24px;
+}
+
+.maintenance-mode-form {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   SETTING ROW
+========================================================= */
+
+.setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    min-height: 42px;
+
+    margin-bottom: 16px;
+}
+
+.setting-label {
+    font-size: 12px;
+    color: #173b68;
+}
+
+.setting-label strong {
+    font-weight: 600;
+}
+
+.setting-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    flex-shrink: 0;
+}
+
+.switch-text {
+    font-size: 12px;
+    color: #6681a5;
+}
+
+
+/* =========================================================
+   SWITCH
+========================================================= */
+
+.switch {
+    position: relative;
+
+    width: 40px;
+    height: 22px;
+
+    padding: 0;
+
+    border: 0;
+    border-radius: 20px;
+
+    background: #d5dfeb;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+.switch span {
+    position: absolute;
+
+    top: 3px;
+    left: 3px;
+
+    width: 16px;
+    height: 16px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    box-shadow: 0 1px 4px rgba(16, 45, 85, 0.18);
+
+    transition: transform 0.2s ease;
+}
+
+.switch.active {
+    background: #0876f9;
+}
+
+.switch.active span {
+    transform: translateX(18px);
+}
+
+
+/* =========================================================
+   MAINTENANCE TEXTAREA
+========================================================= */
+
+.maintenance-field {
+    position: relative;
+
+    margin-bottom: 18px;
+}
+
+.maintenance-field label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    color: #173b68;
+}
+
+.maintenance-field textarea {
+    width: 100%;
+    min-height: 96px;
+
+    padding: 11px 12px;
+
+    border: 1px solid #d8e5f5;
+    border-radius: 7px;
+
+    background: #ffffff;
+
+    color: #456487;
+
+    font-family: inherit;
+    font-size: 12px;
+    line-height: 1.6;
+
+    resize: vertical;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.maintenance-field textarea:focus {
+    border-color: #79b4ff;
+
+    box-shadow:
+        0 0 0 3px rgba(8, 118, 249, 0.08);
+}
+
+.character-count {
+    margin-top: 5px;
+
+    text-align: right;
+
+    font-size: 10px;
+    color: #8ca1bd;
+}
+
+.setting-description {
+    margin: 5px 0 0;
+
+    max-width: 600px;
+
+    font-size: 10.5px;
+    line-height: 1.5;
+
+    color: #7790b0;
+}
+
+
+/* =========================================================
+   MAINTENANCE PREVIEW
+========================================================= */
+
+.maintenance-preview {
+    min-height: 205px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    text-align: center;
+
+    border: 1px solid #e0ebf8;
+    border-radius: 7px;
+
+    background: linear-gradient(
+        145deg,
+        #f7fbff,
+        #eef6ff
+    );
+}
+
+.maintenance-preview-icon {
+    position: relative;
+
+    width: 92px;
+    height: 70px;
+
+    margin-bottom: 10px;
+
+    color: #87b8f9;
+}
+
+.maintenance-preview-icon svg:first-child {
+    position: absolute;
+
+    left: 12px;
+    top: 3px;
+
+    width: 62px;
+    height: 62px;
+}
+
+.maintenance-preview-icon svg:last-child {
+    position: absolute;
+
+    right: 1px;
+    bottom: 1px;
+
+    color: #398af5;
+}
+
+.maintenance-preview h3 {
+    margin: 0 0 5px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    color: #0876f9;
+}
+
+.maintenance-preview p {
+    max-width: 220px;
+
+    margin: 0;
+
+    font-size: 11px;
+    line-height: 1.55;
+
+    color: #6b85a7;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.primary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 36px;
+
+    padding: 0 17px;
+
+    border: 1px solid #0876f9;
+    border-radius: 6px;
+
+    background: #17479f;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.15s ease;
+}
+
+.primary-button:hover:not(:disabled) {
+    background: #17479f;
+    border-color: #0568dd;
+}
+
+.primary-button:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+.primary-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 36px;
+
+    padding: 0 17px;
+
+    border: 1px solid #d4e2f3;
+    border-radius: 6px;
+
+    background: #ffffff;
+    color: #587494;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.secondary-button:hover {
+    background: #f7faff;
+    border-color: #bfd4ee;
+}
+
+.maintenance-save-wrapper {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: 5px;
+}
+
+
+/* =========================================================
+   CACHE GRID
+========================================================= */
+
+.cache-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 12px;
+}
+
+.cache-card {
+    min-width: 0;
+
+    padding: 13px 12px 11px;
+
+    border: 1px solid #dce8f6;
+    border-radius: 7px;
+
+    background: #ffffff;
+}
+
+.cache-card-icon {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 9px;
+
+    border-radius: 8px;
+
+    color: #0876f9;
+
+    background: #eef6ff;
+}
+
+.cache-card h3 {
+    margin: 0 0 7px;
+
+    font-size: 11.5px;
+    font-weight: 700;
+
+    color: #173b68;
+}
+
+.cache-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    margin-bottom: 9px;
+
+    font-size: 9.5px;
+    color: #07916a;
+}
+
+.cache-status span {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #0ca678;
+}
+
+.cache-card p {
+    min-height: 33px;
+
+    margin: 0 0 9px;
+
+    font-size: 9px;
+    line-height: 1.55;
+
+    color: #8097b5;
+}
+
+.cache-card p strong {
+    color: #607b9d;
+    font-weight: 500;
+}
+
+.clear-all-card {
+    background: linear-gradient(
+        145deg,
+        #f4f9ff,
+        #edf6ff
+    );
+}
+
+.full-button {
+    width: 100%;
+}
+
+.outline-button {
+    width: 100%;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    min-height: 31px;
+
+    padding: 0 10px;
+
+    border: 1px solid #bcd7fb;
+    border-radius: 6px;
+
+    background: #ffffff;
+    color: #0876f9;
+
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.outline-button:hover:not(:disabled) {
+    background: #f3f8ff;
+    border-color: #8fbeef;
+}
+
+.outline-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   CLEANUP
+========================================================= */
+
+.cleanup-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 12px;
+}
+
+.cleanup-card {
+    min-width: 0;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 12px;
+
+    padding: 13px 12px;
+
+    border: 1px solid #dce8f6;
+    border-radius: 7px;
+
+    background: #ffffff;
+}
+
+.cleanup-icon {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    color: #0876f9;
+    background: #eef6ff;
+}
+
+.cleanup-content {
+    min-width: 0;
+    flex: 1;
+}
+
+.cleanup-content h3 {
+    margin: 1px 0 5px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    color: #173b68;
+}
+
+.cleanup-content p {
+    min-height: 31px;
+
+    margin: 0 0 8px;
+
+    font-size: 9.5px;
+    line-height: 1.5;
+
+    color: #7890af;
+}
+
+.small-button {
+    width: auto;
+
+    min-width: 94px;
+}
+
+
+/* =========================================================
+   RIGHT SYSTEM HEALTH
+========================================================= */
+
+.system-health-panel {
+    min-width: 0;
+
+    padding: 20px 17px;
+
+    background: #ffffff;
+}
+
+.health-header {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 12px;
+
+    margin-bottom: 18px;
+}
+
+.health-icon {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    color: #0876f9;
+
+    background: linear-gradient(
+        145deg,
+        #eef6ff,
+        #e4f0ff
+    );
+}
+
+.health-header h2 {
+    margin: 1px 0 4px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    color: #102d55;
+}
+
+.health-header p {
+    margin: 0;
+
+    font-size: 10px;
+    line-height: 1.55;
+
+    color: #6d84a5;
+}
+
+
+/* =========================================================
+   HEALTH SUCCESS
+========================================================= */
+
+.health-success {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 12px;
+
+    margin-bottom: 10px;
+
+    border: 1px solid #d6f0e4;
+    border-radius: 6px;
+
+    background: #effaf5;
+
+    color: #087e59;
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   HEALTH LIST
+========================================================= */
+
+.health-list {
+    border-top: 1px solid #edf2f8;
+}
+
+.health-item {
+    min-height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    border-bottom: 1px solid #edf2f8;
+}
+
+.health-item-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    min-width: 0;
+
+    color: #59779d;
+}
+
+.health-item-name svg {
+    flex-shrink: 0;
+    color: #6d8db6;
+}
+
+.health-item-name span {
+    font-size: 10.5px;
+}
+
+.health-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    flex-shrink: 0;
+
+    padding: 6px 9px;
+
+    border-radius: 15px;
+
+    background: #effaf5;
+
+    color: #087e59;
+
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.health-status i {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #0ca678;
+}
+
+
+/* =========================================================
+   LAST CHECK
+========================================================= */
+
+.last-check {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 9px;
+
+    padding: 15px 0;
+
+    color: #6681a5;
+}
+
+.last-check svg {
+    margin-top: 1px;
+    flex-shrink: 0;
+}
+
+.last-check div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.last-check span {
+    font-size: 9.5px;
+}
+
+.last-check strong {
+    font-size: 10px;
+    font-weight: 500;
+    color: #557394;
+}
+
+
+/* =========================================================
+   SYSTEM CHECK BUTTON
+========================================================= */
+
+.health-check-button {
+    width: 100%;
+    min-height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    border: 1px solid #9bc7ff;
+    border-radius: 6px;
+
+    background: #ffffff;
+    color: #0876f9;
+
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.health-check-button:hover:not(:disabled) {
+    background: #f3f8ff;
+    border-color: #76b2f7;
+}
+
+.health-check-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.spin {
+    animation: maintenance-spin 1s linear infinite;
+}
+
+@keyframes maintenance-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   BOTTOM ACTION BAR
+========================================================= */
+
+.maintenance-bottom-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    padding: 15px 20px;
+
+    background: #fbfcfe;
+
+    border: 1px solid #dfeafb;
+    border-top: 0;
+
+    border-radius: 0 0 10px 10px;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1600px) {
+
+    .maintenance-page {
+        max-width: 1600px;
+    }
+
+    .maintenance-main-container {
+        grid-template-columns:
+            minmax(0, 1fr)
+            365px;
+    }
+
+    .maintenance-section {
+        padding: 25px;
+    }
+
+}
+
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media (max-width: 1199px) {
+
+    .maintenance-main-container {
+        grid-template-columns:
+            minmax(0, 1fr)
+            310px;
+    }
+
+    .maintenance-mode-content {
+        grid-template-columns:
+            minmax(0, 1fr)
+            275px;
+    }
+
+    .cache-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .cleanup-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1024px) {
+
+    .maintenance-page {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .maintenance-page-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .maintenance-breadcrumb {
+        justify-content: flex-start;
+        margin-top: 0;
+    }
+
+    .maintenance-main-container {
+        grid-template-columns: 1fr;
+    }
+
+    .maintenance-left-content {
+        border-right: 0;
+    }
+
+    .system-health-panel {
+        border-top: 1px solid #e3ecf8;
+    }
+
+    .health-list {
+        display: grid;
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        border-top: 0;
+    }
+
+    .health-item {
+        padding: 0 8px;
+
+        border-top: 1px solid #edf2f8;
+    }
+
+    .health-item:nth-child(odd) {
+        border-right: 1px solid #edf2f8;
+    }
+
+    .health-success {
+        margin-bottom: 14px;
+    }
+
+    .last-check {
+        padding-bottom: 12px;
+    }
+
+    .maintenance-bottom-bar {
+        border: 1px solid #dfeafb;
+        border-top: 0;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .maintenance-mode-content {
+        grid-template-columns: 1fr;
+    }
+
+    .maintenance-preview {
+        min-height: 175px;
+    }
+
+    .cache-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .cleanup-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .maintenance-page {
+        padding: 0 0 20px;
+    }
+
+    .maintenance-page-header {
+        margin-bottom: 15px;
+    }
+
+    .maintenance-title-area {
+        gap: 12px;
+    }
+
+    .maintenance-title-icon {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        border-radius: 10px;
+    }
+
+    .maintenance-title-icon svg {
+        width: 23px;
+        height: 23px;
+    }
+
+    .maintenance-title-area h1 {
+        font-size: 20px;
+    }
+
+    .maintenance-title-area p {
+        font-size: 11px;
+    }
+
+    .maintenance-breadcrumb {
+        gap: 7px;
+
+        font-size: 10px;
+    }
+
+    .maintenance-main-container {
+        border-radius: 8px;
+    }
+
+    .maintenance-section {
+        padding: 18px 15px;
+    }
+
+    .maintenance-section-header {
+        gap: 11px;
+        margin-bottom: 18px;
+    }
+
+    .maintenance-section-icon {
+        width: 35px;
+        height: 35px;
+        min-width: 35px;
+    }
+
+    .maintenance-section-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .maintenance-section-header h2 {
+        font-size: 14px;
+    }
+
+    .maintenance-section-header p {
+        font-size: 10px;
+    }
+
+    .system-online-badge {
+        padding: 5px 8px;
+        font-size: 9px;
+    }
+
+    .maintenance-mode-content {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .maintenance-preview {
+        min-height: 160px;
+    }
+
+    .cache-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+    }
+
+    .cleanup-grid {
+        grid-template-columns: 1fr;
+        gap: 9px;
+    }
+
+    .health-list {
+        grid-template-columns: 1fr;
+    }
+
+    .health-item {
+        min-height: 46px;
+    }
+
+    .health-item:nth-child(odd) {
+        border-right: 0;
+    }
+
+    .maintenance-bottom-bar {
+        padding: 12px 15px;
+
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .maintenance-bottom-bar button {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 576px) {
+
+    .maintenance-page-header {
+        gap: 10px;
+    }
+
+    .maintenance-title-area {
+        align-items: flex-start;
+    }
+
+    .maintenance-title-area h1 {
+        font-size: 18px;
+    }
+
+    .maintenance-title-area p {
+        font-size: 10px;
+    }
+
+    .maintenance-breadcrumb {
+        display: none;
+    }
+
+    .maintenance-section {
+        padding: 16px 12px;
+    }
+
+    .maintenance-section-header {
+        position: relative;
+        align-items: flex-start;
+    }
+
+    .system-online-badge {
+        position: absolute;
+
+        top: 0;
+        right: 0;
+    }
+
+    .maintenance-section-header > div:nth-child(2) {
+        padding-right: 105px;
+    }
+
+    .setting-row {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .setting-control {
+        width: 100%;
+    }
+
+    .maintenance-save-wrapper {
+        justify-content: stretch;
+    }
+
+    .maintenance-save-wrapper .primary-button {
+        width: 100%;
+    }
+
+    .cache-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cache-card {
+        padding: 14px;
+    }
+
+    .cleanup-card {
+        padding: 13px;
+    }
+
+    .system-health-panel {
+        padding: 17px 13px;
+    }
+
+    .health-header {
+        margin-bottom: 14px;
+    }
+
+    .health-item {
+        min-height: 48px;
+    }
+
+    .health-status {
+        padding: 5px 8px;
+        font-size: 8px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .maintenance-title-icon {
+        width: 43px;
+        height: 43px;
+        min-width: 43px;
+    }
+
+    .maintenance-title-area h1 {
+        font-size: 17px;
+    }
+
+    .maintenance-title-area p {
+        font-size: 9.5px;
+    }
+
+    .maintenance-section {
+        padding: 14px 10px;
+    }
+
+    .maintenance-section-header > div:nth-child(2) {
+        padding-right: 0;
+    }
+
+    .system-online-badge {
+        position: static;
+
+        margin-left: auto;
+
+        align-self: flex-start;
+    }
+
+    .maintenance-section-header {
+        flex-wrap: wrap;
+    }
+
+    .maintenance-section-header > div:nth-child(2) {
+        flex: 1;
+        min-width: calc(100% - 52px);
+    }
+
+    .maintenance-section-header > .system-online-badge {
+        width: 100%;
+        justify-content: center;
+        margin-top: 2px;
+    }
+
+    .maintenance-preview {
+        padding: 18px 12px;
+    }
+
+    .maintenance-preview h3 {
+        font-size: 13px;
+    }
+
+    .maintenance-preview p {
+        font-size: 10px;
+    }
+
+    .health-item-name span {
+        font-size: 9.5px;
+    }
+
+    .health-status {
+        font-size: 8px;
+    }
+
+}

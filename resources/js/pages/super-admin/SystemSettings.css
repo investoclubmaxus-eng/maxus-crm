@@ -1,0 +1,652 @@
+/* =========================================================
+   SYSTEM SETTINGS PAGE
+========================================================= */
+
+.system-settings-page {
+    width: 100%;
+    min-height: 100%;
+    padding: 4px 0 30px;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.system-settings-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.system-settings-heading {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.system-settings-title-icon {
+    width: 54px;
+    height: 54px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #eaf2ff;
+    color: #1769e0;
+}
+
+.system-settings-heading h1 {
+    margin: 0;
+
+    color: #102957;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.system-settings-heading p {
+    margin: 5px 0 0;
+
+    color: #667b9d;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.system-settings-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    padding-top: 13px;
+
+    color: #7890b3;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.system-settings-breadcrumb strong {
+    color: #334d75;
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
+
+.system-settings-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 20px;
+    align-items: start;
+}
+
+
+/* =========================================================
+   MAIN SETTINGS AREA
+========================================================= */
+
+.system-settings-main {
+    min-width: 0;
+
+    padding: 12px;
+
+    border: 1px solid #e4ebf5;
+    border-radius: 12px;
+
+    background: #ffffff;
+}
+
+.system-settings-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 12px;
+}
+
+
+/* =========================================================
+   SETTINGS CARD
+========================================================= */
+
+.settings-card {
+    position: relative;
+
+    min-height: 270px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 20px;
+
+    border: 1px solid #e3eaf5;
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.settings-card:hover {
+    transform: translateY(-3px);
+
+    border-color: #cbdcf6;
+
+    box-shadow:
+        0 12px 28px rgba(31, 73, 125, 0.08);
+}
+
+
+/* =========================================================
+   CARD TOP
+========================================================= */
+
+.settings-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.settings-card-icon {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+}
+
+.settings-card-arrow {
+    color: #3f6496;
+
+    transition:
+        transform 0.2s ease,
+        color 0.2s ease;
+}
+
+.settings-card:hover .settings-card-arrow {
+    transform: translateX(4px);
+    color: #1769e0;
+}
+
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+.settings-card-content {
+    margin-top: 18px;
+}
+
+.settings-card-content h2 {
+    margin: 0 0 8px;
+
+    color: #112e5b;
+
+    font-size: 17px;
+    font-weight: 650;
+
+    line-height: 1.35;
+}
+
+.settings-card-content p {
+    margin: 0;
+
+    max-width: 310px;
+
+    color: #6780a4;
+
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   CARD FOOTER
+========================================================= */
+
+.settings-card-footer {
+    margin-top: auto;
+    padding-top: 18px;
+}
+
+.settings-card-footer button {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 8px 12px;
+
+    border: 1px solid #d9e5f5;
+    border-radius: 7px;
+
+    background: #ffffff;
+
+    color: #1264d8;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.settings-card-footer button:hover {
+    background: #f1f7ff;
+    border-color: #bcd3f4;
+}
+
+
+/* =========================================================
+   CARD ICON COLORS
+========================================================= */
+
+.settings-card--blue .settings-card-icon {
+    background: #e8f1ff;
+    color: #1769e0;
+}
+
+.settings-card--purple .settings-card-icon {
+    background: #efedff;
+    color: #6557db;
+}
+
+.settings-card--green .settings-card-icon {
+    background: #e4f8f4;
+    color: #07977f;
+}
+
+.settings-card--sky .settings-card-icon {
+    background: #e8f2ff;
+    color: #2374db;
+}
+
+.settings-card--violet .settings-card-icon {
+    background: #f1e9ff;
+    color: #7544dc;
+}
+
+.settings-card--orange .settings-card-icon {
+    background: #fff0dc;
+    color: #dc861d;
+}
+
+.settings-card--teal .settings-card-icon {
+    background: #e2f8f6;
+    color: #0b9b9a;
+}
+
+
+/* =========================================================
+   RIGHT SIDEBAR
+========================================================= */
+
+.system-settings-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.settings-side-card {
+    padding: 18px;
+
+    border: 1px solid #e2eaf5;
+    border-radius: 10px;
+
+    background: #ffffff;
+}
+
+.settings-side-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 16px;
+}
+
+.settings-side-icon {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: #edf4ff;
+    color: #1769e0;
+}
+
+.settings-side-header h3 {
+    margin: 0;
+
+    color: #17325e;
+
+    font-size: 15px;
+    font-weight: 650;
+}
+
+
+/* =========================================================
+   SYSTEM STATUS
+========================================================= */
+
+.system-status {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    padding: 13px;
+
+    border-radius: 8px;
+
+    background: #f4fbf7;
+}
+
+.status-dot {
+    width: 9px;
+    height: 9px;
+    margin-top: 5px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #16a05d;
+
+    box-shadow: 0 0 0 4px #dff6e8;
+}
+
+.system-status strong {
+    display: block;
+
+    color: #23613f;
+
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.system-status small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #6d8979;
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   QUICK INFORMATION
+========================================================= */
+
+.quick-info-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.quick-info-list > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+
+    padding: 10px 0;
+
+    border-bottom: 1px solid #edf1f7;
+}
+
+.quick-info-list > div:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+.quick-info-list span {
+    color: #7085a4;
+    font-size: 12px;
+}
+
+.quick-info-list strong {
+    color: #203b68;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: right;
+}
+
+
+/* =========================================================
+   NOTICE
+========================================================= */
+
+.settings-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    padding: 14px;
+
+    border: 1px solid #cfe1fa;
+    border-radius: 9px;
+
+    background: #f2f7ff;
+}
+
+.settings-notice-icon {
+    width: 30px;
+    height: 30px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #e1edff;
+    color: #1769e0;
+}
+
+.settings-notice strong {
+    display: block;
+
+    color: #1958a9;
+
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.settings-notice p {
+    margin: 4px 0 0;
+
+    color: #6480a5;
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1500px) {
+
+    .system-settings-grid {
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+    }
+
+    .settings-card {
+        min-height: 280px;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .system-settings-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .system-settings-sidebar {
+        display: grid;
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .settings-notice {
+        grid-column: 1 / -1;
+    }
+
+    .system-settings-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+/* =========================================================
+   SMALL TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .system-settings-page {
+        padding-bottom: 20px;
+    }
+
+    .system-settings-header {
+        flex-direction: column;
+        margin-bottom: 18px;
+    }
+
+    .system-settings-breadcrumb {
+        padding-top: 0;
+    }
+
+    .system-settings-heading h1 {
+        font-size: 23px;
+    }
+
+    .system-settings-heading p {
+        font-size: 13px;
+    }
+
+    .system-settings-title-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .system-settings-main {
+        padding: 8px;
+    }
+
+    .system-settings-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .settings-card {
+        min-height: 225px;
+        padding: 18px;
+    }
+
+    .system-settings-sidebar {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .system-settings-header {
+        gap: 12px;
+    }
+
+    .system-settings-heading {
+        align-items: flex-start;
+        gap: 11px;
+    }
+
+    .system-settings-title-icon {
+        width: 43px;
+        height: 43px;
+        border-radius: 11px;
+    }
+
+    .system-settings-heading h1 {
+        font-size: 21px;
+    }
+
+    .system-settings-heading p {
+        font-size: 12px;
+        line-height: 1.45;
+    }
+
+    .system-settings-breadcrumb {
+        font-size: 11px;
+    }
+
+    .settings-card {
+        min-height: 205px;
+        padding: 16px;
+    }
+
+    .settings-card-icon {
+        width: 45px;
+        height: 45px;
+        border-radius: 12px;
+    }
+
+    .settings-card-content {
+        margin-top: 15px;
+    }
+
+    .settings-card-content h2 {
+        font-size: 16px;
+    }
+
+    .settings-card-content p {
+        font-size: 12px;
+        line-height: 1.55;
+    }
+
+    .settings-card-footer {
+        padding-top: 14px;
+    }
+
+    .settings-side-card {
+        padding: 15px;
+    }
+}

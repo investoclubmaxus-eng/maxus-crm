@@ -1,0 +1,116 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+html,
+body,
+#app {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    background: #f8fafc;
+    color: #101828;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.super-admin-app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #f8fafc;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.super-admin-app > .super-admin-header {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+}
+
+.super-admin-main {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin-left: 250px;
+    background: #f8fafc;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.super-admin-page {
+    min-height: 320px;
+    padding: 30px 24px;
+}
+
+.super-admin-page h1 {
+    color: #101828;
+}
+
+.super-admin-page p {
+    color: #667085;
+}
+
+.super-admin-app > .super-admin-footer {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    margin-top: auto;
+    position: sticky;
+    bottom: 0;
+    z-index: 900;
+}
+
+.super-admin-app--sidebar-collapsed > .super-admin-header {
+    margin-left: 72px;
+    width: calc(100% - 72px);
+}
+
+.super-admin-app--sidebar-collapsed .super-admin-main,
+.super-admin-app--sidebar-collapsed > .super-admin-footer {
+    margin-left: 72px;
+    width: calc(100% - 72px);
+}
+
+[data-theme="dark"] body,
+[data-theme="dark"] .super-admin-app,
+[data-theme="dark"] .super-admin-main {
+    background: #0b1220;
+    color: #f8fafc;
+}
+
+[data-theme="dark"] .super-admin-page h1 {
+    color: #f9fafb;
+}
+
+[data-theme="dark"] .super-admin-page p {
+    color: #98a2b3;
+}
+
+@media (max-width: 768px) {
+    .super-admin-app > .super-admin-header,
+    .super-admin-main,
+    .super-admin-app > .super-admin-footer {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .super-admin-page {
+        padding: 24px 16px;
+    }
+
+    .super-admin-app--sidebar-collapsed > .super-admin-header {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .super-admin-app--sidebar-collapsed .super-admin-main,
+    .super-admin-app--sidebar-collapsed > .super-admin-footer {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+

@@ -1,0 +1,2397 @@
+/* =========================================================
+   MAXUS SUPER ADMIN PROFILE
+========================================================= */
+
+.maxus-profile-page {
+    width: 100%;
+    min-height: 100%;
+    padding: 24px;
+    background: #f7f9fd;
+    color: #172033;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.maxus-profile-header {
+    width: 100%;
+    min-height: 110px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 24px 26px;
+
+    margin-bottom: 20px;
+
+    border: 1px solid #e1e8f5;
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            115deg,
+            #eef5ff 0%,
+            #f7f9ff 55%,
+            #ffffff 100%
+        );
+
+    box-shadow:
+        0 2px 8px rgba(30, 60, 120, 0.03);
+}
+
+
+.maxus-profile-header-icon {
+    width: 52px;
+    height: 52px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #e5edff;
+
+    color: #302b92;
+}
+
+
+.maxus-profile-header h1 {
+    margin: 0 0 5px;
+
+    color: #172033;
+
+    font-size: 25px;
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+
+.maxus-profile-header p {
+    margin: 0;
+
+    color: #667085;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.maxus-profile-message {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 18px;
+
+    padding: 12px 15px;
+
+    border: 1px solid #b7ebd1;
+    border-radius: 8px;
+
+    background: #effcf5;
+
+    color: #168553;
+
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
+
+.maxus-profile-layout {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: 280px minmax(0, 1fr);
+
+    gap: 20px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   LEFT SIDEBAR
+========================================================= */
+
+.maxus-profile-sidebar {
+    min-width: 0;
+}
+
+
+.maxus-profile-summary {
+    width: 100%;
+
+    padding: 26px 20px;
+
+    border: 1px solid #e1e8f5;
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    text-align: center;
+
+    box-shadow:
+        0 2px 8px rgba(30, 60, 120, 0.03);
+}
+
+
+/* =========================================================
+   AVATAR
+========================================================= */
+
+.maxus-profile-avatar-wrapper {
+    position: relative;
+
+    width: 94px;
+    height: 94px;
+
+    margin: 0 auto 15px;
+}
+
+
+.maxus-profile-avatar {
+    width: 94px;
+    height: 94px;
+
+    object-fit: cover;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #4d45df,
+            #302b92
+        );
+
+    border: 5px solid #eef2ff;
+
+    color: #ffffff;
+
+    font-size: 30px;
+    font-weight: 700;
+
+    box-shadow:
+        0 5px 18px rgba(48, 43, 146, 0.18);
+}
+
+
+.maxus-avatar-camera {
+    position: absolute;
+
+    right: -2px;
+    bottom: 2px;
+
+    width: 29px;
+    height: 29px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+
+    background: #302b92;
+
+    color: #ffffff;
+
+    cursor: pointer;
+}
+
+
+.maxus-profile-summary h2 {
+    margin: 0;
+
+    color: #172033;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+
+.maxus-profile-designation {
+    margin: 5px 0 12px;
+
+    color: #667085;
+
+    font-size: 12px;
+}
+
+
+.maxus-profile-badge {
+    width: fit-content;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 6px 12px;
+
+    border: 1px solid #d7ddff;
+    border-radius: 20px;
+
+    background: #f2f3ff;
+
+    color: #302b92;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.maxus-profile-contact {
+    margin-top: 22px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #edf0f5;
+
+    text-align: left;
+}
+
+
+.maxus-contact-item {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 15px;
+
+    color: #344054;
+
+    font-size: 12px;
+}
+
+
+.maxus-contact-item svg {
+    flex-shrink: 0;
+
+    color: #302b92;
+}
+
+
+.maxus-contact-item span {
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   ACCOUNT INFO
+========================================================= */
+
+.maxus-account-info {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    margin-top: 18px;
+
+    border: 1px solid #e7ebf3;
+    border-radius: 8px;
+
+    overflow: hidden;
+}
+
+
+.maxus-activity-empty {
+    padding: 32px 20px;
+
+    color: #667085;
+
+    font-size: 12px;
+
+    text-align: center;
+}
+
+
+.maxus-account-info > div {
+    padding: 12px 7px;
+
+    background: #fafbfe;
+}
+
+
+.maxus-account-info > div + div {
+    border-left: 1px solid #e7ebf3;
+}
+
+
+.maxus-account-info span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #98a2b3;
+
+    font-size: 9px;
+}
+
+
+.maxus-account-info strong {
+    display: block;
+
+    color: #344054;
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+.maxus-account-info small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #98a2b3;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   PROFILE NAVIGATION
+========================================================= */
+
+.maxus-profile-navigation {
+    margin-top: 15px;
+
+    padding: 7px;
+
+    border: 1px solid #e1e8f5;
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 2px 8px rgba(30, 60, 120, 0.03);
+}
+
+
+.maxus-profile-navigation button {
+    width: 100%;
+
+    min-height: 44px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 10px 12px;
+
+    margin-bottom: 3px;
+
+    border: none;
+    border-radius: 7px;
+
+    background: transparent;
+
+    color: #344054;
+
+    font-size: 12px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.maxus-profile-navigation button:last-child {
+    margin-bottom: 0;
+}
+
+
+.maxus-profile-navigation button:hover {
+    background: #f4f6ff;
+
+    color: #302b92;
+}
+
+
+.maxus-profile-navigation button.active {
+    background: #edf1ff;
+
+    color: #302b92;
+
+    font-weight: 600;
+
+    box-shadow:
+        inset 3px 0 0 #302b92;
+}
+
+
+.maxus-profile-navigation button svg {
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   RIGHT CARD
+========================================================= */
+
+.maxus-profile-content {
+    min-width: 0;
+}
+
+
+.maxus-profile-card {
+    width: 100%;
+
+    border: 1px solid #e1e8f5;
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 2px 8px rgba(30, 60, 120, 0.03);
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.maxus-card-header {
+    min-height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 18px 22px;
+
+    border-bottom: 1px solid #edf0f5;
+}
+
+
+.maxus-card-header h2 {
+    margin: 0 0 5px;
+
+    color: #172033;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+
+.maxus-card-header p {
+    margin: 0;
+
+    color: #667085;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.maxus-outline-button,
+.maxus-primary-button,
+.maxus-cancel-button,
+.maxus-photo-button {
+    min-height: 38px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 0 15px;
+
+    border-radius: 6px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.maxus-outline-button {
+    border: 1px solid #cbd5ff;
+
+    background: #ffffff;
+
+    color: #302b92;
+}
+
+
+.maxus-outline-button:hover {
+    background: #f2f3ff;
+
+    border-color: #302b92;
+}
+
+
+.maxus-primary-button {
+    border: 1px solid #302b92;
+
+    background: #302b92;
+
+    color: #ffffff;
+}
+
+
+.maxus-primary-button:hover {
+    background: #28247e;
+
+    box-shadow:
+        0 5px 15px rgba(48, 43, 146, 0.16);
+}
+
+
+.maxus-cancel-button {
+    border: 1px solid #d0d5dd;
+
+    background: #ffffff;
+
+    color: #344054;
+}
+
+
+.maxus-cancel-button:hover {
+    background: #f8fafc;
+}
+
+
+.maxus-photo-button {
+    border: 1px solid #cbd5ff;
+
+    background: #ffffff;
+
+    color: #302b92;
+}
+
+
+.maxus-photo-button:hover {
+    background: #f2f3ff;
+}
+
+
+/* =========================================================
+   PROFILE FORM
+========================================================= */
+
+.maxus-profile-form {
+    padding: 24px;
+}
+
+
+.maxus-profile-form {
+    display: grid;
+
+    grid-template-columns: 180px minmax(0, 1fr);
+
+    gap: 28px;
+}
+
+
+/* =========================================================
+   PHOTO SECTION
+========================================================= */
+
+.maxus-photo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 5px 10px;
+
+    text-align: center;
+}
+
+
+.maxus-large-avatar {
+    width: 100px;
+    height: 100px;
+
+    object-fit: cover;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 13px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #4d45df,
+            #302b92
+        );
+
+    border: 5px solid #eef2ff;
+
+    color: #ffffff;
+
+    font-size: 30px;
+    font-weight: 700;
+}
+
+
+.maxus-photo-section span {
+    margin-top: 10px;
+
+    color: #98a2b3;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   FIELDS
+========================================================= */
+
+.maxus-fields-grid {
+    min-width: 0;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 18px;
+}
+
+
+.maxus-form-group {
+    min-width: 0;
+}
+
+
+.maxus-form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+
+.maxus-form-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #475467;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+.maxus-required {
+    color: #d92d20;
+}
+
+
+.maxus-form-input {
+    position: relative;
+
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+}
+
+
+.maxus-form-input > svg:first-child {
+    position: absolute;
+
+    left: 12px;
+
+    color: #7b8794;
+
+    pointer-events: none;
+}
+
+
+.maxus-form-input input {
+    width: 100%;
+
+    height: 44px;
+
+    padding: 0 13px 0 39px;
+
+    border: 1px solid #d9e1ee;
+    border-radius: 6px;
+
+    background: #f7faff;
+
+    color: #172033;
+
+    font-size: 12px;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+
+.maxus-form-input input:focus {
+    border-color: #302b92;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(48, 43, 146, 0.07);
+}
+
+
+.maxus-form-input input:disabled {
+    cursor: default;
+
+    color: #344054;
+
+    background: #f7f9fc;
+}
+
+
+.maxus-form-input input::placeholder {
+    color: #98a2b3;
+}
+
+
+/* =========================================================
+   FORM ACTIONS
+========================================================= */
+
+.maxus-form-actions {
+    grid-column: 1 / -1;
+
+    display: flex;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 5px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #edf0f5;
+}
+
+
+/* =========================================================
+   PASSWORD PAGE
+========================================================= */
+
+.maxus-password-form {
+    display: grid;
+
+    grid-template-columns: 240px minmax(0, 1fr);
+
+    gap: 30px;
+
+    padding: 28px 24px;
+}
+
+
+.maxus-password-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 20px;
+
+    border: 1px solid #e2e8f5;
+    border-radius: 10px;
+
+    background: #f8faff;
+
+    text-align: center;
+}
+
+
+.maxus-password-icon {
+    width: 62px;
+    height: 62px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 15px;
+
+    border-radius: 50%;
+
+    background: #e8ecff;
+
+    color: #302b92;
+}
+
+
+.maxus-password-intro h3 {
+    margin: 0 0 7px;
+
+    color: #172033;
+
+    font-size: 14px;
+}
+
+
+.maxus-password-intro p {
+    margin: 0;
+
+    color: #667085;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+}
+
+
+.maxus-password-rules {
+    width: 100%;
+
+    margin-top: 17px;
+
+    padding-top: 15px;
+
+    border-top: 1px solid #e1e6f0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+
+    text-align: left;
+
+    color: #667085;
+
+    font-size: 10px;
+}
+
+
+.maxus-password-fields {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+
+.maxus-password-eye {
+    position: absolute;
+
+    right: 8px;
+
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    background: transparent;
+
+    color: #7b8794;
+
+    cursor: pointer;
+}
+
+
+.maxus-password-eye:hover {
+    color: #302b92;
+}
+
+
+.maxus-password-fields .maxus-form-actions {
+    margin-top: 4px;
+}
+
+
+/* =========================================================
+   ACTIVITY LOGS
+========================================================= */
+
+.maxus-activity-list {
+    padding: 8px 22px 10px;
+}
+
+
+.maxus-activity-item {
+    min-height: 76px;
+
+    display: grid;
+
+    grid-template-columns: 40px minmax(0, 1fr) 120px;
+
+    align-items: center;
+
+    gap: 13px;
+
+    border-bottom: 1px solid #edf0f5;
+}
+
+
+.maxus-activity-item:last-child {
+    border-bottom: none;
+}
+
+
+.maxus-activity-icon {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #eef2ff;
+
+    color: #302b92;
+}
+
+
+.maxus-activity-details {
+    min-width: 0;
+}
+
+
+.maxus-activity-details h3 {
+    margin: 0 0 4px;
+
+    color: #172033;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+.maxus-activity-details p {
+    margin: 0;
+
+    color: #667085;
+
+    font-size: 10px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+.maxus-activity-time {
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 3px;
+}
+
+
+.maxus-activity-time strong {
+    color: #344054;
+
+    font-size: 10px;
+    font-weight: 500;
+}
+
+
+.maxus-activity-time span {
+    color: #98a2b3;
+
+    font-size: 9px;
+}
+
+
+.maxus-activity-footer {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin: 5px 22px 20px;
+
+    padding: 12px;
+
+    border-radius: 7px;
+
+    background: #f8faff;
+
+    color: #667085;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.maxus-profile-footer {
+    padding: 25px 10px 5px;
+
+    text-align: center;
+
+    color: #667085;
+
+    font-size: 11px;
+}
+
+
+.maxus-profile-footer strong {
+    color: #302b92;
+}
+
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    .maxus-profile-page {
+        padding: 20px;
+    }
+
+
+    .maxus-profile-layout {
+        grid-template-columns: 250px minmax(0, 1fr);
+    }
+
+
+    .maxus-profile-form {
+        grid-template-columns: 150px minmax(0, 1fr);
+
+        gap: 20px;
+    }
+
+
+    .maxus-password-form {
+        grid-template-columns: 200px minmax(0, 1fr);
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .maxus-profile-page {
+        padding: 16px;
+    }
+
+
+    .maxus-profile-header {
+        min-height: 90px;
+
+        padding: 18px;
+    }
+
+
+    .maxus-profile-layout {
+        grid-template-columns: 1fr;
+    }
+
+
+    .maxus-profile-summary {
+        display: grid;
+
+        grid-template-columns: 110px 1fr;
+
+        column-gap: 20px;
+
+        text-align: left;
+
+        align-items: center;
+    }
+
+
+    .maxus-profile-avatar-wrapper {
+        grid-row: span 3;
+
+        margin: 0 auto;
+    }
+
+
+    .maxus-profile-summary h2 {
+        margin-top: 4px;
+    }
+
+
+    .maxus-profile-badge {
+        margin: 0;
+    }
+
+
+    .maxus-profile-contact {
+        grid-column: 1 / -1;
+
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 5px 20px;
+    }
+
+
+    .maxus-account-info {
+        grid-column: 1 / -1;
+    }
+
+
+    .maxus-profile-navigation {
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 5px;
+    }
+
+
+    .maxus-profile-navigation button {
+        justify-content: center;
+
+        margin: 0;
+
+        text-align: center;
+    }
+
+
+    .maxus-profile-form {
+        grid-template-columns: 1fr;
+    }
+
+
+    .maxus-photo-section {
+        padding-bottom: 20px;
+
+        border-bottom: 1px solid #edf0f5;
+    }
+
+
+    .maxus-fields-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+    .maxus-password-form {
+        grid-template-columns: 1fr;
+    }
+
+
+    .maxus-password-intro {
+        max-width: 450px;
+
+        margin: 0 auto;
+
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .maxus-profile-page {
+        padding: 12px;
+    }
+
+
+    .maxus-profile-header {
+        min-height: auto;
+
+        padding: 16px;
+
+        gap: 11px;
+    }
+
+
+    .maxus-profile-header-icon {
+        width: 42px;
+        height: 42px;
+    }
+
+
+    .maxus-profile-header h1 {
+        font-size: 20px;
+    }
+
+
+    .maxus-profile-header p {
+        font-size: 10px;
+
+        line-height: 1.5;
+    }
+
+
+    .maxus-profile-summary {
+        display: flex;
+        flex-direction: column;
+
+        text-align: center;
+
+        padding: 22px 17px;
+    }
+
+
+    .maxus-profile-avatar-wrapper {
+        margin-bottom: 12px;
+    }
+
+
+    .maxus-profile-badge {
+        margin: 0 auto;
+    }
+
+
+    .maxus-profile-contact {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        margin-top: 18px;
+    }
+
+
+    .maxus-contact-item {
+        margin-bottom: 11px;
+
+        font-size: 11px;
+    }
+
+
+    .maxus-account-info {
+        width: 100%;
+    }
+
+
+    .maxus-profile-navigation {
+        display: flex;
+        flex-direction: column;
+
+        padding: 6px;
+    }
+
+
+    .maxus-profile-navigation button {
+        justify-content: flex-start;
+
+        min-height: 42px;
+
+        padding-left: 12px;
+
+        text-align: left;
+    }
+
+
+    .maxus-card-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        padding: 17px;
+    }
+
+
+    .maxus-card-header h2 {
+        font-size: 16px;
+    }
+
+
+    .maxus-card-header p {
+        font-size: 10px;
+    }
+
+
+    .maxus-outline-button {
+        width: 100%;
+    }
+
+
+    .maxus-profile-form {
+        padding: 18px;
+    }
+
+
+    .maxus-fields-grid {
+        grid-template-columns: 1fr;
+
+        gap: 15px;
+    }
+
+
+    .maxus-form-group.full-width {
+        grid-column: auto;
+    }
+
+
+    .maxus-form-actions {
+        flex-direction: column-reverse;
+
+        width: 100%;
+    }
+
+
+    .maxus-primary-button,
+    .maxus-cancel-button {
+        width: 100%;
+    }
+
+
+    .maxus-password-form {
+        padding: 18px;
+
+        gap: 18px;
+    }
+
+
+    .maxus-password-fields {
+        gap: 15px;
+    }
+
+
+    .maxus-activity-list {
+        padding: 5px 15px;
+    }
+
+
+    .maxus-activity-item {
+        grid-template-columns: 38px minmax(0, 1fr);
+
+        gap: 10px;
+
+        padding: 13px 0;
+    }
+
+
+    .maxus-activity-time {
+        grid-column: 2;
+
+        align-items: flex-start;
+
+        flex-direction: row;
+
+        gap: 8px;
+    }
+
+
+    .maxus-activity-details p {
+        white-space: normal;
+
+        line-height: 1.5;
+    }
+
+
+    .maxus-activity-footer {
+        margin: 8px 15px 15px;
+
+        line-height: 1.5;
+    }
+
+
+    .maxus-profile-footer {
+        padding-top: 20px;
+
+        font-size: 10px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 390px) {
+
+    .maxus-profile-page {
+        padding: 9px;
+    }
+
+
+    .maxus-profile-header {
+        padding: 14px;
+    }
+
+
+    .maxus-profile-header h1 {
+        font-size: 18px;
+    }
+
+
+    .maxus-profile-header-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+
+    .maxus-profile-form {
+        padding: 15px;
+    }
+
+
+    .maxus-form-input input {
+        height: 42px;
+
+        font-size: 11px;
+    }
+
+
+    .maxus-profile-avatar,
+    .maxus-large-avatar {
+        width: 88px;
+        height: 88px;
+    }
+
+}
+
+
+/* =========================================================
+   DARK MODE
+   Works with your existing html.dark system
+========================================================= */
+
+html.dark .maxus-profile-page {
+    background: #0f172a;
+
+    color: #f8fafc;
+}
+
+
+html.dark .maxus-profile-header {
+    border-color: #26344d;
+
+    background:
+        linear-gradient(
+            115deg,
+            #17233b,
+            #111c31
+        );
+}
+
+
+html.dark .maxus-profile-header h1,
+html.dark .maxus-profile-card h2,
+html.dark .maxus-profile-summary h2,
+html.dark .maxus-password-intro h3,
+html.dark .maxus-activity-details h3 {
+    color: #f8fafc;
+}
+
+
+html.dark .maxus-profile-header p,
+html.dark .maxus-card-header p,
+html.dark .maxus-profile-designation,
+html.dark .maxus-contact-item,
+html.dark .maxus-activity-details p {
+    color: #a8b3c7;
+}
+
+
+html.dark .maxus-profile-summary,
+html.dark .maxus-profile-navigation,
+html.dark .maxus-profile-card {
+    border-color: #26344d;
+
+    background: #111c31;
+}
+
+
+html.dark .maxus-profile-navigation button {
+    color: #b9c4d6;
+}
+
+
+html.dark .maxus-profile-navigation button:hover,
+html.dark .maxus-profile-navigation button.active {
+    background: #1d2745;
+
+    color: #ffffff;
+}
+
+
+html.dark .maxus-profile-navigation button.active {
+    box-shadow:
+        inset 3px 0 0 #6d67ff;
+}
+
+
+html.dark .maxus-profile-contact {
+    border-color: #26344d;
+}
+
+
+html.dark .maxus-account-info {
+    border-color: #26344d;
+}
+
+
+html.dark .maxus-account-info > div {
+    background: #162238;
+}
+
+
+html.dark .maxus-account-info > div + div {
+    border-color: #26344d;
+}
+
+
+html.dark .maxus-account-info strong {
+    color: #e4e9f2;
+}
+
+
+html.dark .maxus-card-header,
+html.dark .maxus-form-actions,
+html.dark .maxus-activity-item {
+    border-color: #26344d;
+}
+
+
+html.dark .maxus-form-group label {
+    color: #b9c4d6;
+}
+
+
+html.dark .maxus-form-input input {
+    border-color: #31415d;
+
+    background: #162238;
+
+    color: #f8fafc;
+}
+
+
+html.dark .maxus-form-input input:disabled {
+    background: #162238;
+
+    color: #d8dfeb;
+}
+
+
+html.dark .maxus-outline-button,
+html.dark .maxus-cancel-button,
+html.dark .maxus-photo-button {
+    border-color: #354562;
+
+    background: #162238;
+
+    color: #d8ddff;
+}
+
+
+html.dark .maxus-outline-button:hover,
+html.dark .maxus-photo-button:hover {
+    background: #202c4c;
+}
+
+
+html.dark .maxus-cancel-button {
+    color: #d5dbe6;
+}
+
+
+html.dark .maxus-password-intro {
+    border-color: #26344d;
+
+    background: #162238;
+}
+
+
+html.dark .maxus-password-intro p,
+html.dark .maxus-password-rules {
+    color: #a8b3c7;
+}
+
+
+html.dark .maxus-password-rules {
+    border-color: #26344d;
+}
+
+
+html.dark .maxus-activity-icon {
+    background: #20294b;
+
+    color: #8f8aff;
+}
+
+
+html.dark .maxus-activity-time strong {
+    color: #d7deeb;
+}
+
+
+html.dark .maxus-activity-footer {
+    background: #162238;
+
+    color: #a8b3c7;
+}
+
+
+html.dark .maxus-profile-footer {
+    color: #8d99ad;
+}
+
+
+html.dark .maxus-profile-message {
+    border-color: #24543d;
+
+    background: #122d22;
+
+    color: #6ee7a8;
+}
+
+.maxus-project-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.maxus-project-table {
+    width: 100%;
+    min-width: 680px;
+    border-collapse: collapse;
+    color: #667085;
+    font-size: 11px;
+}
+
+.maxus-project-table th,
+.maxus-project-table td {
+    padding: 16px 22px;
+    border-bottom: 1px solid #edf0f5;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.maxus-project-table th {
+    background: #f8faff;
+    color: #667085;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.maxus-project-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.maxus-project-table td strong {
+    color: #172033;
+    font-size: 12px;
+}
+
+.maxus-project-status {
+    display: inline-flex;
+    padding: 5px 8px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.maxus-project-status.active {
+    background: #ecfdf3;
+    color: #027a48;
+}
+
+.maxus-project-status.in-progress {
+    background: #eff6ff;
+    color: #1d4ed8;
+}
+
+.maxus-project-status.planning {
+    background: #fff7e6;
+    color: #b54708;
+}
+
+.maxus-project-progress {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.maxus-project-progress > span {
+    min-width: 30px;
+    color: #344054;
+    font-weight: 600;
+}
+
+.maxus-project-progress-track {
+    width: 70px;
+    height: 6px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #e8edf5;
+}
+
+.maxus-project-progress-track span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: #302b92;
+}
+/* =========================================================
+   TWO-FACTOR AUTHENTICATION
+   Matches the current Profile.jsx 2FA markup
+========================================================= */
+
+.maxus-two-factor-card {
+    overflow: hidden;
+}
+
+.maxus-two-factor-content {
+    width: 100%;
+    padding: 28px;
+}
+
+.maxus-two-factor-info {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 22px;
+    border: 1px solid #e1e8f5;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #f7f9ff 0%, #ffffff 100%);
+}
+
+.maxus-two-factor-info-icon {
+    width: 64px;
+    height: 64px;
+    flex: 0 0 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: #edf1ff;
+    color: #302b92;
+}
+
+.maxus-two-factor-info h3 {
+    margin: 0 0 6px;
+    color: #172033;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.maxus-two-factor-info p {
+    margin: 0;
+    color: #667085;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+.maxus-two-factor-content .maxus-two-factor-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #edf0f5;
+}
+
+.maxus-two-factor-content .maxus-primary-button {
+    min-height: 40px;
+}
+
+/* Setup container */
+.maxus-two-factor-setup {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
+    grid-template-rows: auto auto auto auto auto;
+    column-gap: 28px;
+    row-gap: 18px;
+    padding: 24px;
+}
+
+/* Step 1 and step 2 */
+.maxus-two-factor-setup > .maxus-two-factor-step {
+    grid-column: 1 / -1;
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 15px;
+    border: 1px solid #e1e8f5;
+    border-radius: 8px;
+    background: #ffffff;
+}
+
+.maxus-two-factor-setup > .maxus-two-factor-step:first-child {
+    grid-row: 1;
+}
+
+.maxus-two-factor-setup > .maxus-two-factor-step:nth-of-type(3) {
+    grid-row: 3;
+}
+
+.maxus-two-factor-step-number {
+    width: 28px;
+    height: 28px;
+    flex: 0 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #edf1ff;
+    color: #302b92;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.maxus-two-factor-step h3 {
+    margin: 0 0 4px;
+    color: #172033;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.maxus-two-factor-step p {
+    margin: 0;
+    color: #667085;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+/* QR */
+.maxus-two-factor-qr-wrapper {
+    grid-column: 1;
+    grid-row: 2;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    border: 1px solid #e1e8f5;
+    border-radius: 10px;
+    background: #fafbff;
+}
+
+.maxus-two-factor-qr {
+    width: 196px;
+    height: 196px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #ffffff;
+}
+
+.maxus-two-factor-qr svg {
+    display: block;
+    width: 180px !important;
+    height: 180px !important;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Manual setup key */
+.maxus-two-factor-manual {
+    grid-column: 2;
+    grid-row: 2;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4px 0;
+}
+
+.maxus-two-factor-manual strong {
+    display: block;
+    margin-bottom: 6px;
+    color: #172033;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.maxus-two-factor-manual p {
+    margin: 0 0 14px;
+    color: #667085;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.maxus-two-factor-secret {
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    align-items: stretch;
+    border: 1px solid #d9e1ee;
+    border-radius: 7px;
+    overflow: hidden;
+    background: #f7faff;
+}
+
+.maxus-two-factor-secret code {
+    min-width: 0;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 11px 12px;
+    color: #344054;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .35px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+    word-break: break-all;
+}
+
+.maxus-two-factor-secret button {
+    width: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-left: 1px solid #d9e1ee;
+    background: #ffffff;
+    color: #302b92;
+    cursor: pointer;
+    transition: background .2s ease, color .2s ease;
+}
+
+.maxus-two-factor-secret button:hover {
+    background: #f2f3ff;
+    color: #28247e;
+}
+
+.maxus-two-factor-secret button:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 2px #302b92;
+}
+
+/* Verification */
+.maxus-two-factor-setup > .maxus-two-factor-code-group {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    width: 100%;
+    max-width: 360px;
+}
+
+.maxus-two-factor-code-group label {
+    display: block;
+    margin-bottom: 7px;
+    color: #475467;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.maxus-two-factor-code-group input {
+    width: 100%;
+    height: 46px;
+    padding: 0 14px;
+    border: 1px solid #d9e1ee;
+    border-radius: 7px;
+    background: #f7faff;
+    color: #172033;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    text-align: center;
+    outline: none;
+    transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
+}
+
+.maxus-two-factor-code-group input::placeholder {
+    color: #98a2b3;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: normal;
+}
+
+.maxus-two-factor-code-group input:focus {
+    border-color: #302b92;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(48, 43, 146, .07);
+}
+
+/* Security notice */
+.maxus-two-factor-setup > .maxus-two-factor-notice {
+    grid-column: 1 / -1;
+    grid-row: 5;
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    padding: 12px 13px;
+    border: 1px solid #dbe4ff;
+    border-radius: 7px;
+    background: #f5f7ff;
+    color: #475467;
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+.maxus-two-factor-notice svg {
+    flex: 0 0 auto;
+    margin-top: 1px;
+    color: #302b92;
+}
+
+/* Bottom actions */
+.maxus-two-factor-setup > .maxus-form-actions {
+    grid-column: 1 / -1;
+    grid-row: 6;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-top: 0;
+    padding-top: 18px;
+    border-top: 1px solid #edf0f5;
+}
+
+.maxus-two-factor-setup > .maxus-form-actions button {
+    min-height: 40px;
+}
+
+.maxus-two-factor-setup > .maxus-form-actions button:disabled {
+    cursor: not-allowed;
+    opacity: .55;
+}
+
+/* =========================================================
+   TWO-FACTOR TABLET
+========================================================= */
+@media (max-width: 900px) {
+    .maxus-two-factor-content {
+        padding: 22px;
+    }
+
+    .maxus-two-factor-setup {
+        grid-template-columns: 210px minmax(0, 1fr);
+        column-gap: 20px;
+        padding: 20px;
+    }
+
+    .maxus-two-factor-qr-wrapper {
+        padding: 14px;
+    }
+
+    .maxus-two-factor-qr {
+        width: 180px;
+        height: 180px;
+    }
+
+    .maxus-two-factor-qr svg {
+        width: 164px !important;
+        height: 164px !important;
+    }
+}
+
+/* =========================================================
+   TWO-FACTOR MOBILE
+========================================================= */
+@media (max-width: 600px) {
+    .maxus-two-factor-content {
+        padding: 18px;
+    }
+
+    .maxus-two-factor-info {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 17px;
+        text-align: center;
+    }
+
+    .maxus-two-factor-info-icon {
+        width: 56px;
+        height: 56px;
+        flex-basis: 56px;
+    }
+
+    .maxus-two-factor-info h3 {
+        font-size: 15px;
+    }
+
+    .maxus-two-factor-info p {
+        font-size: 10px;
+    }
+
+    .maxus-two-factor-content .maxus-two-factor-actions {
+        padding-top: 18px;
+    }
+
+    .maxus-two-factor-content .maxus-two-factor-actions .maxus-primary-button {
+        width: 100%;
+    }
+
+    .maxus-two-factor-setup {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 17px;
+    }
+
+    .maxus-two-factor-setup > .maxus-two-factor-step {
+        width: 100%;
+    }
+
+    .maxus-two-factor-qr-wrapper {
+        width: 100%;
+        padding: 16px;
+    }
+
+    .maxus-two-factor-qr {
+        width: 190px;
+        height: 190px;
+    }
+
+    .maxus-two-factor-qr svg {
+        width: 174px !important;
+        height: 174px !important;
+    }
+
+    .maxus-two-factor-manual {
+        width: 100%;
+        padding: 0;
+    }
+
+    .maxus-two-factor-secret code {
+        font-size: 10px;
+    }
+
+    .maxus-two-factor-code-group {
+        width: 100%;
+        max-width: none;
+    }
+
+    .maxus-two-factor-code-group input {
+        height: 46px;
+        font-size: 17px;
+    }
+
+    .maxus-two-factor-setup > .maxus-two-factor-notice {
+        width: 100%;
+    }
+
+    .maxus-two-factor-setup > .maxus-form-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    .maxus-two-factor-setup > .maxus-form-actions button {
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   TWO-FACTOR SMALL PHONE
+========================================================= */
+@media (max-width: 390px) {
+    .maxus-two-factor-content {
+        padding: 15px;
+    }
+
+    .maxus-two-factor-info {
+        padding: 17px 14px;
+    }
+
+    .maxus-two-factor-info-icon {
+        width: 52px;
+        height: 52px;
+        flex-basis: 52px;
+    }
+
+    .maxus-two-factor-info h3 {
+        font-size: 14px;
+    }
+
+    .maxus-two-factor-setup {
+        padding: 14px;
+        gap: 13px;
+    }
+
+    .maxus-two-factor-step {
+        padding: 12px;
+    }
+
+    .maxus-two-factor-step h3 {
+        font-size: 12px;
+    }
+
+    .maxus-two-factor-step p {
+        font-size: 10px;
+    }
+
+    .maxus-two-factor-qr {
+        width: 176px;
+        height: 176px;
+    }
+
+    .maxus-two-factor-qr svg {
+        width: 160px !important;
+        height: 160px !important;
+    }
+
+    .maxus-two-factor-secret code {
+        font-size: 9px;
+        padding: 10px;
+    }
+
+    .maxus-two-factor-secret button {
+        width: 42px;
+        min-width: 42px;
+    }
+
+    .maxus-two-factor-notice {
+        font-size: 9px;
+    }
+}
+
+/* =========================================================
+   TWO-FACTOR DARK MODE
+========================================================= */
+html.dark .maxus-two-factor-info {
+    border-color: #26344d;
+    background: linear-gradient(135deg, #17233b 0%, #111c31 100%);
+}
+
+html.dark .maxus-two-factor-info-icon {
+    background: #20294b;
+    color: #8f8aff;
+}
+
+html.dark .maxus-two-factor-info h3,
+html.dark .maxus-two-factor-step h3,
+html.dark .maxus-two-factor-manual strong {
+    color: #f8fafc;
+}
+
+html.dark .maxus-two-factor-info p,
+html.dark .maxus-two-factor-step p,
+html.dark .maxus-two-factor-manual p {
+    color: #a8b3c7;
+}
+
+html.dark .maxus-two-factor-content .maxus-two-factor-actions,
+html.dark .maxus-two-factor-setup > .maxus-form-actions {
+    border-color: #26344d;
+}
+
+html.dark .maxus-two-factor-setup > .maxus-two-factor-step {
+    border-color: #26344d;
+    background: #162238;
+}
+
+html.dark .maxus-two-factor-step-number {
+    background: #20294b;
+    color: #a7a3ff;
+}
+
+html.dark .maxus-two-factor-qr-wrapper {
+    border-color: #26344d;
+    background: #162238;
+}
+
+html.dark .maxus-two-factor-qr {
+    background: #ffffff;
+    border-color: #354562;
+}
+
+html.dark .maxus-two-factor-secret {
+    border-color: #31415d;
+    background: #162238;
+}
+
+html.dark .maxus-two-factor-secret code {
+    color: #e4e9f2;
+}
+
+html.dark .maxus-two-factor-secret button {
+    border-left-color: #31415d;
+    background: #1b2941;
+    color: #a7a3ff;
+}
+
+html.dark .maxus-two-factor-secret button:hover {
+    background: #202c4c;
+    color: #c0bdff;
+}
+
+html.dark .maxus-two-factor-code-group label {
+    color: #b9c4d6;
+}
+
+html.dark .maxus-two-factor-code-group input {
+    border-color: #31415d;
+    background: #162238;
+    color: #f8fafc;
+}
+
+html.dark .maxus-two-factor-code-group input:focus {
+    border-color: #6d67ff;
+    background: #111c31;
+    box-shadow: 0 0 0 3px rgba(109, 103, 255, .12);
+}
+
+html.dark .maxus-two-factor-setup > .maxus-two-factor-notice {
+    border-color: #35416c;
+    background: #1b2642;
+    color: #b9c4d6;
+}
+
+html.dark .maxus-two-factor-notice svg {
+    color: #8f8aff;
+}

@@ -1,0 +1,1145 @@
+/* =========================================================
+   MAXUS LOGIN
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+.maxus-login {
+    width: 100%;
+    min-height: 100vh;
+
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+    overflow: hidden;
+
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.maxus-login-image {
+    position: relative;
+
+    width: 100%;
+    min-height: 100vh;
+
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    background-color: #f4f6f8;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.maxus-login-logo {
+    position: absolute;
+
+    top: clamp(45px, 8vh, 90px);
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: flex-start;
+
+    color: #ffffff;
+
+    z-index: 2;
+}
+
+.maxus-login-logo span {
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: clamp(42px, 5vw, 72px);
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    line-height: 1;
+}
+
+.maxus-login-logo sup {
+    margin-left: 5px;
+    margin-top: 2px;
+
+    font-size: clamp(9px, 1vw, 15px);
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   RIGHT SIDE
+========================================================= */
+
+.maxus-login-right {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff;
+
+    padding: 50px 8%;
+}
+
+
+.maxus-login-box {
+    width: 100%;
+    max-width: 540px;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.maxus-login-box h1 {
+    margin: 0 0 48px;
+
+    color: #172033;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   ERROR MESSAGE
+========================================================= */
+
+/*
+   IMPORTANT:
+   Removed negative margin.
+
+   The old:
+       margin: -24px 0 24px;
+
+   caused the error message to overlap the
+   2FA description text.
+*/
+
+.maxus-login-error {
+    width: 100%;
+
+    margin: 0 0 24px;
+
+    padding: 11px 13px;
+
+    border: 1px solid #f3b5b5;
+
+    border-radius: 7px;
+
+    background: #fff5f5;
+
+    color: #b42318;
+
+    font-size: 13px;
+
+    line-height: 1.45;
+
+    overflow-wrap: break-word;
+}
+
+
+/* =========================================================
+   FIELD
+========================================================= */
+
+.maxus-field {
+    width: 100%;
+
+    margin-bottom: 26px;
+}
+
+
+.maxus-field label {
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: #667085;
+
+    font-size: 14px;
+
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.maxus-input {
+    position: relative;
+
+    width: 100%;
+}
+
+
+.maxus-input input {
+    width: 100%;
+
+    height: 48px;
+
+    padding: 0 48px 0 14px;
+
+    border: 1px solid #d0d5dd;
+
+    border-radius: 7px;
+
+    background: #edf4ff;
+
+    color: #101828;
+
+    font-size: 13px;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+
+.maxus-input input::placeholder {
+    color: #98a2b3;
+}
+
+
+.maxus-input input:focus {
+    border-color: #302b92;
+
+    background: #f7f9ff;
+
+    box-shadow:
+        0 0 0 3px rgba(48, 43, 146, 0.08);
+}
+
+
+/* =========================================================
+   EMAIL ICON
+========================================================= */
+
+.maxus-input-icon {
+    position: absolute;
+
+    right: 14px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #7b8794;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   PASSWORD
+========================================================= */
+
+.maxus-eye {
+    position: absolute;
+
+    right: 10px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 30px;
+    height: 30px;
+
+    padding: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    background: transparent;
+
+    color: #7b8794;
+
+    cursor: pointer;
+}
+
+
+.maxus-eye:hover {
+    color: #302b92;
+}
+
+
+/* =========================================================
+   OPTIONS
+========================================================= */
+
+.maxus-login-options {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top: 3px;
+
+    margin-bottom: 37px;
+}
+
+
+.maxus-remember {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    color: #344054;
+
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+
+.maxus-remember input {
+    width: 19px;
+    height: 19px;
+
+    margin: 0;
+
+    cursor: pointer;
+
+    appearance: none;
+
+    border: 1px solid #b8c2cf;
+
+    border-radius: 4px;
+
+    background: #ffffff;
+
+    position: relative;
+}
+
+
+.maxus-remember input:checked {
+    background: #302b92;
+
+    border-color: #302b92;
+}
+
+
+.maxus-remember input:checked::after {
+    content: "✓";
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -53%);
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+.maxus-forgot {
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: #302b92;
+
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+
+.maxus-forgot:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   LOGIN BUTTON
+========================================================= */
+
+.maxus-login-button {
+    width: 100%;
+
+    height: 50px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #302b92;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.maxus-login-button:hover {
+    background: #28247e;
+
+    box-shadow:
+        0 8px 20px rgba(48, 43, 146, 0.18);
+}
+
+
+.maxus-login-button:active {
+    transform: translateY(1px);
+}
+
+
+.maxus-login-button:disabled {
+    background: #8d8abf;
+
+    cursor: wait;
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   TWO-FACTOR AUTHENTICATION
+========================================================= */
+
+.maxus-two-factor {
+    width: 100%;
+}
+
+
+/* =========================================================
+   2FA HEADER
+========================================================= */
+
+.maxus-two-factor-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 22px;
+}
+
+
+.maxus-two-factor-header svg {
+    width: 25px;
+    height: 25px;
+
+    flex-shrink: 0;
+
+    color: #302b92;
+
+    stroke-width: 2;
+}
+
+
+.maxus-two-factor-header h1 {
+    margin: 0;
+
+    color: #172033;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    line-height: 1.4;
+}
+    
+
+/* =========================================================
+   2FA DESCRIPTION
+========================================================= */
+
+.maxus-two-factor-description {
+    margin: 0 0 18px;
+
+    color: #172033;
+
+    font-size: 14px;
+
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   2FA ERROR
+========================================================= */
+
+.maxus-two-factor .maxus-login-error {
+    margin: 0 0 24px;
+
+    padding: 11px 13px;
+
+    border: 1px solid #fda4af;
+
+    border-radius: 7px;
+
+    background: #fff5f5;
+
+    color: #d92d20;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   2FA FIELD
+========================================================= */
+
+.maxus-two-factor .maxus-field {
+    margin-bottom: 22px;
+}
+
+
+.maxus-two-factor .maxus-field label {
+    margin-bottom: 9px;
+
+    color: #344054;
+
+    font-size: 13px;
+
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   2FA CODE INPUT
+========================================================= */
+
+.maxus-two-factor .maxus-input input {
+    height: 48px;
+
+    padding: 0 14px;
+
+    background: #edf4ff;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 7px;
+
+    color: #101828;
+
+    font-size: 14px;
+
+    letter-spacing: 0.5px;
+}
+
+
+.maxus-two-factor .maxus-input input::placeholder {
+    color: #98a2b3;
+}
+
+
+.maxus-two-factor .maxus-input input:focus {
+    border-color: #302b92;
+
+    background: #f7f9ff;
+
+    box-shadow:
+        0 0 0 3px rgba(48, 43, 146, 0.08);
+}
+
+
+/* =========================================================
+   2FA SECURITY INFORMATION
+========================================================= */
+
+.maxus-two-factor-security {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 8px;
+
+    margin: 4px 0 22px;
+
+    color: #172033;
+
+    font-size: 14px;
+
+    line-height: 1.55;
+}
+
+
+.maxus-two-factor-security svg {
+    width: 17px;
+    height: 17px;
+
+    flex-shrink: 0;
+
+    margin-top: 2px;
+
+    color: #302b92;
+
+    stroke-width: 2;
+}
+
+
+.maxus-two-factor-security span {
+    display: block;
+}
+
+
+/* =========================================================
+   2FA VERIFY BUTTON
+========================================================= */
+
+.maxus-two-factor .maxus-login-button {
+    margin-top: 2px;
+
+    height: 50px;
+
+    background: #302b92;
+}
+
+
+.maxus-two-factor .maxus-login-button:hover {
+    background: #28247e;
+
+    box-shadow:
+        0 8px 20px rgba(48, 43, 146, 0.18);
+}
+
+
+.maxus-two-factor .maxus-login-button:disabled {
+    background: #8d8abf;
+
+    cursor: wait;
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   2FA BACK TO LOGIN
+========================================================= */
+
+.maxus-two-factor-back {
+    display: inline-flex;
+
+    align-items: center;
+
+    margin-top: 10px;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: #302b92;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+    text-decoration: none;
+}
+
+
+.maxus-two-factor-back:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   TAGLINE
+========================================================= */
+
+.maxus-tagline {
+    margin-top: 20px;
+
+    text-align: center;
+
+    color: #e99b00;
+
+    font-size: 13px;
+
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.maxus-divider {
+    width: 100%;
+
+    height: 1px;
+
+    margin-top: 22px;
+
+    background: #e4e7ec;
+}
+
+
+/* =========================================================
+   COPYRIGHT
+========================================================= */
+
+.maxus-copyright {
+    margin-top: 18px;
+
+    text-align: center;
+
+    color: #344054;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media (max-width: 1365px) and (min-width: 901px) {
+
+    .maxus-login {
+        grid-template-columns: 48% 52%;
+    }
+
+    .maxus-login-right {
+        padding: 40px 7%;
+    }
+
+    .maxus-login-box h1 {
+        margin-bottom: 40px;
+    }
+
+    .maxus-field {
+        margin-bottom: 23px;
+    }
+
+    .maxus-login-options {
+        margin-bottom: 31px;
+    }
+
+    .maxus-two-factor-header {
+        margin-bottom: 20px;
+    }
+
+    .maxus-two-factor-description {
+        font-size: 13px;
+    }
+
+    .maxus-two-factor-security {
+        font-size: 13px;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .maxus-login {
+        display: flex;
+
+        flex-direction: column;
+
+        overflow: visible;
+    }
+
+
+    .maxus-login-image {
+        width: 100%;
+
+        min-height: 330px;
+
+        height: 38vh;
+
+        max-height: 430px;
+    }
+
+
+    .maxus-login-logo {
+        top: 55px;
+    }
+
+
+    .maxus-login-right {
+        width: 100%;
+
+        min-height: auto;
+
+        margin-top: -25px;
+
+        padding: 0 35px 45px;
+
+        position: relative;
+
+        z-index: 5;
+
+        align-items: flex-start;
+
+        background: transparent;
+    }
+
+
+    .maxus-login-box {
+        max-width: 650px;
+
+        margin: 0 auto;
+
+        padding: 35px 40px 32px;
+
+        background: #ffffff;
+
+        border-radius: 16px;
+
+        box-shadow:
+            0 10px 35px rgba(16, 24, 40, 0.12);
+    }
+
+
+    .maxus-login-box h1 {
+        margin-bottom: 35px;
+    }
+
+
+    .maxus-two-factor-header h1 {
+        margin-bottom: 0;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .maxus-login {
+        min-height: 100svh;
+    }
+
+
+    .maxus-login-image {
+        min-height: 235px;
+
+        height: 31vh;
+
+        max-height: 290px;
+
+        background-position: center center;
+    }
+
+
+    .maxus-login-logo {
+        top: 38px;
+    }
+
+
+    .maxus-login-logo span {
+        font-size: 44px;
+
+        letter-spacing: 1px;
+    }
+
+
+    .maxus-login-logo sup {
+        font-size: 9px;
+
+        margin-left: 3px;
+    }
+
+
+    .maxus-login-right {
+        margin-top: -20px;
+
+        padding: 0 16px 28px;
+    }
+
+
+    .maxus-login-box {
+        width: 100%;
+
+        padding: 27px 20px 24px;
+
+        border-radius: 14px;
+
+        box-shadow:
+            0 8px 25px rgba(16, 24, 40, 0.12);
+    }
+
+
+    .maxus-login-box h1 {
+        font-size: 17px;
+
+        margin-bottom: 27px;
+    }
+
+
+    .maxus-field {
+        margin-bottom: 21px;
+    }
+
+
+    .maxus-field label {
+        font-size: 13px;
+
+        margin-bottom: 8px;
+    }
+
+
+    .maxus-input input {
+        height: 46px;
+
+        font-size: 13px;
+    }
+
+
+    .maxus-login-options {
+        margin-bottom: 27px;
+
+        gap: 10px;
+    }
+
+
+    .maxus-remember {
+        font-size: 12px;
+
+        gap: 7px;
+    }
+
+
+    .maxus-remember input {
+        width: 17px;
+        height: 17px;
+    }
+
+
+    .maxus-forgot {
+        font-size: 12px;
+    }
+
+
+    .maxus-login-button {
+        height: 47px;
+
+        font-size: 13px;
+    }
+
+
+    .maxus-tagline {
+        font-size: 11px;
+
+        margin-top: 17px;
+    }
+
+
+    .maxus-divider {
+        margin-top: 18px;
+    }
+
+
+    .maxus-copyright {
+        margin-top: 15px;
+
+        font-size: 10px;
+    }
+
+
+    /* =====================================================
+       MOBILE 2FA
+    ===================================================== */
+
+    .maxus-two-factor-header {
+        gap: 9px;
+
+        margin-bottom: 19px;
+    }
+
+
+    .maxus-two-factor-header svg {
+        width: 22px;
+        height: 22px;
+    }
+
+
+    .maxus-two-factor-header h1 {
+        font-size: 17px;
+    }
+
+
+    .maxus-two-factor-description {
+        margin-bottom: 17px;
+
+        font-size: 13px;
+
+        line-height: 1.5;
+    }
+
+
+    .maxus-two-factor .maxus-login-error {
+        margin-bottom: 20px;
+
+        padding: 10px 11px;
+
+        font-size: 12px;
+    }
+
+
+    .maxus-two-factor .maxus-field {
+        margin-bottom: 20px;
+    }
+
+
+    .maxus-two-factor .maxus-field label {
+        font-size: 12px;
+    }
+
+
+    .maxus-two-factor .maxus-input input {
+        height: 46px;
+
+        font-size: 13px;
+    }
+
+
+    .maxus-two-factor-security {
+        gap: 7px;
+
+        margin-top: 3px;
+
+        margin-bottom: 20px;
+
+        font-size: 12px;
+
+        line-height: 1.5;
+    }
+
+
+    .maxus-two-factor-security svg {
+        width: 16px;
+        height: 16px;
+
+        margin-top: 1px;
+    }
+
+
+    .maxus-two-factor .maxus-login-button {
+        height: 47px;
+
+        font-size: 13px;
+    }
+
+
+    .maxus-two-factor-back {
+        margin-top: 9px;
+
+        font-size: 12px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 390px) {
+
+    .maxus-login-image {
+        min-height: 220px;
+
+        height: 29vh;
+    }
+
+
+    .maxus-login-right {
+        padding-left: 12px;
+
+        padding-right: 12px;
+    }
+
+
+    .maxus-login-box {
+        padding: 24px 17px 22px;
+    }
+
+
+    .maxus-login-box h1 {
+        font-size: 16px;
+    }
+
+
+    .maxus-two-factor-header h1 {
+        font-size: 16px;
+    }
+
+
+    .maxus-two-factor-description {
+        font-size: 12px;
+    }
+
+
+    .maxus-two-factor-security {
+        font-size: 11.5px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE LANDSCAPE
+========================================================= */
+
+@media (max-width: 900px) and (orientation: landscape) {
+
+    .maxus-login-image {
+        min-height: 240px;
+
+        height: 45vh;
+    }
+}

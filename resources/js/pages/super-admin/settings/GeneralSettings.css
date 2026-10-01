@@ -1,0 +1,1682 @@
+/* =========================================================
+   GENERAL SETTINGS PAGE
+========================================================= */
+
+.general-settings-page {
+    width: 100%;
+    padding: 4px 0 30px;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.general-page-header {
+    width: 100%;
+    margin-bottom: 22px;
+}
+
+.general-title-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.general-title-icon {
+    width: 58px;
+    height: 58px;
+    min-width: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f1f5ff;
+    color: #4f46e5;
+
+    border: 1px solid #dce6fb;
+    border-radius: 12px;
+
+    box-sizing: border-box;
+}
+
+.general-title-icon svg {
+    display: block;
+}
+
+.general-title-section h1 {
+    margin: 0 0 5px;
+
+    font-size: 28px;
+    line-height: 1.2;
+    font-weight: 700;
+
+    color: #172033;
+}
+
+.general-title-section p {
+    margin: 0;
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    color: #738096;
+}
+
+
+/* =========================================================
+   ONE MAIN CONTAINER
+========================================================= */
+
+.general-settings-card {
+    width: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #dfeafb;
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   GENERAL SECTION
+========================================================= */
+
+.general-section {
+    padding: 24px;
+
+    border-bottom: 1px solid #e8eef8;
+
+    box-sizing: border-box;
+}
+
+.general-section:last-of-type {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.general-section-header {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 12px;
+
+    margin-bottom: 20px;
+}
+
+.general-section-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: #f4f7ff;
+    color: #4f46e5;
+
+    border: 1px solid #e1e8f8;
+
+    box-sizing: border-box;
+}
+
+.general-section-icon svg {
+    display: block;
+}
+
+.general-section-header h2 {
+    margin: 1px 0 4px;
+
+    font-size: 17px;
+    line-height: 1.3;
+    font-weight: 700;
+
+    color: #1c2638;
+}
+
+.general-section-header p {
+    margin: 0;
+
+    font-size: 13px;
+    line-height: 1.5;
+
+    color: #7b879a;
+}
+
+
+/* =========================================================
+   APPLICATION INFORMATION
+========================================================= */
+
+.application-fields {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+.general-form-group {
+    min-width: 0;
+}
+
+.general-form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 13px;
+    line-height: 1.4;
+    font-weight: 600;
+
+    color: #344054;
+}
+
+.general-form-group label span {
+    margin-left: 3px;
+
+    color: #ef4444;
+}
+
+.general-form-group input {
+    width: 100%;
+    height: 44px;
+
+    padding: 0 13px;
+
+    border: 1px solid #d7e1ef;
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #1d2939;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+
+    box-sizing: border-box;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.general-form-group input:hover {
+    border-color: #bdcbe0;
+}
+
+.general-form-group input:focus {
+    border-color: #6366f1;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(99, 102, 241, 0.08);
+}
+
+.general-form-group input::placeholder {
+    color: #a1adbd;
+}
+
+.general-form-group small {
+    display: block;
+
+    margin-top: 7px;
+
+    font-size: 11px;
+    line-height: 1.5;
+
+    color: #8a96a8;
+}
+
+
+/* =========================================================
+   BRANDING
+========================================================= */
+
+.branding-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+.branding-item {
+    min-width: 0;
+
+    padding: 17px;
+
+    border: 1px solid #e0e8f4;
+    border-radius: 10px;
+
+    background: #fbfcfe;
+
+    box-sizing: border-box;
+}
+
+.branding-item-header {
+    min-height: 61px;
+}
+
+.branding-item-header h3 {
+    margin: 0 0 5px;
+
+    font-size: 14px;
+    line-height: 1.3;
+    font-weight: 700;
+
+    color: #273449;
+}
+
+.branding-item-header p {
+    margin: 0;
+
+    font-size: 12px;
+    line-height: 1.5;
+
+    color: #7c889b;
+}
+
+
+/* =========================================================
+   BRANDING PREVIEW
+========================================================= */
+
+.branding-preview {
+    width: 100%;
+    height: 120px;
+
+    margin-top: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff;
+
+    border: 1px dashed #cbd8e9;
+    border-radius: 8px;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+}
+
+.branding-preview img {
+    display: block;
+
+    max-width: 85%;
+    max-height: 80px;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+}
+
+.branding-preview.favicon-preview img {
+    width: 58px;
+    height: 58px;
+
+    max-width: 58px;
+    max-height: 58px;
+}
+
+.image-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    color: #9aa7b9;
+
+    text-align: center;
+}
+
+.image-empty svg {
+    display: block;
+}
+
+.image-empty span {
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   BRANDING BUTTONS
+========================================================= */
+
+.branding-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 12px;
+}
+
+.branding-change-btn,
+.branding-remove-btn {
+    min-height: 34px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    padding: 0 11px;
+
+    border-radius: 7px;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.branding-change-btn {
+    background: #eef2ff;
+
+    color: #4f46e5;
+
+    border: 1px solid #dce3ff;
+}
+
+.branding-change-btn:hover {
+    background: #e5e9ff;
+    border-color: #ccd6ff;
+}
+
+.branding-remove-btn {
+    background: #fff5f5;
+
+    color: #dc2626;
+
+    border: 1px solid #fee2e2;
+}
+
+.branding-remove-btn:hover {
+    background: #feeaea;
+    border-color: #fecaca;
+}
+
+.branding-change-btn svg,
+.branding-remove-btn svg {
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   BRANDING INFORMATION
+========================================================= */
+
+.branding-recommendation {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    margin-top: 12px;
+
+    color: #66758a;
+
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.branding-recommendation svg {
+    min-width: 14px;
+
+    color: #7c8da7;
+}
+
+.branding-format {
+    margin-top: 5px;
+
+    font-size: 10px;
+    line-height: 1.4;
+
+    color: #9aa5b5;
+}
+
+
+/* =========================================================
+   LOGIN PAGE PREVIEW
+   REALISTIC MAXUS LOGIN SCREEN
+========================================================= */
+
+.login-preview-wrapper {
+    width: 100%;
+
+    overflow: hidden;
+
+    border: 1px solid #dce5f2;
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   LOGIN PREVIEW MAIN LAYOUT
+========================================================= */
+
+.login-preview {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    min-height: 520px;
+
+    background: #ffffff;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   LEFT IMAGE PANEL
+========================================================= */
+
+.login-preview-left {
+    position: relative;
+
+    min-width: 0;
+    min-height: 520px;
+
+    overflow: hidden;
+
+    background: #071a38;
+}
+
+
+/* =========================================================
+   LOGIN BACKGROUND IMAGE
+========================================================= */
+
+.login-preview-background {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center center;
+
+    z-index: 0;
+}
+
+
+/* =========================================================
+   IMAGE OVERLAY
+========================================================= */
+
+.login-preview-left-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(4, 20, 48, 0.10) 0%,
+            rgba(4, 20, 48, 0.02) 40%,
+            rgba(4, 20, 48, 0.16) 100%
+        );
+}
+
+
+/* =========================================================
+   MAXUS LOGO
+========================================================= */
+
+.login-preview-brand {
+    position: absolute;
+
+    top: 42px;
+    left: 0;
+
+    z-index: 3;
+
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 20px;
+
+    box-sizing: border-box;
+}
+
+.login-preview-brand img {
+    display: block;
+
+    width: auto;
+    height: auto;
+
+    max-width: 210px;
+    max-height: 65px;
+
+    object-fit: contain;
+}
+
+.login-preview-brand span {
+    color: #ffffff;
+
+    font-size: 40px;
+    line-height: 1;
+
+    font-weight: 800;
+
+    letter-spacing: 4px;
+}
+
+
+/* =========================================================
+   RIGHT LOGIN PANEL
+========================================================= */
+
+.login-preview-right {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 45px 55px;
+
+    background: #ffffff;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   LOGIN FORM
+========================================================= */
+
+.login-preview-form {
+    width: 100%;
+    max-width: 430px;
+
+    margin: 0 auto;
+}
+
+.login-preview-form h3 {
+    margin: 0 0 34px;
+
+    color: #111827;
+
+    font-size: 22px;
+    line-height: 1.3;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   PREVIEW FIELD GROUP
+========================================================= */
+
+.preview-field-group {
+    width: 100%;
+
+    margin-bottom: 24px;
+}
+
+.preview-field-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #53627a;
+
+    font-size: 12px;
+    line-height: 1.4;
+
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   PREVIEW INPUT
+========================================================= */
+
+.preview-input-box {
+    width: 100%;
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 13px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #ccd7e6;
+    border-radius: 6px;
+
+    background: #edf4ff;
+
+    color: #91a0b5;
+
+    font-size: 11px;
+    line-height: 1;
+}
+
+.preview-input-box > span:first-child {
+    overflow: hidden;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.preview-input-icon {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: 10px;
+
+    color: #75859b;
+}
+
+.preview-input-icon svg {
+    display: block;
+}
+
+
+/* =========================================================
+   REMEMBER ME / FORGOT PASSWORD
+========================================================= */
+
+.preview-login-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-top: 3px;
+    margin-bottom: 30px;
+
+    color: #344054;
+
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.preview-remember {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    min-width: 0;
+}
+
+.preview-checkbox {
+    width: 17px;
+    height: 17px;
+    min-width: 17px;
+
+    display: inline-block;
+
+    box-sizing: border-box;
+
+    border: 1px solid #c4d0df;
+    border-radius: 4px;
+
+    background: #ffffff;
+}
+
+.preview-forgot {
+    flex-shrink: 0;
+
+    color: #3931a0;
+
+    font-weight: 500;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   LOGIN BUTTON
+========================================================= */
+
+.preview-login-btn {
+    width: 100%;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid #39329c;
+    border-radius: 6px;
+
+    background: #134998;
+
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 12px;
+    line-height: 1;
+
+    font-weight: 700;
+
+    cursor: default;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   TAGLINE
+========================================================= */
+
+.preview-tagline {
+    margin-top: 20px;
+
+    text-align: center;
+
+    color: #e49a00;
+
+    font-size: 11px;
+    line-height: 1.4;
+
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.preview-divider {
+    width: 100%;
+    height: 1px;
+
+    margin: 21px 0 17px;
+
+    background: #e3e7ed;
+}
+
+
+/* =========================================================
+   COPYRIGHT
+========================================================= */
+
+.preview-copyright {
+    width: 100%;
+
+    text-align: center;
+
+    color: #64748b;
+
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   SYSTEM INFORMATION
+========================================================= */
+
+.system-information-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 15px;
+}
+
+.system-info-item {
+    min-width: 0;
+
+    padding: 15px;
+
+    border: 1px solid #e0e8f4;
+    border-radius: 8px;
+
+    background: #fbfcfe;
+
+    box-sizing: border-box;
+}
+
+.system-info-item span {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 11px;
+    line-height: 1.4;
+
+    font-weight: 500;
+
+    color: #7b879a;
+}
+
+.system-info-item strong {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    font-size: 13px;
+    line-height: 1.4;
+
+    color: #293548;
+
+    word-break: break-word;
+}
+
+.system-info-item strong svg {
+    flex-shrink: 0;
+}
+
+.status-badge {
+    color: #16803c !important;
+}
+
+
+/* =========================================================
+   ACTION BAR
+========================================================= */
+
+.general-settings-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    padding: 17px 24px;
+
+    border-top: 1px solid #e5ebf4;
+
+    background: #fbfcfe;
+
+    box-sizing: border-box;
+}
+
+.general-cancel-btn,
+.general-save-btn {
+    min-height: 40px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 0 17px;
+
+    border-radius: 7px;
+
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.general-cancel-btn {
+    background: #ffffff;
+
+    border: 1px solid #d5dfec;
+
+    color: #5d697b;
+}
+
+.general-cancel-btn:hover:not(:disabled) {
+    background: #f6f8fb;
+
+    border-color: #c8d4e4;
+}
+
+.general-save-btn {
+    background: #134998;
+
+    border: 1px solid #4f46e5;
+
+    color: #ffffff;
+}
+
+.general-save-btn:hover:not(:disabled) {
+    background: #134998;
+
+    border-color: #4338ca;
+}
+
+.general-cancel-btn:disabled,
+.general-save-btn:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+   1600px+
+========================================================= */
+
+@media (min-width: 1600px) {
+
+    .general-settings-page {
+        padding-bottom: 35px;
+    }
+
+    .general-page-header {
+        margin-bottom: 25px;
+    }
+
+    .general-title-section {
+        gap: 17px;
+    }
+
+    .general-title-icon {
+        width: 62px;
+        height: 62px;
+        min-width: 62px;
+    }
+
+    .general-title-section h1 {
+        font-size: 30px;
+    }
+
+    .general-title-section p {
+        font-size: 14px;
+    }
+
+    .general-section {
+        padding: 28px;
+    }
+
+    .general-settings-actions {
+        padding: 18px 28px;
+    }
+
+    .branding-grid {
+        gap: 20px;
+    }
+
+    .branding-item {
+        padding: 19px;
+    }
+
+    .login-preview {
+        min-height: 570px;
+    }
+
+    .login-preview-left {
+        min-height: 570px;
+    }
+
+    .login-preview-right {
+        padding: 55px 70px;
+    }
+
+    .login-preview-form {
+        max-width: 470px;
+    }
+
+    .login-preview-form h3 {
+        font-size: 24px;
+
+        margin-bottom: 38px;
+    }
+
+    .login-preview-brand {
+        top: 55px;
+    }
+
+    .login-preview-brand img {
+        max-width: 240px;
+        max-height: 75px;
+    }
+
+    .preview-input-box {
+        height: 45px;
+    }
+
+    .preview-login-btn {
+        height: 47px;
+    }
+}
+
+
+/* =========================================================
+   DESKTOP / LAPTOP
+   1200px - 1599px
+========================================================= */
+
+@media (max-width: 1199px) {
+
+    .general-section {
+        padding: 21px;
+    }
+
+    .general-settings-actions {
+        padding-left: 21px;
+        padding-right: 21px;
+    }
+
+    .branding-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    /*
+       Login preview becomes full width internally.
+    */
+
+    .login-preview-container {
+        grid-template-columns:
+            minmax(0, 1fr);
+    }
+
+    .login-preview-info {
+        width: 100%;
+    }
+
+    /*
+       New full login-page preview.
+    */
+
+    .login-preview {
+        min-height: 470px;
+    }
+
+    .login-preview-left {
+        min-height: 470px;
+    }
+
+    .login-preview-right {
+        padding: 35px 35px;
+    }
+
+    .login-preview-form h3 {
+        margin-bottom: 28px;
+    }
+
+    .login-preview-brand {
+        top: 35px;
+    }
+
+    .login-preview-brand img {
+        max-width: 175px;
+        max-height: 55px;
+    }
+
+    .preview-field-group {
+        margin-bottom: 19px;
+    }
+
+    .preview-login-options {
+        margin-bottom: 23px;
+    }
+}
+
+
+/* =========================================================
+   TABLET / SMALL DESKTOP
+   901px - 1199px
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .general-title-section h1 {
+        font-size: 25px;
+    }
+
+    .application-fields {
+        grid-template-columns: 1fr;
+
+        gap: 17px;
+    }
+
+    .system-information-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    /*
+       Login preview gets slightly narrower left panel.
+    */
+
+    .login-preview {
+        grid-template-columns:
+            0.9fr 1.1fr;
+
+        min-height: 430px;
+    }
+
+    .login-preview-left {
+        min-height: 430px;
+    }
+
+    .login-preview-right {
+        padding: 30px 25px;
+    }
+
+    .login-preview-form h3 {
+        font-size: 19px;
+    }
+
+    .login-preview-brand {
+        top: 30px;
+    }
+
+    .login-preview-brand img {
+        max-width: 145px;
+        max-height: 45px;
+    }
+
+    .preview-input-box {
+        height: 40px;
+    }
+
+    .preview-login-btn {
+        height: 42px;
+    }
+}
+
+
+/* =========================================================
+   SMALL TABLET / LARGE MOBILE
+   769px - 900px
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .general-settings-page {
+        padding: 2px 0 24px;
+    }
+
+    .general-page-header {
+        margin-bottom: 18px;
+    }
+
+    .general-title-section {
+        gap: 11px;
+    }
+
+    .general-title-icon {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+    }
+
+    .general-title-icon svg {
+        width: 23px;
+        height: 23px;
+    }
+
+    .general-title-section h1 {
+        font-size: 22px;
+    }
+
+    .general-title-section p {
+        font-size: 12px;
+    }
+
+    .general-section {
+        padding: 18px;
+    }
+
+    .general-section-header {
+        margin-bottom: 17px;
+    }
+
+    .branding-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .branding-item {
+        padding: 15px;
+    }
+
+    .branding-preview {
+        height: 135px;
+    }
+
+    .system-information-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .general-settings-actions {
+        padding: 15px 18px;
+    }
+
+
+    /* -----------------------------------------
+       LOGIN PREVIEW - MOBILE
+    ----------------------------------------- */
+
+    .login-preview {
+        grid-template-columns: 1fr;
+
+        min-height: auto;
+    }
+
+    .login-preview-left {
+        min-height: 210px;
+        height: 210px;
+    }
+
+    .login-preview-brand {
+        top: 28px;
+    }
+
+    .login-preview-brand img {
+        max-width: 155px;
+        max-height: 50px;
+    }
+
+    .login-preview-right {
+        padding: 35px 28px;
+    }
+
+    .login-preview-form {
+        max-width: 500px;
+
+        margin: 0 auto;
+    }
+
+    .login-preview-form h3 {
+        margin-bottom: 26px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   577px - 768px
+========================================================= */
+
+@media (max-width: 576px) {
+
+    .general-settings-page {
+        padding-bottom: 20px;
+    }
+
+    .general-title-section {
+        align-items: flex-start;
+    }
+
+    .general-title-icon {
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+
+        border-radius: 9px;
+    }
+
+    .general-title-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .general-title-section h1 {
+        margin-top: 1px;
+
+        font-size: 20px;
+    }
+
+    .general-title-section p {
+        margin-top: 4px;
+
+        font-size: 11px;
+    }
+
+    .general-settings-card {
+        border-radius: 9px;
+    }
+
+    .general-section {
+        padding: 16px;
+    }
+
+    .general-section-header {
+        gap: 9px;
+    }
+
+    .general-section-icon {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+
+        border-radius: 8px;
+    }
+
+    .general-section-icon svg {
+        width: 17px;
+        height: 17px;
+    }
+
+    .general-section-header h2 {
+        font-size: 15px;
+    }
+
+    .general-section-header p {
+        font-size: 11px;
+    }
+
+
+    /* -----------------------------------------
+       APPLICATION
+    ----------------------------------------- */
+
+    .application-fields {
+        gap: 15px;
+    }
+
+    .general-form-group input {
+        height: 42px;
+
+        font-size: 13px;
+    }
+
+
+    /* -----------------------------------------
+       BRANDING
+    ----------------------------------------- */
+
+    .branding-item {
+        padding: 13px;
+    }
+
+    .branding-preview {
+        height: 125px;
+    }
+
+    .branding-actions {
+        flex-wrap: wrap;
+    }
+
+
+    /* -----------------------------------------
+       LOGIN PREVIEW
+    ----------------------------------------- */
+
+    .login-preview {
+        width: 100%;
+    }
+
+    .login-preview-left {
+        min-height: 175px;
+        height: 175px;
+    }
+
+    .login-preview-brand {
+        top: 23px;
+    }
+
+    .login-preview-brand img {
+        max-width: 135px;
+        max-height: 43px;
+    }
+
+    .login-preview-right {
+        padding: 28px 18px 30px;
+    }
+
+    .login-preview-form h3 {
+        font-size: 18px;
+
+        margin-bottom: 24px;
+    }
+
+    .preview-field-group {
+        margin-bottom: 19px;
+    }
+
+    .preview-field-group label {
+        font-size: 11px;
+    }
+
+    .preview-input-box {
+        height: 41px;
+
+        font-size: 10px;
+    }
+
+    .preview-login-options {
+        margin-bottom: 22px;
+
+        font-size: 10px;
+    }
+
+    .preview-checkbox {
+        width: 16px;
+        height: 16px;
+        min-width: 16px;
+    }
+
+    .preview-login-btn {
+        height: 42px;
+    }
+
+    .preview-tagline {
+        font-size: 10px;
+    }
+
+    .preview-copyright {
+        font-size: 9px;
+    }
+
+
+    /* -----------------------------------------
+       ACTION BUTTONS
+    ----------------------------------------- */
+
+    .general-settings-actions {
+        flex-direction: row;
+
+        padding: 13px 16px;
+    }
+
+    .general-cancel-btn,
+    .general-save-btn {
+        flex: 1;
+
+        padding: 0 10px;
+
+        min-height: 40px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   <= 380px
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .general-title-section h1 {
+        font-size: 18px;
+    }
+
+    .general-title-section p {
+        font-size: 10px;
+    }
+
+    .general-section {
+        padding: 14px;
+    }
+
+    .general-section-header {
+        margin-bottom: 14px;
+    }
+
+
+    /* -----------------------------------------
+       BRANDING BUTTONS
+    ----------------------------------------- */
+
+    .branding-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .branding-change-btn,
+    .branding-remove-btn {
+        width: 100%;
+    }
+
+
+    /* -----------------------------------------
+       LOGIN PREVIEW
+    ----------------------------------------- */
+
+    .login-preview-left {
+        min-height: 150px;
+        height: 150px;
+    }
+
+    .login-preview-brand {
+        top: 20px;
+    }
+
+    .login-preview-brand img {
+        max-width: 115px;
+        max-height: 38px;
+    }
+
+    .login-preview-right {
+        padding: 25px 15px;
+    }
+
+    .login-preview-form h3 {
+        font-size: 17px;
+
+        margin-bottom: 21px;
+    }
+
+    .preview-login-options {
+        flex-wrap: wrap;
+
+        gap: 10px;
+    }
+
+    .preview-forgot {
+        margin-left: auto;
+    }
+
+    .preview-tagline {
+        font-size: 9px;
+    }
+
+    .preview-copyright {
+        font-size: 8px;
+    }
+
+
+    /* -----------------------------------------
+       ACTION BUTTONS
+    ----------------------------------------- */
+
+    .general-settings-actions {
+        flex-direction: column;
+    }
+
+    .general-cancel-btn,
+    .general-save-btn {
+        width: 100%;
+
+        flex: none;
+    }
+}
+
+.settings-loading {
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    font-size: 15px;
+}
+
+.settings-alert {
+    padding: 12px 16px;
+    margin: 20px 24px 0;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.settings-alert-error {
+    background: #fff1f2;
+    border: 1px solid #fecdd3;
+    color: #be123c;
+}
+
+.settings-alert-success {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #15803d;
+}

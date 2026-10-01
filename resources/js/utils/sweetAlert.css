@@ -1,0 +1,378 @@
+/* =========================================================
+   MAXUS CRM GLOBAL SWEETALERT
+   ========================================================= */
+
+.maxus-swal-popup {
+    width: 380px !important;
+    max-width: calc(100vw - 28px) !important;
+
+    padding: 22px 24px 20px !important;
+
+    margin: 0 !important;
+
+    border-radius: 14px !important;
+
+    box-sizing: border-box !important;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif !important;
+
+    overflow: hidden !important;
+}
+
+
+/* =========================================================
+   CUSTOM ICON
+   ========================================================= */
+
+.maxus-swal-icon {
+    width: 52px !important;
+    height: 52px !important;
+
+    min-width: 52px !important;
+    min-height: 52px !important;
+
+    margin: 0 auto 13px !important;
+
+    padding: 0 !important;
+
+    border: 0 !important;
+    border-radius: 50% !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    box-sizing: border-box !important;
+
+    background: #eef7ee !important;
+
+    color: #74c365 !important;
+
+    box-shadow: none !important;
+}
+
+
+/* SVG */
+
+.maxus-swal-icon svg {
+    width: 27px !important;
+    height: 27px !important;
+
+    display: block !important;
+
+    margin: 0 !important;
+}
+
+
+/* Remove SweetAlert2's default icon styling */
+
+.maxus-swal-icon.swal2-icon {
+    border: 0 !important;
+}
+
+.maxus-swal-icon.swal2-success,
+.maxus-swal-icon.swal2-error,
+.maxus-swal-icon.swal2-warning,
+.maxus-swal-icon.swal2-info {
+    border: 0 !important;
+}
+
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.maxus-swal-title {
+    margin: 0 0 7px !important;
+
+    padding: 0 !important;
+
+    font-size: 17px !important;
+
+    line-height: 1.35 !important;
+
+    font-weight: 600 !important;
+
+    color: #172033 !important;
+}
+
+
+/* =========================================================
+   MESSAGE
+   ========================================================= */
+
+.maxus-swal-text {
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    font-size: 12.5px !important;
+
+    line-height: 1.55 !important;
+
+    font-weight: 400 !important;
+
+    color: #6b7280 !important;
+
+    word-break: break-word !important;
+}
+
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.maxus-swal-actions {
+    width: 100% !important;
+
+    margin: 17px auto 0 !important;
+
+    padding: 0 !important;
+
+    display: flex !important;
+
+    justify-content: center !important;
+
+    align-items: center !important;
+
+    gap: 8px !important;
+}
+
+
+/* =========================================================
+   CONFIRM BUTTON
+   ========================================================= */
+
+.maxus-swal-confirm {
+    min-width: 82px !important;
+
+    height: 36px !important;
+
+    margin: 0 !important;
+
+    padding: 0 18px !important;
+
+    border: none !important;
+
+    border-radius: 7px !important;
+
+    background: #194799 !important;
+
+    color: #ffffff !important;
+
+    font-family: inherit !important;
+
+    font-size: 12.5px !important;
+
+    font-weight: 500 !important;
+
+    line-height: 1 !important;
+
+    cursor: pointer !important;
+
+    outline: none !important;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease !important;
+}
+
+.maxus-swal-confirm:hover {
+    background: #143b80 !important;
+}
+
+.maxus-swal-confirm:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================================
+   CANCEL BUTTON
+   ========================================================= */
+
+.maxus-swal-cancel {
+    min-width: 82px !important;
+
+    height: 36px !important;
+
+    margin: 0 !important;
+
+    padding: 0 18px !important;
+
+    border: 1px solid #d1d5db !important;
+
+    border-radius: 7px !important;
+
+    background: #ffffff !important;
+
+    color: #374151 !important;
+
+    font-family: inherit !important;
+
+    font-size: 12.5px !important;
+
+    font-weight: 500 !important;
+
+    cursor: pointer !important;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .maxus-swal-popup {
+        width: 350px !important;
+
+        max-width: calc(100vw - 28px) !important;
+
+        padding: 20px 20px 18px !important;
+
+        border-radius: 13px !important;
+    }
+
+    .maxus-swal-icon {
+        width: 48px !important;
+        height: 48px !important;
+
+        min-width: 48px !important;
+        min-height: 48px !important;
+
+        margin-bottom: 11px !important;
+    }
+
+    .maxus-swal-icon svg {
+        width: 25px !important;
+        height: 25px !important;
+    }
+
+    .maxus-swal-title {
+        font-size: 16px !important;
+    }
+
+    .maxus-swal-text {
+        font-size: 12px !important;
+    }
+
+    .maxus-swal-confirm,
+    .maxus-swal-cancel {
+        height: 35px !important;
+
+        min-width: 78px !important;
+
+        font-size: 12px !important;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .maxus-swal-popup {
+        width: calc(100vw - 24px) !important;
+
+        max-width: calc(100vw - 24px) !important;
+
+        padding: 18px 16px 17px !important;
+
+        border-radius: 12px !important;
+    }
+
+    .maxus-swal-icon {
+        width: 44px !important;
+        height: 44px !important;
+
+        min-width: 44px !important;
+        min-height: 44px !important;
+
+        margin-bottom: 10px !important;
+    }
+
+    .maxus-swal-icon svg {
+        width: 23px !important;
+        height: 23px !important;
+    }
+
+    .maxus-swal-title {
+        font-size: 15.5px !important;
+
+        margin-bottom: 6px !important;
+    }
+
+    .maxus-swal-text {
+        font-size: 11.8px !important;
+
+        line-height: 1.5 !important;
+    }
+
+    .maxus-swal-actions {
+        margin-top: 14px !important;
+    }
+
+    .maxus-swal-confirm,
+    .maxus-swal-cancel {
+        height: 34px !important;
+
+        min-width: 74px !important;
+
+        padding: 0 14px !important;
+
+        font-size: 11.8px !important;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .maxus-swal-popup {
+        width: calc(100vw - 18px) !important;
+
+        max-width: calc(100vw - 18px) !important;
+
+        padding: 17px 13px 15px !important;
+    }
+
+    .maxus-swal-icon {
+        width: 40px !important;
+        height: 40px !important;
+
+        min-width: 40px !important;
+        min-height: 40px !important;
+    }
+
+    .maxus-swal-icon svg {
+        width: 21px !important;
+        height: 21px !important;
+    }
+
+    .maxus-swal-title {
+        font-size: 15px !important;
+    }
+
+    .maxus-swal-text {
+        font-size: 11.5px !important;
+    }
+
+    .maxus-swal-confirm,
+    .maxus-swal-cancel {
+        min-width: 68px !important;
+
+        height: 32px !important;
+
+        font-size: 11.5px !important;
+    }
+}
