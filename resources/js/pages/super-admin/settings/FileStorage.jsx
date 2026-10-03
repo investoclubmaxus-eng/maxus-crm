@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     HardDrive,
     Database,
@@ -14,6 +14,8 @@ import {
 } from "lucide-react";
 
 import "./FileStorage.css";
+import api from "../../../services/api";
+import sweetAlert from "../../../utils/sweetAlert";
 
 function FileStorage() {
     const [settings, setSettings] = useState({
@@ -26,9 +28,147 @@ function FileStorage() {
         tempCleanup: true,
     });
 
-    const [storageStatus, setStorageStatus] = useState("connected");
-    const [saving, setSaving] = useState(false);
+    const [storageStatus, setStorageStatus] = useState("");
+    const [storagePath, setStoragePath] = useState("");
 
+    const [storageUsage, setStorageUsage] = useState({
+        crmUsed: "0 B",
+        serverTotal: "0 B",
+        serverUsed: "0 B",
+        serverAvailable: "0 B",
+        serverPercentage: 0,
+    });
+
+    const [loading, setLoading] = useState(true);
+    const [saving, setSaving] = useState(false);
+    const [testingStorage, setTestingStorage] = useState(false);
+
+    useEffect(() => {
+        loadFileStorageSettings();
+    }, []);
+
+    /**
+     * Check the actual configured storage connection.
+     *
+     * This calls the backend storage test endpoint.
+     * It does NOT assume that the storage is connected
+     * just because the settings API succeeded.
+     */
+    const checkStorageStatus = async () => {
+        try {
+            setStorageStatus("testing");
+
+            const response = await api.post(
+                "/superadmin/settings/file-storage/test"
+            );
+
+            const data = response.data;
+
+            setStorageStatus(
+                data.status === "connected"
+                    ? "connected"
+                    : "unavailable"
+            );
+
+            return data;
+        } catch (error) {
+            console.error(
+                "Storage status check failed:",
+                error
+            );
+
+            setStorageStatus("unavailable");
+
+            return null;
+        }
+    };
+
+    /**
+     * Load File & Storage settings.
+     */
+    const loadFileStorageSettings = async () => {
+        try {
+            setLoading(true);
+
+            const response = await api.get(
+                "/superadmin/settings/file-storage"
+            );
+
+            const data = response.data;
+
+            const backendSettings = data.settings;
+
+            setSettings({
+                driver: backendSettings.driver ?? "local",
+
+                maxUploadSize: String(
+                    backendSettings.max_upload_size ?? 10
+                ),
+
+                maxFiles: String(
+                    backendSettings.max_files ?? 10
+                ),
+
+                allowedTypes:
+                    backendSettings.allowed_file_types ?? "",
+
+                retentionDays: String(
+                    backendSettings.retention_days ?? 30
+                ),
+
+                tempCleanup:
+                    Boolean(
+                        backendSettings.automatic_cleanup
+                    ),
+            });
+
+            setStoragePath(
+                data.storage_path ?? ""
+            );
+
+            const usage = data.storage_usage;
+
+            setStorageUsage({
+                crmUsed: usage?.crm_used ?? "0 B",
+                serverTotal: usage?.server_total ?? "0 B",
+                serverUsed: usage?.server_used ?? "0 B",
+                serverAvailable: usage?.server_available ?? "0 B",
+                serverPercentage: usage?.server_percentage ?? 0,
+            });
+
+            /*
+             * Important:
+             *
+             * Do NOT use:
+             *
+             * setStorageStatus("connected");
+             *
+             * here.
+             *
+             * GET /file-storage only means that the
+             * settings were successfully retrieved.
+             *
+             * We need to actually test the configured
+             * storage connection.
+             */
+            await checkStorageStatus();
+
+        } catch (error) {
+            console.error(
+                "Failed to load file storage settings:",
+                error
+            );
+
+            setStorageStatus("unavailable");
+
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    /**
+     * Handle settings field changes.
+     */
     const handleChange = (field, value) => {
         setSettings((prev) => ({
             ...prev,
@@ -36,33 +176,243 @@ function FileStorage() {
         }));
     };
 
-    const handleSave = () => {
-        setSaving(true);
+    /**
+     * Save File & Storage settings.
+     */
+    const handleSave = async () => {
+        try {
+            setSaving(true);
 
-        setTimeout(() => {
+            const payload = {
+                driver: settings.driver,
+
+                max_upload_size:
+                    Number(settings.maxUploadSize),
+
+                max_files:
+                    Number(settings.maxFiles),
+
+                allowed_file_types:
+                    settings.allowedTypes,
+
+                retention_days:
+                    Number(settings.retentionDays),
+
+                automatic_cleanup:
+                    settings.tempCleanup,
+            };
+
+            const response = await api.put(
+                "/superadmin/settings/file-storage-update",
+                payload
+            );
+
+            const data = response.data;
+
+            /*
+             * Update frontend settings using
+             * the values returned by backend.
+             */
+            if (data.settings) {
+                setSettings({
+                    driver:
+                        data.settings.driver,
+
+                    maxUploadSize:
+                        String(
+                            data.settings.max_upload_size
+                        ),
+
+                    maxFiles:
+                        String(
+                            data.settings.max_files
+                        ),
+
+                    allowedTypes:
+                        data.settings
+                            .allowed_file_types ?? "",
+
+                    retentionDays:
+                        String(
+                            data.settings.retention_days
+                        ),
+
+                    tempCleanup:
+                        Boolean(
+                            data.settings
+                                .automatic_cleanup
+                        ),
+                });
+            }
+
+            /*
+             * Update storage path returned by backend.
+             */
+            setStoragePath(
+                data.storage_path ?? ""
+            );
+
+            /*
+             * Update storage usage returned by backend.
+             */
+            if (data.storage_usage) {
+                const usage = data.storage_usage;
+
+                setStorageUsage({
+                    crmUsed: usage.crm_used ?? "0 B",
+                    serverTotal: usage.server_total ?? "0 B",
+                    serverUsed: usage.server_used ?? "0 B",
+                    serverAvailable: usage.server_available ?? "0 B",
+                    serverPercentage: usage.server_percentage ?? 0,
+                });
+            }
+
+            /*
+             * Important:
+             *
+             * Do NOT directly set:
+             *
+             * setStorageStatus("connected");
+             *
+             * Saving the configuration does not mean
+             * that the storage connection is working.
+             *
+             * Test the actual storage after saving.
+             */
+            await checkStorageStatus();
+
+            sweetAlert.success(
+                data.message ||
+                    "File storage settings updated successfully."
+            );
+
+        } catch (error) {
+            console.error(
+                "Failed to update file storage settings:",
+                error
+            );
+
+            sweetAlert.error(
+                error.response?.data?.message ||
+                    "Failed to update file storage settings."
+            );
+
+        } finally {
             setSaving(false);
-        }, 800);
+        }
     };
 
-    const handleReset = () => {
-        setSettings({
-            driver: "local",
-            maxUploadSize: "10",
-            maxFiles: "10",
-            allowedTypes:
-                "jpg, jpeg, png, gif, webp, pdf, doc, docx, xls, xlsx, csv",
-            retentionDays: "30",
-            tempCleanup: true,
-        });
-    };
+    /**
+     * Reset form values to default values.
+     *
+     * This only resets the frontend form.
+     * It does not update the database until
+     * Save Changes is clicked.
+     */
+    // const handleReset = () => {
+    //     console.log("Resetting file storage settings to default values.");
+    //     setSettings({
+    //         driver: "local",
+    //         maxUploadSize: "10",
+    //         maxFiles: "10",
+    //         allowedTypes:
+    //             "jpg, jpeg, png, gif, webp, pdf, doc, docx, xls, xlsx, csv",
+    //         retentionDays: "30",
+    //         tempCleanup: true,
+    //     });
+    // };
 
-    const handleTestStorage = () => {
+const handleReset = async () => {
+    const result = await sweetAlert.confirm(
+        "Reset the file storage settings to their default values?",
+        {
+            title: "Reset File Storage Settings?",
+            confirmText: "Yes, Reset",
+            cancelText: "Cancel",
+        }
+    );
+
+    if (!result.isConfirmed) {
+        return;
+    }
+
+    setSettings({
+        driver: "local",
+        maxUploadSize: "10",
+        maxFiles: "10",
+        allowedTypes:
+            "jpg, jpeg, png, gif, webp, pdf, doc, docx, xls, xlsx, csv",
+        retentionDays: "30",
+        tempCleanup: true,
+    });
+
+    await sweetAlert.success(
+        "File storage settings reset to default values."
+    );
+};
+    
+    /**
+     * Manually test configured storage.
+     */
+    /* =========================================================
+   TEST STORAGE CONNECTION
+========================================================= */
+
+const handleTestStorage = async () => {
+    try {
+        setTestingStorage(true);
         setStorageStatus("testing");
 
-        setTimeout(() => {
+        const response = await api.post(
+            "/superadmin/settings/file-storage/test"
+        );
+
+        const data = response.data;
+
+        /* =====================================================
+           STORAGE CONNECTED
+        ====================================================== */
+
+        if (data.status === "connected") {
             setStorageStatus("connected");
-        }, 1000);
-    };
+
+            await sweetAlert.success(
+                data.message ||
+                "Storage connection is working successfully."
+            );
+
+            return;
+        }
+
+        /* =====================================================
+           STORAGE UNAVAILABLE
+        ====================================================== */
+
+        setStorageStatus("unavailable");
+
+        await sweetAlert.error(
+            data.message ||
+            "Unable to connect to the configured storage."
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Storage test failed:",
+            error
+        );
+
+        setStorageStatus("unavailable");
+
+        await sweetAlert.error(
+            error.response?.data?.message ||
+            "Unable to test the storage connection."
+        );
+
+    } finally {
+        setTestingStorage(false);
+    }
+};
 
     return (
         <div className="file-storage-page">
@@ -80,12 +430,16 @@ function FileStorage() {
                     </div>
 
                     <div>
-                        <h1>File & Storage</h1>
+
+                        <h1>
+                            File & Storage
+                        </h1>
 
                         <p>
                             Manage file uploads, storage settings and
                             file retention for the entire CRM.
                         </p>
+
                     </div>
 
                 </div>
@@ -115,12 +469,22 @@ function FileStorage() {
                             </div>
 
                             <div>
-                                <h3>Storage Status</h3>
+
+                                <h3>
+                                    Storage Status
+                                </h3>
 
                                 <p>
-                                    Your CRM storage is currently connected
-                                    and available.
+                                    {storageStatus === "testing"
+                                        ? "Testing the configured CRM storage."
+                                        : storageStatus === "connected"
+                                        ? "Your CRM storage is currently connected and available."
+                                        : storageStatus === "unavailable"
+                                        ? "Your CRM storage is currently unavailable."
+                                        : "Checking the configured CRM storage..."
+                                    }
                                 </p>
+
                             </div>
 
                         </div>
@@ -138,6 +502,7 @@ function FileStorage() {
                                 </span>
                             )}
 
+
                             {storageStatus === "testing" && (
                                 <span className="storage-status-badge testing">
 
@@ -151,12 +516,36 @@ function FileStorage() {
                                 </span>
                             )}
 
+
+                            {storageStatus === "unavailable" && (
+                                <span className="storage-status-badge error">
+
+                                    <AlertCircle size={15} />
+
+                                    Unavailable
+
+                                </span>
+                            )}
+
+
                             <button
                                 type="button"
                                 className="storage-test-btn"
                                 onClick={handleTestStorage}
+                                disabled={testingStorage}
                             >
-                                Test Storage
+                                <RefreshCw
+                                    size={14}
+                                    className={
+                                        testingStorage
+                                            ? "storage-spin"
+                                            : ""
+                                    }
+                                />
+
+                                {testingStorage
+                                    ? "Testing..."
+                                    : "Test Storage"}
                             </button>
 
                         </div>
@@ -177,11 +566,15 @@ function FileStorage() {
                         <div className="storage-usage-header">
 
                             <div>
-                                <h2>Storage Usage</h2>
+
+                                <h2>
+                                    Storage Usage
+                                </h2>
 
                                 <p>
                                     Current storage usage for the CRM.
                                 </p>
+
                             </div>
 
                             <HardDrive size={23} />
@@ -192,18 +585,41 @@ function FileStorage() {
                         <div className="storage-usage-values">
 
                             <div>
-                                <span>Total Storage</span>
-                                <strong>100 GB</strong>
+
+                                <span>
+                                    Total Server Storage
+                                </span>
+
+                                <strong>
+                                    {storageUsage.serverTotal}
+                                </strong>
+
                             </div>
 
-                            <div>
-                                <span>Used</span>
-                                <strong>24.6 GB</strong>
-                            </div>
 
                             <div>
-                                <span>Available</span>
-                                <strong>75.4 GB</strong>
+
+                                <span>
+                                    Used
+                                </span>
+
+                                <strong>
+                                    {storageUsage.serverUsed}
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Available
+                                </span>
+
+                                <strong>
+                                    {storageUsage.serverAvailable}
+                                </strong>
+
                             </div>
 
                         </div>
@@ -215,12 +631,16 @@ function FileStorage() {
 
                                 <div
                                     className="storage-progress-value"
-                                    style={{ width: "24.6%" }}
+                                    style={{
+                                        width: `${storageUsage.serverPercentage}%`,
+                                    }}
                                 />
 
                             </div>
 
-                            <span>24.6% used</span>
+                            <span>
+                                {storageUsage.serverPercentage}% server disk used
+                            </span>
 
                         </div>
 
@@ -244,11 +664,15 @@ function FileStorage() {
                             </div>
 
                             <div>
-                                <h2>Storage Configuration</h2>
+
+                                <h2>
+                                    Storage Configuration
+                                </h2>
 
                                 <p>
                                     Configure where CRM files are stored.
                                 </p>
+
                             </div>
 
                         </div>
@@ -303,7 +727,7 @@ function FileStorage() {
 
                                 <input
                                     type="text"
-                                    value="storage/app/public"
+                                    value={storagePath}
                                     readOnly
                                 />
 
@@ -335,11 +759,15 @@ function FileStorage() {
                             </div>
 
                             <div>
-                                <h2>Upload Settings</h2>
+
+                                <h2>
+                                    Upload Settings
+                                </h2>
 
                                 <p>
                                     Control file upload limits.
                                 </p>
+
                             </div>
 
                         </div>
@@ -358,7 +786,9 @@ function FileStorage() {
                                     <input
                                         type="number"
                                         min="1"
-                                        value={settings.maxUploadSize}
+                                        value={
+                                            settings.maxUploadSize
+                                        }
                                         onChange={(e) =>
                                             handleChange(
                                                 "maxUploadSize",
@@ -367,7 +797,9 @@ function FileStorage() {
                                         }
                                     />
 
-                                    <span>MB</span>
+                                    <span>
+                                        MB
+                                    </span>
 
                                 </div>
 
@@ -383,7 +815,9 @@ function FileStorage() {
                                 <input
                                     type="number"
                                     min="1"
-                                    value={settings.maxFiles}
+                                    value={
+                                        settings.maxFiles
+                                    }
                                     onChange={(e) =>
                                         handleChange(
                                             "maxFiles",
@@ -405,7 +839,9 @@ function FileStorage() {
 
                             <textarea
                                 rows="4"
-                                value={settings.allowedTypes}
+                                value={
+                                    settings.allowedTypes
+                                }
                                 onChange={(e) =>
                                     handleChange(
                                         "allowedTypes",
@@ -440,11 +876,15 @@ function FileStorage() {
                             </div>
 
                             <div>
-                                <h2>File Retention</h2>
+
+                                <h2>
+                                    File Retention
+                                </h2>
 
                                 <p>
                                     Manage temporary and unused files.
                                 </p>
+
                             </div>
 
                         </div>
@@ -461,7 +901,9 @@ function FileStorage() {
                                 <input
                                     type="number"
                                     min="1"
-                                    value={settings.retentionDays}
+                                    value={
+                                        settings.retentionDays
+                                    }
                                     onChange={(e) =>
                                         handleChange(
                                             "retentionDays",
@@ -470,7 +912,9 @@ function FileStorage() {
                                     }
                                 />
 
-                                <span>Days</span>
+                                <span>
+                                    Days
+                                </span>
 
                             </div>
 
@@ -496,11 +940,14 @@ function FileStorage() {
 
                             </div>
 
+
                             <label className="storage-switch">
 
                                 <input
                                     type="checkbox"
-                                    checked={settings.tempCleanup}
+                                    checked={
+                                        settings.tempCleanup
+                                    }
                                     onChange={(e) =>
                                         handleChange(
                                             "tempCleanup",
@@ -535,11 +982,15 @@ function FileStorage() {
                             </div>
 
                             <div>
-                                <h2>File Security</h2>
+
+                                <h2>
+                                    File Security
+                                </h2>
 
                                 <p>
                                     Basic protection for uploaded files.
                                 </p>
+
                             </div>
 
                         </div>
@@ -656,9 +1107,13 @@ function FileStorage() {
                         className="storage-reset-btn"
                         onClick={handleReset}
                     >
+
                         <RotateCcw size={17} />
+
                         Reset
+
                     </button>
+
 
                     <button
                         type="button"
@@ -666,11 +1121,14 @@ function FileStorage() {
                         onClick={handleSave}
                         disabled={saving}
                     >
+
                         <Save size={17} />
 
                         {saving
                             ? "Saving..."
-                            : "Save Changes"}
+                            : "Save Changes"
+                        }
+
                     </button>
 
                 </div>
