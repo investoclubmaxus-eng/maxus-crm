@@ -135,6 +135,22 @@ Route::middleware('auth:sanctum','security.session',)
         //2FA auth
         Route::post('/2fa/setup', [AuthController::class, 'setupTwoFactor'])->name('auth.2fa.setup');
         Route::post('/2fa/confirm',[AuthController::class, 'confirmTwoFactor'])->name('auth.2fa.confirm');
+
+        //file storage settings
+
+        Route::get('/file-storage',[SuperadminSettingController::class, 'fileStorage']);
+
+        Route::put('/file-storage-update',[SuperadminSettingController::class, 'updateFileStorage']);
+
+        Route::post('/file-storage/test',[SuperadminSettingController::class, 'testFileStorage']);
+
+        //email smtp settings
+
+        Route::get('/email-smtp',[SuperadminSettingController::class, 'emailSmtp']);
+
+        Route::put('/email-smtp-update',[SuperadminSettingController::class, 'updateEmailSmtp']);
+
+        Route::post('/email-smtp/test',[SuperadminSettingController::class, 'testEmailSmtp']);
                 
 
     });

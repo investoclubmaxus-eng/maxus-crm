@@ -13,6 +13,11 @@ use App\Http\Requests\Superadmin\Settings\MaintenanceSettingRequest;
 use App\Services\Superadmin\Settings\MaintenanceSettingService;
 use App\Http\Requests\Superadmin\Settings\SecuritySettingRequest;
 use App\Services\Superadmin\Settings\SecuritySettingService;
+use App\Http\Requests\Superadmin\Settings\FileStorageSettingRequest;
+use App\Services\Superadmin\Settings\FileStorageSettingService;
+use App\Http\Requests\Superadmin\Settings\EmailSmtpSettingRequest;
+use App\Services\Superadmin\Settings\EmailSmtpSettingService;
+use Illuminate\Http\Request;
 
 class SuperadminSettingController extends Controller
 {
@@ -20,7 +25,9 @@ class SuperadminSettingController extends Controller
         private GeneralSettingService $generalSettingService,
         private DateTimeSettingService $dateTimeSettingService,
         private MaintenanceSettingService $maintenanceSettingService,
-        private SecuritySettingService $securitySettingService
+        private SecuritySettingService $securitySettingService,
+        private FileStorageSettingService $fileStorageSettingService,
+        private EmailSmtpSettingService $emailSmtpSettingService,
     ) {
     }
 
@@ -747,5 +754,141 @@ class SuperadminSettingController extends Controller
                         'Unable to save security settings.',
                 ], 500);
             }
+        }
+
+        /**
+         * Get file storage settings.
+        */
+        public function fileStorage()
+        {
+            $settings = $this->fileStorageSettingService->getFileStorageSettings();
+
+            return response()->json([
+                'message' => 'File storage settings retrieved successfully.',
+                'settings' => [
+                    'driver' => $settings->driver,
+                    'max_upload_size' => $settings->max_upload_size,
+                    'max_files' => $settings->max_files,
+                    'allowed_file_types' => $settings->allowed_file_types,
+                    'retention_days' => $settings->retention_days,
+                    'automatic_cleanup' => $settings->automatic_cleanup,
+                ],
+                'storage_path' => $this->fileStorageSettingService->getStoragePath(),
+                'storage_usage' => $this->fileStorageSettingService->getStorageUsage(),
+            ]);
+        }
+
+
+        /**
+         * Update file storage settings.
+        */
+        public function updateFileStorage(FileStorageSettingRequest $request)
+        {
+            $settings = $this->fileStorageSettingService->update(
+                $request->validated()
+            );
+
+            return response()->json([
+                'message' => 'File storage settings updated successfully.',
+                'settings' => [
+                    'driver' => $settings->driver,
+                    'max_upload_size' => $settings->max_upload_size,
+                    'max_files' => $settings->max_files,
+                    'allowed_file_types' => $settings->allowed_file_types,
+                    'retention_days' => $settings->retention_days,
+                    'automatic_cleanup' => $settings->automatic_cleanup,
+                ],
+                'storage_path' => $this->fileStorageSettingService->getStoragePath(),
+                'storage_usage' => $this->fileStorageSettingService->getStorageUsage(),
+            ]);
+        }
+
+        /**
+         * Test configured storage.
+        */
+        public function testFileStorage()
+        {
+            $result = $this->fileStorageSettingService->testStorage();
+
+            return response()->json($result);
+        }
+
+        // get smtp settings
+        public function emailSmtp()
+        {
+            $settings = $this->emailSmtpSettingService
+                ->getEmailSmtpSettings();
+
+            return response()->json([
+                'message' => 'Email SMTP settings retrieved successfully.',
+
+                'settings' => [
+                    'mail_driver' => $settings->mail_driver,
+                    'smtp_host' => $settings->smtp_host,
+                    'smtp_port' => $settings->smtp_port,
+                    'username' => $settings->username,
+
+                    /*
+                    * Never return the actual SMTP password
+                    * to React.
+                    */
+                    'has_password' => !empty($settings->password),
+
+                    'encryption' => $settings->encryption,
+                    'from_address' => $settings->from_address,
+                    'from_name' => $settings->from_name,
+                    'reply_to' => $settings->reply_to,
+                ],
+            ]);
+        }
+
+        // Update SMTP Settings
+
+        public function updateEmailSmtp(
+            EmailSmtpSettingRequest $request
+        ) {
+            $settings = $this->emailSmtpSettingService->update(
+                $request->validated()
+            );
+
+            return response()->json([
+                'message' => 'Email SMTP settings updated successfully.',
+
+                'settings' => [
+                    'mail_driver' => $settings->mail_driver,
+                    'smtp_host' => $settings->smtp_host,
+                    'smtp_port' => $settings->smtp_port,
+                    'username' => $settings->username,
+                    'has_password' => !empty($settings->password),
+                    'encryption' => $settings->encryption,
+                    'from_address' => $settings->from_address,
+                    'from_name' => $settings->from_name,
+                    'reply_to' => $settings->reply_to,
+                ],
+            ]);
+        }
+
+        // Test SMTP
+        public function testEmailSmtp(
+            Request $request
+        ) {
+            $request->validate([
+                'recipient' => [
+                    'required',
+                    'email',
+                ],
+            ]);
+
+            $result = $this->emailSmtpSettingService
+                ->testConnection(
+                    $request->input('recipient')
+                );
+
+            return response()->json(
+                $result,
+                $result['status'] === 'connected'
+                    ? 200
+                    : 422
+            );
         }
     }

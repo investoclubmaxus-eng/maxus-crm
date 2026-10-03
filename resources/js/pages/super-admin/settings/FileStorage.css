@@ -172,64 +172,116 @@
     flex-shrink: 0;
 
     display: flex;
-    align-items: center;
 
-    gap: 12px;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 10px;
 }
 
 .storage-status-badge {
     display: inline-flex;
+
     align-items: center;
     justify-content: center;
 
-    gap: 5px;
+    gap: 6px;
 
-    padding: 7px 11px;
+    min-height: 32px;
 
-    border-radius: 20px;
+    padding: 0 11px;
+
+    border-radius: 18px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    box-sizing: border-box;
+}
+
+.storage-status-badge.success {
+    color: #12804a;
+
+    background: #e8f8ef;
+
+    border: 1px solid #ccefdc;
+}
+
+.storage-status-badge.testing {
+    color: #1769e0;
+
+    background: #eaf2ff;
+
+    border: 1px solid #d4e4ff;
+}
+
+.storage-status-badge.error {
+    color: #c62828;
+
+    background: #fff0f0;
+
+    border: 1px solid #ffd6d6;
+}
+.storage-test-btn {
+    min-height: 36px;
+
+    padding: 0 14px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    border: 1px solid #cbdcf5;
+
+    border-radius: 7px;
+
+    background: #ffffff;
+
+    color: #1769e0;
+
+    font-family: inherit;
 
     font-size: 12px;
     font-weight: 600;
 
     white-space: nowrap;
-}
-
-.storage-status-badge.success {
-    color: #12804a;
-    background: #e8f8ef;
-}
-
-.storage-status-badge.testing {
-    color: #1769e0;
-    background: #eaf2ff;
-}
-
-.storage-test-btn {
-    height: 36px;
-
-    padding: 0 15px;
-
-    border: 1px solid #d5e2f2;
-    background: #ffffff;
-
-    border-radius: 7px;
-
-    color: #1769e0;
-
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: 600;
 
     cursor: pointer;
 
-    white-space: nowrap;
-
-    transition: all 0.2s ease;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
-.storage-test-btn:hover {
-    background: #f5f9ff;
-    border-color: #c6d9ef;
+.storage-test-btn:hover:not(:disabled) {
+    background: #f4f8ff;
+
+    border-color: #9fbee9;
+
+    color: #125bc9;
+
+    box-shadow: 0 2px 6px rgba(32, 93, 170, 0.08);
+}
+
+.storage-test-btn:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+.storage-test-btn:disabled {
+    opacity: 0.65;
+
+    cursor: not-allowed;
+
+    background: #f7f9fc;
+
+    color: #8293aa;
 }
 
 .storage-spin {
@@ -888,11 +940,11 @@
 
     color: #ffffff;
 
-    background: #2168dc;
+    background: #194799;
 }
 
 .storage-save-btn:hover:not(:disabled) {
-    background: #155bc9;
+    background: #194799;
 
     border-color: #155bc9;
 }
@@ -1195,24 +1247,25 @@
         line-height: 1.5;
     }
 
-    .storage-status-right {
-        flex-direction: column;
+   .storage-status-right {
+    flex-direction: row;
 
-        align-items: stretch;
+    align-items: center;
 
-        gap: 9px;
-    }
+    justify-content: flex-end;
 
-    .storage-status-badge {
-        width: 100%;
+    gap: 8px;
 
-        box-sizing: border-box;
-    }
+    width: 100%;
+}
 
-    .storage-test-btn {
-        width: 100%;
-    }
+.storage-status-badge {
+    min-width: auto;
+}
 
+.storage-test-btn {
+    width: auto;
+}
     .storage-usage-card {
         padding: 15px;
     }
@@ -1432,6 +1485,26 @@
 
     .storage-switch-row {
         align-items: flex-start;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .storage-status-right {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 8px;
+    }
+
+    .storage-status-badge {
+        width: 100%;
+    }
+
+    .storage-test-btn {
+        width: 100%;
     }
 
 }
