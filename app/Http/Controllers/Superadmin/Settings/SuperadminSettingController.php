@@ -18,6 +18,11 @@ use App\Services\Superadmin\Settings\FileStorageSettingService;
 use App\Http\Requests\Superadmin\Settings\EmailSmtpSettingRequest;
 use App\Services\Superadmin\Settings\EmailSmtpSettingService;
 use Illuminate\Http\Request;
+use App\Http\Requests\Superadmin\Settings\EmailTemplateRequest;
+use App\Http\Requests\Superadmin\Settings\EmailTemplateTestRequest;
+use App\Models\EmailTemplate;
+use App\Services\Superadmin\Settings\EmailTemplateService;
+
 
 class SuperadminSettingController extends Controller
 {
@@ -28,6 +33,7 @@ class SuperadminSettingController extends Controller
         private SecuritySettingService $securitySettingService,
         private FileStorageSettingService $fileStorageSettingService,
         private EmailSmtpSettingService $emailSmtpSettingService,
+        private EmailTemplateService $emailTemplateService
     ) {
     }
 
@@ -891,4 +897,242 @@ class SuperadminSettingController extends Controller
                     : 422
             );
         }
+
+        //GET templates
+        public function emailTemplates(): JsonResponse
+        {
+            $templates = $this->emailTemplateService
+                ->getTemplates();
+
+            return response()->json([
+                'message' => 'Email templates retrieved successfully.',
+
+                'templates' => $templates->map(
+                    fn (EmailTemplate $template) => [
+                        'id' => $template->id,
+                        'slug' => $template->slug,
+                        'name' => $template->name,
+                        'description' => $template->description,
+                        'trigger' => $template->trigger,
+                        'template_type' => $template->template_type,
+                        'is_default' => $template->is_default,
+                        'is_active' => $template->is_active,
+                        'subject' => $template->subject,
+                        'from_name' => $template->from_name,
+                        'body' => $template->body,
+                        'last_updated' => optional(
+                            $template->updated_at
+                        )->format('d M Y, h:i A'),
+                    ]
+                ),
+            ]);
+        }
+
+        //Get one template
+        public function showEmailTemplate(
+            int $id
+        ): JsonResponse {
+
+            $template = $this->emailTemplateService
+                ->getTemplate($id);
+
+            return response()->json([
+                'message' => 'Email template retrieved successfully.',
+
+                'template' => [
+                    'id' => $template->id,
+                    'slug' => $template->slug,
+                    'name' => $template->name,
+                    'description' => $template->description,
+                    'trigger' => $template->trigger,
+                    'template_type' => $template->template_type,
+                    'is_default' => $template->is_default,
+                    'is_active' => $template->is_active,
+                    'subject' => $template->subject,
+                    'from_name' => $template->from_name,
+                    'body' => $template->body,
+                    'last_updated' => optional(
+                        $template->updated_at
+                    )->format('d M Y, h:i A'),
+                ],
+            ]);
+        }
+
+        //Create custom template
+
+        public function createEmailTemplate(
+            EmailTemplateRequest $request
+        ): JsonResponse {
+
+            $template = $this->emailTemplateService
+                ->create($request->validated());
+
+            return response()->json([
+                'message' => 'Email template created successfully.',
+
+                'template' => [
+                    'id' => $template->id,
+                    'slug' => $template->slug,
+                    'name' => $template->name,
+                    'description' => $template->description,
+                    'trigger' => $template->trigger,
+                    'template_type' => $template->template_type,
+                    'is_default' => $template->is_default,
+                    'is_active' => $template->is_active,
+                    'subject' => $template->subject,
+                    'from_name' => $template->from_name,
+                    'body' => $template->body,
+                    'last_updated' => optional(
+                        $template->updated_at
+                    )->format('d M Y, h:i A'),
+                ],
+            ], 201);
+        }
+
+        //Update template
+        public function updateEmailTemplate(
+            EmailTemplateRequest $request,
+            int $id
+        ): JsonResponse {
+
+            $template = $this->emailTemplateService
+                ->getTemplate($id);
+
+            $template = $this->emailTemplateService
+                ->update(
+                    $template,
+                    $request->validated()
+                );
+
+            return response()->json([
+                'message' => 'Email template updated successfully.',
+
+                'template' => [
+                    'id' => $template->id,
+                    'slug' => $template->slug,
+                    'name' => $template->name,
+                    'description' => $template->description,
+                    'trigger' => $template->trigger,
+                    'template_type' => $template->template_type,
+                    'is_default' => $template->is_default,
+                    'is_active' => $template->is_active,
+                    'subject' => $template->subject,
+                    'from_name' => $template->from_name,
+                    'body' => $template->body,
+                    'last_updated' => optional(
+                        $template->updated_at
+                    )->format('d M Y, h:i A'),
+                ],
+            ]);
+        }
+
+        //Toggle template
+       public function toggleEmailTemplate(
+    string $id
+): JsonResponse {
+
+    $template = $this->emailTemplateService
+        ->getTemplate((int) $id);
+
+    $template = $this->emailTemplateService
+        ->toggle($template);
+
+    return response()->json([
+        'message' => $template->is_active
+            ? 'Email template enabled successfully.'
+            : 'Email template disabled successfully.',
+
+        'template' => $template,
+    ]);
+}
+        //Delete template
+    public function deleteEmailTemplate(
+            int $id
+        ): JsonResponse {
+
+            $template = $this->emailTemplateService
+                ->getTemplate($id);
+
+            try {
+
+                $this->emailTemplateService
+                    ->delete($template);
+
+                return response()->json([
+                    'message' =>
+                        'Email template deleted successfully.',
+                ]);
+
+            } catch (\RuntimeException $e) {
+
+                return response()->json([
+                    'message' => $e->getMessage(),
+                ], 422);
+            }
+        }
+
+        //Send test email
+    // public function testEmailTemplate(
+    //         EmailTemplateTestRequest $request,
+    //         int $id
+    //     ): JsonResponse {
+
+    //         $template = $this->emailTemplateService
+    //             ->getTemplate($id);
+
+    //         try {
+
+    //             $this->emailTemplateService->sendTestEmail(
+    //                 $template,
+    //                 $request->validated('test_email')
+    //             );
+
+    //             return response()->json([
+    //                 'message' =>
+    //                     'Test email sent successfully.',
+    //             ]);
+
+    //         } catch (\Throwable $e) {
+
+    //             report($e);
+
+    //             return response()->json([
+    //                 'message' =>
+    //                     'Unable to send the test email. Please check your SMTP settings.',
+    //             ], 422);
+    //         }
+    //     }
+
+
+    public function testEmailTemplate(
+    EmailTemplateTestRequest $request,
+    int $id
+): JsonResponse {
+
+    $template = $this->emailTemplateService
+        ->getTemplate($id);
+
+    try {
+
+        $testEmail = $request->validated('test_email');
+
+        $this->emailTemplateService->sendTestEmail(
+            $template,
+            $testEmail
+        );
+
+        return response()->json([
+            'message' => 'Test email sent successfully.',
+        ]);
+
+    } catch (\Throwable $e) {
+
+        report($e);
+
+        return response()->json([
+            'message' => 'Unable to send the test email.',
+            'error' => $e->getMessage(),
+        ], 500);
+    }
+}
     }

@@ -151,6 +151,24 @@ Route::middleware('auth:sanctum','security.session',)
         Route::put('/email-smtp-update',[SuperadminSettingController::class, 'updateEmailSmtp']);
 
         Route::post('/email-smtp/test',[SuperadminSettingController::class, 'testEmailSmtp']);
+
+        //Email Draft Format
+
+        Route::get('/email-templates',[SuperadminSettingController::class, 'emailTemplates']);
+
+        Route::get('/email-templates/{id}',[SuperadminSettingController::class, 'showEmailTemplate']);
+
+        Route::post('/email-templates',[SuperadminSettingController::class, 'createEmailTemplate']);
+
+        Route::put('/email-templates/{id}',[SuperadminSettingController::class, 'updateEmailTemplate']);
+
+        Route::patch('/email-templates/{id}/toggle',[SuperadminSettingController::class, 'toggleEmailTemplate']);
+
+        Route::delete('/email-templates/{id}',[SuperadminSettingController::class, 'deleteEmailTemplate']);
+
+        Route::post('/email-templates/{id}/test',[SuperadminSettingController::class, 'testEmailTemplate']);
+
+
                 
 
     });

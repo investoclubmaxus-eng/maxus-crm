@@ -137,7 +137,7 @@
     padding: 0 14px;
     border: 0;
     border-radius: 6px;
-    background: #0878f9;
+    background: #194799;
     color: #ffffff;
     display: inline-flex;
     align-items: center;
@@ -259,6 +259,8 @@
 .email-status-badge.active > span {
     background: #0aa46f;
 }
+
+
 
 .email-status-badge.inactive {
     color: #718096;
@@ -917,12 +919,12 @@
 
 .email-primary-action {
     border: 1px solid #0878f9;
-    background: #0878f9;
+    background: #194799;
     color: #ffffff;
 }
 
 .email-primary-action:hover {
-    background: #0668dd;
+    background: #194799;
     border-color: #0668dd;
 }
 
@@ -1089,7 +1091,7 @@
 
 .email-modal-save {
     border: 1px solid #0878f9;
-    background: #0878f9;
+    background: #194799;
     color: #ffffff;
 }
 
@@ -1600,4 +1602,703 @@
         font-size: 8px;
     }
 
+}
+
+/* =========================================================
+   FULL EMAIL PREVIEW MODAL
+========================================================= */
+
+.email-full-preview-modal {
+    width: min(1280px, 94vw);
+    height: min(820px, 92vh);
+    max-height: 92vh;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 24px 70px rgba(15, 35, 65, 0.20);
+}
+
+
+/* =========================================================
+   PREVIEW BODY
+========================================================= */
+
+.email-full-preview-body {
+    flex: 1;
+    min-height: 0;
+
+    overflow-y: auto;
+
+    background: #f4f7fb;
+
+    padding: 0;
+}
+
+
+/* =========================================================
+   PREVIEW TOOLBAR
+========================================================= */
+
+.email-full-preview-toolbar {
+    min-height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 16px 36px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e5ebf3;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 5;
+}
+
+.email-preview-toolbar-label {
+    display: block;
+
+    margin-bottom: 3px;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.06em;
+
+    color: #7a8da6;
+}
+
+.email-preview-toolbar-value {
+    display: block;
+
+    max-width: 600px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    color: #1e3658;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   DEVICE BUTTONS
+========================================================= */
+
+.email-full-preview-toolbar .email-preview-devices,
+.email-preview-devices {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+}
+
+.email-preview-devices button {
+    width: 40px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #d9e3ef;
+
+    background: #ffffff;
+
+    color: #7187a3;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.email-preview-devices button:hover {
+    border-color: #0d6efd;
+
+    color: #0d6efd;
+}
+
+.email-preview-devices button.active {
+    background: #edf6ff;
+
+    border-color: #b9d9ff;
+
+    color: #0d6efd;
+}
+
+
+/* =========================================================
+   EMAIL WORKSPACE
+========================================================= */
+
+.email-full-preview-workspace {
+    width: 100%;
+
+    min-height: 100%;
+
+    box-sizing: border-box;
+
+    padding: 42px 30px 60px;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.email-full-preview-workspace.desktop {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.email-full-preview-workspace.tablet {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.email-full-preview-workspace.mobile {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+/* =========================================================
+   ACTUAL EMAIL CARD
+========================================================= */
+
+.email-full-preview-card {
+    width: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #dbe5f0;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 12px 35px rgba(35, 65, 100, 0.08);
+
+    transition: max-width 0.25s ease;
+}
+
+.email-full-preview-workspace.desktop
+.email-full-preview-card {
+    max-width: 680px;
+}
+
+.email-full-preview-workspace.tablet
+.email-full-preview-card {
+    max-width: 540px;
+}
+
+.email-full-preview-workspace.mobile
+.email-full-preview-card {
+    max-width: 360px;
+}
+
+
+/* =========================================================
+   EMAIL BRAND HEADER
+========================================================= */
+
+.email-full-preview-brand {
+    min-height: 92px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 22px 32px;
+
+    background: #edf6ff;
+
+    border-bottom: 1px solid #dbe9f7;
+}
+
+.email-full-preview-brand-mark {
+    width: 42px;
+    height: 42px;
+
+    flex: 0 0 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #194799;
+
+    color: #ffffff;
+
+    border-radius: 9px;
+
+    font-size: 23px;
+    font-weight: 800;
+    font-style: italic;
+}
+
+.email-full-preview-brand strong {
+    display: block;
+
+    font-size: 20px;
+
+    color: #194799;
+
+    line-height: 1.2;
+}
+
+.email-full-preview-brand span {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 11px;
+
+    color: #7187a3;
+}
+
+
+/* =========================================================
+   EMAIL INFORMATION
+========================================================= */
+
+.email-full-preview-information {
+    padding: 20px 32px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #edf1f5;
+}
+
+.email-full-preview-from,
+.email-full-preview-subject-row {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+.email-full-preview-from {
+    margin-bottom: 9px;
+}
+
+.email-full-preview-from span,
+.email-full-preview-subject-row span {
+    width: 62px;
+
+    flex: 0 0 62px;
+
+    color: #8a9bb0;
+
+    font-weight: 500;
+}
+
+.email-full-preview-from strong,
+.email-full-preview-subject-row strong {
+    color: #40566f;
+
+    font-weight: 600;
+
+    word-break: break-word;
+}
+
+.email-full-preview-subject-row strong {
+    color: #172b4d;
+}
+
+
+/* =========================================================
+   EMAIL CONTENT
+========================================================= */
+
+.email-full-preview-content {
+    padding: 32px;
+
+    min-height: 260px;
+
+    background: #ffffff;
+
+    color: #526b87;
+
+    font-size: 14px;
+
+    line-height: 1.75;
+
+    word-break: break-word;
+}
+
+.email-full-preview-content p {
+    margin: 0;
+}
+
+.email-preview-paragraph {
+    margin-bottom: 16px !important;
+}
+
+.email-preview-welcome {
+    margin-bottom: 22px !important;
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    color: #183b63;
+}
+
+.email-preview-space {
+    height: 8px;
+}
+
+.email-preview-empty {
+    padding: 35px 10px;
+
+    text-align: center;
+
+    color: #8a9bb0;
+}
+
+
+/* =========================================================
+   LOGIN BUTTON
+========================================================= */
+
+.email-preview-button-row {
+    margin: 24px 0;
+}
+
+.email-preview-login-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 42px;
+
+    padding: 0 20px;
+
+    background: #194799;
+
+    color: #ffffff !important;
+
+    border-radius: 7px;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    box-shadow:
+        0 5px 14px rgba(13, 110, 253, 0.18);
+}
+
+
+/* =========================================================
+   EMAIL FOOTER
+========================================================= */
+
+.email-full-preview-footer {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 22px 28px;
+
+    background: #f8fafc;
+
+    border-top: 1px solid #edf1f5;
+
+    text-align: center;
+
+    font-size: 11px;
+
+    color: #8292a6;
+}
+
+.email-full-preview-footer strong {
+    color: #40566f;
+
+    font-size: 12px;
+}
+
+.email-full-preview-footer span {
+    max-width: 500px;
+}
+
+
+/* =========================================================
+   PREVIEW MODAL HEADER
+========================================================= */
+
+.email-full-preview-modal
+.email-modal-header {
+    flex: 0 0 auto;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e3eaf2;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .email-full-preview-modal {
+        width: 96vw;
+
+        height: 94vh;
+
+        max-height: 94vh;
+
+        border-radius: 12px;
+    }
+
+    .email-full-preview-toolbar {
+        padding: 14px 18px;
+
+        align-items: flex-start;
+    }
+
+    .email-preview-toolbar-value {
+        max-width: 220px;
+    }
+
+    .email-full-preview-workspace {
+        padding: 25px 15px 40px;
+    }
+
+    .email-full-preview-brand {
+        padding: 20px;
+    }
+
+    .email-full-preview-information {
+        padding: 18px 20px;
+    }
+
+    .email-full-preview-content {
+        padding: 24px 20px;
+    }
+
+    .email-full-preview-footer {
+        padding: 20px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .email-full-preview-toolbar {
+        flex-direction: column;
+    }
+
+    .email-full-preview-toolbar
+    .email-preview-devices {
+        align-self: flex-end;
+    }
+
+    .email-preview-toolbar-value {
+        max-width: 280px;
+    }
+
+    .email-full-preview-workspace.mobile
+    .email-full-preview-card {
+        max-width: 100%;
+    }
+
+    .email-full-preview-brand {
+        min-height: 75px;
+
+        padding: 17px;
+    }
+
+    .email-full-preview-brand-mark {
+        width: 36px;
+        height: 36px;
+
+        flex-basis: 36px;
+
+        font-size: 19px;
+    }
+
+    .email-full-preview-brand strong {
+        font-size: 17px;
+    }
+
+    .email-full-preview-brand span {
+        font-size: 10px;
+    }
+
+    .email-full-preview-information {
+        padding: 16px;
+    }
+
+    .email-full-preview-content {
+        padding: 22px 16px;
+
+        font-size: 13px;
+    }
+
+    .email-full-preview-from,
+    .email-full-preview-subject-row {
+        gap: 8px;
+
+        font-size: 12px;
+    }
+
+    .email-full-preview-from span,
+    .email-full-preview-subject-row span {
+        width: 52px;
+        flex-basis: 52px;
+    }
+}
+
+/* =========================================================
+   DARK HEADER – matches real password-reset email
+========================================================= */
+
+.email-preview-dark-header {
+    background: #0c2854 !important;
+    border-bottom: none !important;
+    min-height: 92px;
+    padding: 28px 32px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.email-preview-brand-text {
+    display: block;
+    margin: 0;
+
+    color: #ffffff !important;
+
+    font-family: "Arial Black", Arial, Helvetica, sans-serif;
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.email-preview-brand-sub {
+    display: block;
+    margin-top: 10px;
+
+    color: #d9e5fa !important;
+    font-size: 11px;
+    letter-spacing: 0.6px;
+    font-weight: 400;
+}
+
+/* Make the card look closer to real email */
+.email-preview-wrapper .email-full-preview-card,
+.email-full-preview-workspace .email-full-preview-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(20, 20, 60, 0.08);
+}
+
+/* Adjust body spacing to match real email */
+.email-full-preview-content {
+    padding: 36px 32px !important;
+}
+
+.email-full-preview-content p {
+    margin-bottom: 16px;
+}
+
+/* Mobile adjustments for dark header */
+@media (max-width: 480px) {
+    .email-preview-brand-text {
+        font-size: 28px;
+        letter-spacing: 2px;
+    }
+
+    .email-preview-brand-sub {
+        font-size: 10px;
+    }
+
+    .email-preview-dark-header {
+        padding: 22px 18px !important;
+        min-height: 80px;
+    }
+}
+
+/* =========================================================
+   RIGHT SIDE PREVIEW – make device buttons work properly
+========================================================= */
+
+.email-preview-section .email-full-preview-workspace {
+    width: 100%;
+    min-height: 480px;
+    padding: 16px;
+    border: 1px solid #dce8f5;
+    border-radius: 7px;
+    background: #f4f8fd;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow: auto;
+    box-sizing: border-box;
+}
+
+/* Desktop – full width of the panel */
+.email-preview-section .email-full-preview-workspace.desktop .email-full-preview-card {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Tablet – medium size */
+.email-preview-section .email-full-preview-workspace.tablet .email-full-preview-card {
+    width: 420px;
+    max-width: 100%;
+}
+
+/* Mobile – small size */
+.email-preview-section .email-full-preview-workspace.mobile .email-full-preview-card {
+    width: 300px;
+    max-width: 100%;
+}
+
+/* Keep the card centered and smooth */
+.email-preview-section .email-full-preview-card {
+    transition: width 0.25s ease, max-width 0.25s ease;
 }
