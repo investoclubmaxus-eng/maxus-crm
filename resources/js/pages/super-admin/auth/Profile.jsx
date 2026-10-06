@@ -958,7 +958,7 @@ export default function Profile({ currentPath = "/profile", onNavigate }) {
                                                 name="email"
                                                 value={profileData.email}
                                                 onChange={handleProfileChange}
-                                                disabled
+                                               
                                             />
 
                                         </div>
