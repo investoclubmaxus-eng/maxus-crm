@@ -398,6 +398,7 @@ export default function Profile({ currentPath = "/profile", onNavigate }) {
             const formData = new FormData();
 
             formData.append("name", profileData.name);
+            formData.append("email", profileData.email);
             formData.append("phone", profileData.phone);
             formData.append("location", profileData.location);
             formData.append("_method", "PUT");
