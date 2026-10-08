@@ -1,0 +1,11 @@
+@import "./CreateCompany.css";
+
+.company-edit-loading {
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #5e789d;
+    font-size: 14px;
+}

@@ -23,6 +23,7 @@ export default function Sidebar({
     isCollapsed,
     onClose,
     onNavigate,
+    currentPath,
 }) {
     /*
     |--------------------------------------------------------------------------
@@ -133,6 +134,19 @@ const effectiveCollapsed = isMobile
     */
 
     const [activeItem, setActiveItem] = useState("dashboard");
+
+    useEffect(() => {
+        if (!currentPath?.startsWith("/companies")) {
+            return;
+        }
+
+        setActiveItem("companies");
+        setOpenMenus((previous) => ({
+            ...previous,
+            companies: true,
+        }));
+    }, [currentPath]);
+
     useEffect(() => {
         const systemSettingKeys = [
             "general-settings",
@@ -363,72 +377,80 @@ const effectiveCollapsed = isMobile
                         )}
                     </button>
 
-                    {/* =================================================
-                        COMPANIES
-                    ================================================== */}
+                   {/* =================================================
+    COMPANIES
+================================================== */}
 
-                    {/* <div className="super-admin-sidebar__menu-group">
+<div className="super-admin-sidebar__menu-group">
 
-                        <button
-                            type="button"
-                            className="super-admin-sidebar__item super-admin-sidebar__item--parent"
-                            onClick={() =>
-                                toggleMenu("companies")
-                            }
-                        >
-                            <Building2 size={19} />
+    <button
+        type="button"
+        className={`super-admin-sidebar__item super-admin-sidebar__item--parent ${
+            currentPath?.startsWith("/companies") ? "active" : ""
+        }`}
+        onClick={() => toggleMenu("companies")}
+    >
+        <Building2 size={19} />
 
-                            {!effectiveCollapsed && (
-                                <>
-                                    <span>Companies</span>
+        {!effectiveCollapsed && (
+            <>
+                <span>Companies</span>
 
-                                    {openMenus.companies ? (
-                                        <ChevronDown
-                                            size={17}
-                                            className="menu-arrow"
-                                        />
-                                    ) : (
-                                        <ChevronRight
-                                            size={17}
-                                            className="menu-arrow"
-                                        />
-                                    )}
-                                </>
-                            )}
-                        </button>
+                {openMenus.companies ? (
+                    <ChevronDown
+                        size={17}
+                        className="menu-arrow"
+                    />
+                ) : (
+                    <ChevronRight
+                        size={17}
+                        className="menu-arrow"
+                    />
+                )}
+            </>
+        )}
+    </button>
 
-                        {!effectiveCollapsed &&
-                            openMenus.companies && (
-                                <div className="super-admin-sidebar__submenu">
+    {!effectiveCollapsed && openMenus.companies && (
+        <div className="super-admin-sidebar__submenu">
 
-                                    <button
-                                        type="button"
-                                        className="super-admin-sidebar__submenu-item"
-                                        onClick={() =>
-                                            handleNavigation(
-                                                "companies"
-                                            )
-                                        }
-                                    >
-                                        All Companies
-                                    </button>
+            {/* All Companies */}
 
-                                    <button
-                                        type="button"
-                                        className="super-admin-sidebar__submenu-item"
-                                        onClick={() =>
-                                            handleNavigation(
-                                                "companies"
-                                            )
-                                        }
-                                    >
-                                        Add Company
-                                    </button>
+            <button
+                type="button"
+                className={`super-admin-sidebar__submenu-item ${
+                    currentPath === "/companies" ? "active" : ""
+                }`}
+                onClick={() => handleNavigation("companies")}
+            >
+                All Companies
+            </button>
 
-                                </div>
-                            )}
-                    </div> */}
+            {/* Add Company */}
 
+            <button
+                type="button"
+                className={`super-admin-sidebar__submenu-item ${
+                    currentPath === "/companies/create" ||
+                    /^\/companies\/\d+\/edit$/.test(currentPath || "")
+                        ? "active"
+                        : ""
+                }`}
+                onClick={() => {
+                    onNavigate?.("/companies/create");
+
+                    if (window.innerWidth <= 768 && onClose) {
+                        onClose();
+                    }
+                }}
+            >
+                Add Company
+            </button>
+
+        </div>
+    )}
+
+</div>
                     {/* =================================================
                         ADMINISTRATORS
                     ================================================== */}

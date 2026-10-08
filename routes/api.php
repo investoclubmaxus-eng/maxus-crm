@@ -4,6 +4,7 @@ use App\Http\Controllers\Superadmin\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Superadmin\Auth\PasswordController;
 use App\Http\Controllers\Superadmin\Settings\SuperadminSettingController;
+use App\Http\Controllers\Superadmin\Company\CompanyController;
 
 
 
@@ -21,6 +22,16 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/superadmin/profile', [AuthController::class, 'update'])->name('auth.profile.update');
     Route::put('/superadmin/password', [AuthController::class, 'updatePassword'])->name('auth.password.update');
 
+    // =====================================================
+    // Company Management
+    // =====================================================
+
+    Route::get('/superadmin/companies-details',[CompanyController::class, 'index'])->name('superadmin.companies.details');
+    Route::post('/superadmin/companies-create',[CompanyController::class, 'store'])->name('superadmin.companies.create');
+    Route::get('/superadmin/companies/{company}',[CompanyController::class, 'show'])->name('superadmin.companies.show');
+    Route::put('/superadmin/companies-update/{company}',[CompanyController::class, 'update'])->name('superadmin.companies.update');
+    Route::patch('/superadmin/companies-status/{company}',[CompanyController::class, 'updateStatus'])->name('superadmin.companies.status');
+    Route::delete('/superadmin/companies-delete/{company}',[CompanyController::class, 'destroy'])->name('superadmin.companies.delete');
 });
 
 //setting module

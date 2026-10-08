@@ -13,16 +13,17 @@
     Route::view('/system-settings/{setting?}', 'app')->where('setting', 'general|date-time|email-smtp|file-storage|maintenance|security|email-drafts');
     Route::view('/reset-password', 'app');
 
-// Route::get('/test-email', function () {
-//     try {
-//         Mail::raw('This is a test email to verify SMTP settings.', function ($message) {
-//             $message->to('investoclub.maxus@gmail.com') // Replace with your actual email
-//                     ->subject('SMTP Test Email');
-//         });
-        
-//         return 'Email sent successfully! Check your inbox.';
-//     } catch (\Exception $e) {
-//         return 'Failed to send email. Error: ' . $e->getMessage();
-//     }
-// });
+    /*
+    |--------------------------------------------------------------------------
+    | Company Pages
+    |--------------------------------------------------------------------------
+    */
+
+    Route::view('/companies', 'app');
+
+    Route::view('/companies/create', 'app');
+
+    Route::view('/companies/{company}', 'app');
+
+    Route::view('/companies/{company}/edit', 'app');
  
