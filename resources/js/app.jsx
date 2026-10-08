@@ -19,6 +19,9 @@ import SecuritySettings from "./pages/super-admin/settings/SecuritySettings";
 import ResetPassword from "./pages/super-admin/auth/ResetPassword";
 import Maintenance from './pages/super-admin/settings/Maintenance';
 import EmailDraftFormat from './pages/super-admin/settings/EmailDraftFormat';
+import CreateCompany from './pages/super-admin/company/CreateCompany';
+import EditCompany from './pages/super-admin/company/EditCompany';
+import Companies from './pages/super-admin/company/Companies';
 
 function App() {
 
@@ -145,7 +148,13 @@ if (currentPath === '/reset-password') {
         '/dashboard',
         '/profile',
         '/profile/projects',
-    ].includes(currentPath) || currentPath.startsWith('/system-settings');
+    ].includes(currentPath) || currentPath.startsWith('/system-settings')
+    || currentPath === '/companies'
+    || currentPath === '/companies/create'
+    || currentPath.startsWith('/companies/');
+    const editCompanyMatch = currentPath.match(
+        /^\/companies\/(\d+)\/edit$/
+    );
 
 
     /*
@@ -240,6 +249,7 @@ if (currentPath === '/reset-password') {
                 isCollapsed={sidebarCollapsed}
                 onClose={handleSidebarClose}
                 onNavigate={navigateTo}
+                currentPath={currentPath}
             />
 
 
@@ -360,7 +370,26 @@ if (currentPath === '/reset-password') {
                             onNavigate={navigateTo}
                         />
 
-                    ) : (
+
+                    ): currentPath === '/companies' ? (   
+                         <Companies
+                            navigateTo={navigateTo}
+                        />
+
+                    )  : currentPath === '/companies/create' ? (
+
+                        <CreateCompany
+                            navigateTo={navigateTo}
+                        />
+
+                    ) : editCompanyMatch ? (
+
+                        <EditCompany
+                            companyId={editCompanyMatch[1]}
+                            navigateTo={navigateTo}
+                        />
+
+                    ): (
 
                         <Dashboard />
 
