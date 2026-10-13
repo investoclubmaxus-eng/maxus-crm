@@ -11,7 +11,7 @@ class CompanyRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      */
-     public function authorize(): bool
+    public function authorize(): bool
     {
         return $this->user() !== null;
     }
@@ -153,8 +153,7 @@ class CompanyRequest extends FormRequest
         ];
     }
 
-
-     /**
+    /**
      * Custom validation messages.
      */
     public function messages(): array
@@ -172,7 +171,7 @@ class CompanyRequest extends FormRequest
 
             'phone.regex' => 'Phone number must contain exactly 10 digits.',
 
-            'postal_code.regex' => 'Postal code must contain a number with more than 6 digits.',
+            'postal_code.regex' => 'Postal code must contain no more than 6 digits.',
 
             'logo.image' => 'The company logo must be a valid image.',
             'logo.mimes' => 'The company logo must be JPG, JPEG, PNG or WEBP.',

@@ -1279,7 +1279,7 @@ const CreateCompany = ({
                                 <div className="company-form-group">
 
                                     <label htmlFor="company-city">
-                                        City
+                                        Headquarter
                                     </label>
 
                                     <div className="company-input-wrapper">
@@ -1689,8 +1689,8 @@ const CreateCompany = ({
 
                                 <span>
                                     {isEditing
-                                        ? "Updating..."
-                                        : "Creating..."}
+                                        ? "Saving..."
+                                        : "Saving..."}
                                 </span>
                             </>
                         ) : (
@@ -1699,8 +1699,8 @@ const CreateCompany = ({
 
                                 <span>
                                     {isEditing
-                                        ? "Update Company"
-                                        : "Create Company"}
+                                        ? "Save Changes"
+                                        : "Save Changes"}
                                 </span>
                             </>
                         )}

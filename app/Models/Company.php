@@ -60,14 +60,14 @@ class Company extends Model
             'company_id',
             'user_id'
         )
-        ->withPivot([
-            'role',
-            'status',
-            'is_default',
-            'granted_by',
-            'granted_at',
-        ])
-        ->withTimestamps();
+            ->withPivot([
+                'role',
+                'status',
+                'is_default',
+                'granted_by',
+                'granted_at',
+            ])
+            ->withTimestamps();
     }
 
     /**

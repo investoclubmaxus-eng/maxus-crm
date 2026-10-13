@@ -4,6 +4,7 @@ namespace App\Services\Superadmin\Settings;
 
 use App\Models\EmailTemplate;
 use App\Models\GeneralSetting;
+use App\Models\User;
 use App\Notifications\TemplateEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -19,9 +20,7 @@ class EmailTemplateService
 
     public function __construct(
         private EmailTemplateRenderer $renderer
-    ) {
-    }
-
+    ) {}
 
     /*
     |--------------------------------------------------------------------------
@@ -39,7 +38,6 @@ class EmailTemplateService
             ->get();
     }
 
-
     /*
     |--------------------------------------------------------------------------
     | GET SINGLE TEMPLATE
@@ -52,7 +50,6 @@ class EmailTemplateService
 
         return EmailTemplate::findOrFail($id);
     }
-
 
     /*
     |--------------------------------------------------------------------------
@@ -90,7 +87,6 @@ class EmailTemplateService
         ]);
     }
 
-
     /*
     |--------------------------------------------------------------------------
     | UPDATE TEMPLATE
@@ -119,7 +115,6 @@ class EmailTemplateService
         return $template->fresh();
     }
 
-
     /*
     |--------------------------------------------------------------------------
     | TOGGLE TEMPLATE
@@ -129,12 +124,11 @@ class EmailTemplateService
     public function toggle(EmailTemplate $template): EmailTemplate
     {
         $template->update([
-            'is_active' => !$template->is_active,
+            'is_active' => ! $template->is_active,
         ]);
 
         return $template->fresh();
     }
-
 
     /*
     |--------------------------------------------------------------------------
@@ -153,7 +147,6 @@ class EmailTemplateService
         $template->delete();
     }
 
-
     /*
     |--------------------------------------------------------------------------
     | GENERATE UNIQUE SLUG
@@ -164,7 +157,7 @@ class EmailTemplateService
     {
         $baseSlug = Str::slug($name);
 
-        if (!$baseSlug) {
+        if (! $baseSlug) {
             $baseSlug = 'custom-template';
         }
 
@@ -175,14 +168,13 @@ class EmailTemplateService
         while (
             EmailTemplate::where('slug', $slug)->exists()
         ) {
-            $slug = $baseSlug . '-' . $counter;
+            $slug = $baseSlug.'-'.$counter;
 
             $counter++;
         }
 
         return $slug;
     }
-
 
     /*
     |--------------------------------------------------------------------------
@@ -199,159 +191,152 @@ class EmailTemplateService
 
                 'name' => 'New Admin Invitation',
 
-                'description' =>
-                    'Sent automatically when a new Admin account is created.',
+                'description' => 'Sent when the Super Admin sends an account activation invitation.',
 
-                'trigger' => 'Admin Created',
+                'trigger' => 'Admin Invitation Sent',
 
-                'subject' =>
-                    'Welcome to {{app_name}} – Your Admin Account',
+                'subject' => 'Activate Your {{app_name}} Admin Account',
 
                 'from_name' => '{{app_name}}',
 
-                'body' => <<<TEXT
-Hello {{admin_name}},
+                'body' => <<<'TEXT'
+                Hello {{admin_name}},
 
-Welcome to {{app_name}}.
+                Welcome to {{app_name}} CRM!
 
-Your Admin account has been created successfully.
+                Your administrator account has been created successfully.
 
-You can access your CRM account using the button below.
+                To get started, activate your account and create your own password using the secure link below.
 
-[LOGIN_BUTTON]
+                Email: {{admin_email}}
 
-For security, please use the link below to set your password before your first login.
+                Assigned companies: {{company_name}}
 
-{{activation_url}}
+                {{activation_url}}
 
-If you were not expecting this invitation, please contact your system administrator.
+                Important security information:
+                - This invitation expires after 2 hours.
+                - The invitation link can only be used once.
+                - Never share this link with anyone.
 
-Regards,
-{{app_name}} Team
-TEXT,
+                If you were not expecting this invitation, please contact your system administrator.
+
+                Regards,
+                {{app_name}} Team
+                TEXT,
             ],
-
 
             [
                 'slug' => 'admin-account-activated',
 
                 'name' => 'Admin Account Activated',
 
-                'description' =>
-                    'Sent when an Admin activates their account.',
+                'description' => 'Sent when an Admin activates their account.',
 
                 'trigger' => 'Account Activated',
 
-                'subject' =>
-                    'Your {{app_name}} Admin Account is Activated',
+                'subject' => 'Your {{app_name}} Admin Account is Activated',
 
                 'from_name' => '{{app_name}}',
 
-                'body' => <<<TEXT
-Hello {{admin_name}},
+                'body' => <<<'TEXT'
+                Hello {{admin_name}},
 
-Your Admin account has been successfully activated.
+                Your Admin account has been successfully activated.
 
-You can now login to your CRM account.
+                You can now login to your CRM account.
 
-[LOGIN_BUTTON]
+                [LOGIN_BUTTON]
 
-Regards,
-{{app_name}} Team
-TEXT,
+                Regards,
+                {{app_name}} Team
+                TEXT,
             ],
-
 
             [
                 'slug' => 'password-reset',
 
                 'name' => 'Password Reset',
 
-                'description' =>
-                    'Sent when an Admin requests a password reset.',
+                'description' => 'Sent when an Admin requests a password reset.',
 
                 'trigger' => 'Password Reset Requested',
 
-                'subject' =>
-                    'Reset Your {{app_name}} Password',
+                'subject' => 'Reset Your {{app_name}} Password',
 
                 'from_name' => '{{app_name}}',
 
-                'body' => <<<TEXT
-Hello {{admin_name}},
+                'body' => <<<'TEXT'
+                Hello {{admin_name}},
 
-We received a request to reset your password.
+                We received a request to reset your password.
 
-Please use the link below to reset your password.
+                Please use the button below to reset your password.
 
-{{activation_url}}
+                [RESET_PASSWORD_BUTTON]
 
-If you did not request a password reset, please ignore this email.
+                If you did not request a password reset, please ignore this email.
 
-Regards,
-{{app_name}} Team
-TEXT,
+                If you're having trouble clicking the button, copy and paste the URL below into your web browser:
+                {{activation_url}}
+
+                Regards,
+                {{app_name}} Team
+                TEXT,
             ],
-
 
             [
                 'slug' => 'account-disabled',
 
                 'name' => 'Account Disabled',
 
-                'description' =>
-                    'Sent when an Admin account is disabled by Super Admin.',
+                'description' => 'Sent when an Admin account is disabled by Super Admin.',
 
                 'trigger' => 'Account Disabled',
 
-                'subject' =>
-                    'Your {{app_name}} Account Has Been Disabled',
+                'subject' => 'Your {{app_name}} Account Has Been Disabled',
 
                 'from_name' => '{{app_name}}',
 
-                'body' => <<<TEXT
-Hello {{admin_name}},
+                'body' => <<<'TEXT'
+                Hello {{admin_name}},
 
-Your Admin account has been disabled by the system administrator.
+                Your Admin account has been disabled by the system administrator.
 
-If you believe this was done by mistake, please contact your system administrator.
+                If you believe this was done by mistake, please contact your system administrator.
 
-Regards,
-{{app_name}} Team
-TEXT,
+                Regards,
+                {{app_name}} Team
+                TEXT,
             ],
-
 
             [
                 'slug' => 'company-access-granted',
 
                 'name' => 'Company Access Granted',
 
-                'description' =>
-                    'Sent when an Admin is granted access to a company.',
+                'description' => 'Sent when an Admin is granted access to a company.',
 
                 'trigger' => 'Company Access Granted',
 
-                'subject' =>
-                    'Company Access Granted – {{company_name}}',
+                'subject' => 'Company Access Granted – {{company_name}}',
 
                 'from_name' => '{{app_name}}',
 
-                'body' => <<<TEXT
-Hello {{admin_name}},
+                'body' => <<<'TEXT'
+                Hello {{admin_name}},
 
-You have been granted access to {{company_name}}.
+                You have been granted access to {{company_name}}.
 
-You can login to your CRM account using the button below.
+                You can login to your CRM account using the button below.
 
-[LOGIN_BUTTON]
+                [LOGIN_BUTTON]
 
-Regards,
-{{app_name}} Team
-TEXT,
+                Regards,
+                {{app_name}} Team
+                TEXT,
             ],
         ];
-
 
         foreach ($templates as $template) {
 
@@ -381,7 +366,6 @@ TEXT,
             );
         }
     }
-
 
     /*
     |--------------------------------------------------------------------------
@@ -420,7 +404,7 @@ TEXT,
         */
 
         $loginUrl = $applicationUrl
-            ? $applicationUrl . '/'
+            ? $applicationUrl.'/'
             : url('/');
 
         return [
@@ -458,7 +442,6 @@ TEXT,
         ];
     }
 
-
     /*
     |--------------------------------------------------------------------------
     | BUILD TEMPLATE VARIABLES
@@ -476,7 +459,6 @@ TEXT,
             $variables
         );
     }
-
 
     /*
     |--------------------------------------------------------------------------
@@ -499,7 +481,6 @@ TEXT,
             $variables
         );
 
-
         /*
         |--------------------------------------------------------------------------
         | Replace {{variable}}
@@ -513,16 +494,14 @@ TEXT,
             }
 
             $content = str_replace(
-                '{{' . $key . '}}',
+                '{{'.$key.'}}',
                 (string) $value,
                 $content
             );
         }
 
-
         return $content;
     }
-
 
     /*
     |--------------------------------------------------------------------------
@@ -547,7 +526,6 @@ TEXT,
             $variables
         );
     }
-
 
     /*
     |--------------------------------------------------------------------------
@@ -595,7 +573,6 @@ TEXT,
             'company_name' => 'ABC Realty',
         ]);
 
-
         /*
         |--------------------------------------------------------------------------
         | Render email body
@@ -610,7 +587,6 @@ TEXT,
             $template->body,
             $variables
         );
-
 
         /*
         |--------------------------------------------------------------------------
@@ -631,7 +607,6 @@ TEXT,
             $template->subject,
             $variables
         );
-
 
         /*
         |--------------------------------------------------------------------------
@@ -654,7 +629,6 @@ TEXT,
             $variables
         );
 
-
         /*
         |--------------------------------------------------------------------------
         | Send Email
@@ -669,7 +643,6 @@ TEXT,
             )
         );
     }
-
 
     /*
     |--------------------------------------------------------------------------
@@ -697,7 +670,7 @@ TEXT,
                 name="viewport"
                 content="width=device-width, initial-scale=1.0"
             >
-            <title>' . e($appName) . '</title>
+            <title>'.e($appName).'</title>
         </head>
 
         <body style="
@@ -731,7 +704,7 @@ TEXT,
                         <strong style="
                             font-size:20px;
                         ">
-                            ' . e($appName) . '
+                            '.e($appName).'
                         </strong>
                     </div>
 
@@ -741,7 +714,7 @@ TEXT,
                         font-size:14px;
                         line-height:1.7;
                     ">
-                        ' . $body . '
+                        '.$body.'
                     </div>
 
                     <div style="
@@ -751,7 +724,7 @@ TEXT,
                         color:#7b879a;
                         font-size:12px;
                     ">
-                        © ' . date('Y') . ' ' . e($appName) . '
+                        © '.date('Y').' '.e($appName).'
                     </div>
 
                 </div>
@@ -760,5 +733,132 @@ TEXT,
 
         </body>
         </html>';
+    }
+
+    /**
+     * Build the email for a new Admin invitation.
+     */
+    public function buildAdminInvitationEmail(User $admin, string $activationUrl, ?string $companyName = null): TemplateEmail
+    {
+        $this->ensureDefaultTemplates();
+
+        $template = EmailTemplate::query()
+            ->where('slug', 'new-admin-invitation')
+            ->where('is_active', true)
+            ->first();
+
+        if (! $template) {
+            throw new RuntimeException(
+                'The New Admin Invitation email template is inactive or unavailable.'
+            );
+        }
+
+        $variables = $this->buildTemplateVariables([
+            'admin_name' => $admin->name,
+            'admin_email' => $admin->email,
+            'company_name' => $companyName ?? '',
+            'activation_url' => $activationUrl,
+        ]);
+
+        $bodyHtml = $this->renderer->render(
+            $template->body,
+            $variables
+        );
+
+        $subject = $this->replaceVariables(
+            $template->subject,
+            $variables
+        );
+
+        $fromName = $this->replaceVariables(
+            $template->from_name ?: '{{app_name}}',
+            $variables
+        );
+
+        return new TemplateEmail(
+            $subject,
+            $fromName,
+            $bodyHtml
+        );
+    }
+
+    /**
+     * Build an administrator status email from a system template.
+     */
+    public function buildAdminStatusEmail(
+        User $admin,
+        string $templateSlug
+    ): TemplateEmail {
+        $templateNames = [
+            'admin-account-activated' => 'Admin Account Activated',
+            'account-disabled' => 'Account Disabled',
+        ];
+
+        if (! array_key_exists($templateSlug, $templateNames)) {
+            throw new RuntimeException('The administrator status template is invalid.');
+        }
+
+        $this->ensureDefaultTemplates();
+
+        $template = EmailTemplate::query()
+            ->where('slug', $templateSlug)
+            ->where('is_active', true)
+            ->first();
+
+        if (! $template) {
+            throw new RuntimeException(
+                "The {$templateNames[$templateSlug]} email template is inactive or unavailable."
+            );
+        }
+
+        $variables = $this->buildTemplateVariables([
+            'admin_name' => $admin->name,
+            'admin_email' => $admin->email,
+        ]);
+        $bodyHtml = $this->renderer->render($template->body, $variables);
+        $subject = $this->replaceVariables($template->subject, $variables);
+        $fromName = $this->replaceVariables(
+            $template->from_name ?: '{{app_name}}',
+            $variables
+        );
+
+        return new TemplateEmail($subject, $fromName, $bodyHtml);
+    }
+
+    /**
+     * Build a password-reset email from the system template.
+     */
+    public function buildPasswordResetEmail(
+        User $user,
+        string $resetUrl
+    ): TemplateEmail {
+        $this->ensureDefaultTemplates();
+
+        $template = EmailTemplate::query()
+            ->where('slug', 'password-reset')
+            ->where('is_active', true)
+            ->first();
+
+        if (! $template) {
+            throw new RuntimeException(
+                'The Password Reset email template is inactive or unavailable.'
+            );
+        }
+
+        $variables = $this->buildTemplateVariables([
+            'admin_name' => $user->name,
+            'admin_email' => $user->email,
+            'activation_url' => $resetUrl,
+            'button_label' => 'Reset Password',
+            'template_slug' => 'password-reset',
+        ]);
+        $bodyHtml = $this->renderer->render($template->body, $variables);
+        $subject = $this->replaceVariables($template->subject, $variables);
+        $fromName = $this->replaceVariables(
+            $template->from_name ?: '{{app_name}}',
+            $variables
+        );
+
+        return new TemplateEmail($subject, $fromName, $bodyHtml);
     }
 }

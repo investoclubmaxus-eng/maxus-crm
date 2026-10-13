@@ -213,6 +213,22 @@
     color: #102f5b;
 }
 
+.company-summary-card.blue {
+    background: #f7faff;
+}
+
+.company-summary-card.green {
+    background: #f5fcf8;
+}
+
+.company-summary-card.orange {
+    background: #fffbf2;
+}
+
+.company-summary-card.red {
+    background: #fff8f8;
+}
+
 .company-summary-card.blue
     .company-summary-icon {
     background: #eaf3ff;

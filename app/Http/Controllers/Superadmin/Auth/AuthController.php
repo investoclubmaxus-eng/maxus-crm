@@ -6,27 +6,28 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Superadmin\Auth\LoginRequest;
 use App\Http\Requests\Superadmin\Auth\UpdatePasswordRequest;
 use App\Http\Requests\Superadmin\Auth\UpdateProfileRequest;
-use App\Services\Superadmin\Settings\SecuritySettingService;
 use App\Models\ActivityLog;
 use App\Models\User;
+use App\Services\Superadmin\Settings\FileStorageSettingService;
+use App\Services\Superadmin\Settings\SecuritySettingService;
+use App\Services\Superadmin\Settings\TwoFactorAuthenticationService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\RateLimiter;
-use App\Services\Superadmin\Settings\TwoFactorAuthenticationService;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-
-   public function __construct(
+    public function __construct(
         private SecuritySettingService $securitySettingService,
-        private TwoFactorAuthenticationService $twoFactorAuthenticationService
-    ) {
-    }
+        private TwoFactorAuthenticationService $twoFactorAuthenticationService,
+        private FileStorageSettingService $fileStorageSettingService
+    ) {}
+
     // login function
     public function login(LoginRequest $request): JsonResponse
     {
@@ -40,7 +41,6 @@ class AuthController extends Controller
 
         $securitySettings = $this->securitySettingService
             ->getSecuritySettings();
-
 
         /*
         |--------------------------------------------------------------------------
@@ -66,7 +66,6 @@ class AuthController extends Controller
             $rememberMe = false;
         }
 
-
         /*
         |--------------------------------------------------------------------------
         | Login Attempt Protection
@@ -85,7 +84,6 @@ class AuthController extends Controller
             $securitySettings->lockout_duration
         );
 
-
         /*
         |--------------------------------------------------------------------------
         | Login Rate Limiter Key
@@ -95,11 +93,10 @@ class AuthController extends Controller
         |
         */
 
-        $loginKey = 'login:' .
-            strtolower($credentials['email']) .
-            '|' .
+        $loginKey = 'login:'.
+            strtolower($credentials['email']).
+            '|'.
             $request->ip();
-
 
         /*
         |--------------------------------------------------------------------------
@@ -133,7 +130,6 @@ class AuthController extends Controller
             }
         }
 
-
         /*
         |--------------------------------------------------------------------------
         | Find Active User
@@ -149,7 +145,6 @@ class AuthController extends Controller
                 'active'
             )
             ->first();
-
 
         /*
         |--------------------------------------------------------------------------
@@ -182,7 +177,6 @@ class AuthController extends Controller
                     $loginKey
                 );
 
-
                 /*
                 |--------------------------------------------------------------------------
                 | Maximum Failed Attempts Reached
@@ -201,7 +195,6 @@ class AuthController extends Controller
                 }
             }
 
-
             /*
             |--------------------------------------------------------------------------
             | Invalid Credentials
@@ -214,7 +207,6 @@ class AuthController extends Controller
                 ],
             ]);
         }
-
 
         /*
         |--------------------------------------------------------------------------
@@ -237,7 +229,6 @@ class AuthController extends Controller
             );
         }
 
-
         /*
         |--------------------------------------------------------------------------
         | TWO-FACTOR AUTHENTICATION
@@ -257,7 +248,6 @@ class AuthController extends Controller
         $userHasTwoFactor = (bool) (
             $user->two_factor_enabled
         );
-
 
         if (
             $twoFactorAllowed &&
@@ -280,7 +270,6 @@ class AuthController extends Controller
 
             $twoFactorToken = Str::random(64);
 
-
             /*
             |--------------------------------------------------------------------------
             | Hash Temporary Token For Cache Key
@@ -290,12 +279,11 @@ class AuthController extends Controller
             |
             */
 
-            $challengeKey = 'login_2fa:' .
+            $challengeKey = 'login_2fa:'.
                 hash(
                     'sha256',
                     $twoFactorToken
                 );
-
 
             /*
             |--------------------------------------------------------------------------
@@ -315,7 +303,6 @@ class AuthController extends Controller
                 ],
                 now()->addMinutes(5)
             );
-
 
             /*
             |--------------------------------------------------------------------------
@@ -340,7 +327,6 @@ class AuthController extends Controller
                 'two_factor_token' => $twoFactorToken,
             ]);
         }
-
 
         /*
         |--------------------------------------------------------------------------
@@ -390,7 +376,7 @@ class AuthController extends Controller
             'user_id' => $user->id,
             'module' => 'Authentication',
             'action' => 'login',
-            'description' => $user->name . ' logged into the platform.',
+            'description' => $user->name.' logged into the platform.',
             'ip_address' => $request->ip(),
             'user_agent' => $request->userAgent(),
             'metadata' => [
@@ -442,7 +428,6 @@ class AuthController extends Controller
         ]);
     }
 
-
     public function loginSettings(): JsonResponse
     {
         $securitySettings = $this->securitySettingService
@@ -459,6 +444,8 @@ class AuthController extends Controller
     public function user(Request $request): JsonResponse
     {
         $user = $request->user();
+        $fileStorageSettings = $this->fileStorageSettingService
+            ->getFileStorageSettings();
 
         return response()->json([
             'user' => [
@@ -470,6 +457,10 @@ class AuthController extends Controller
                 'phone' => $user->phone,
                 'location' => $user->location,
                 'avatar' => $user->avatar,
+                'avatar_upload_settings' => [
+                    'max_upload_size' => $fileStorageSettings->max_upload_size,
+                    'allowed_file_types' => $fileStorageSettings->allowed_file_types,
+                ],
                 'last_login_at' => $user->last_login_at,
                 'created_at' => $user->created_at,
             ],
@@ -632,14 +623,13 @@ class AuthController extends Controller
         $user = $request->user();
 
         $securitySettings = $this->securitySettingService
-        ->getSecuritySettings();
-
+            ->getSecuritySettings();
 
         $user->update([
             'password' => $request->validated('new_password'),
         ]);
 
-         /*
+        /*
         |--------------------------------------------------------------------------
         | Logout all sessions after password change
         |--------------------------------------------------------------------------
@@ -664,138 +654,132 @@ class AuthController extends Controller
         ]);
     }
 
+    public function verifyLoginTwoFactor(
+        Request $request
+    ): JsonResponse {
 
-        public function verifyLoginTwoFactor(
-            Request $request
-        ): JsonResponse {
+        /*
+        |--------------------------------------------------------------------------
+        | Validate Request
+        |--------------------------------------------------------------------------
+        */
 
-            /*
-            |--------------------------------------------------------------------------
-            | Validate Request
-            |--------------------------------------------------------------------------
-            */
+        $request->validate([
+            'two_factor_token' => [
+                'required',
+                'string',
+            ],
 
-            $request->validate([
-                'two_factor_token' => [
-                    'required',
-                    'string',
-                ],
+            'code' => [
+                'required',
+                'digits:6',
+            ],
+        ]);
 
-                'code' => [
-                    'required',
-                    'digits:6',
-                ],
-            ]);
+        /*
+        |--------------------------------------------------------------------------
+        | Get Challenge
+        |--------------------------------------------------------------------------
+        */
 
-            /*
-            |--------------------------------------------------------------------------
-            | Get Challenge
-            |--------------------------------------------------------------------------
-            */
+        $twoFactorToken = $request->input('two_factor_token');
 
-            $twoFactorToken = $request->input('two_factor_token');
+        $challengeKey = 'login_2fa:'.
+            hash('sha256', $twoFactorToken);
 
-            $challengeKey = 'login_2fa:' .
-                hash('sha256', $twoFactorToken);
+        $challenge = Cache::get($challengeKey);
 
-            $challenge = Cache::get($challengeKey);
+        /*
+        |--------------------------------------------------------------------------
+        | Challenge Expired / Invalid
+        |--------------------------------------------------------------------------
+        */
 
-            /*
-            |--------------------------------------------------------------------------
-            | Challenge Expired / Invalid
-            |--------------------------------------------------------------------------
-            */
+        if (! $challenge) {
 
-            if (! $challenge) {
+            return response()->json([
+                'message' => 'Your two-factor authentication session has expired. Please log in again.',
+            ], 422);
+        }
 
-                return response()->json([
-                    'message' =>
-                        'Your two-factor authentication session has expired. Please log in again.',
-                ], 422);
-            }
+        /*
+        |--------------------------------------------------------------------------
+        | Find User
+        |--------------------------------------------------------------------------
+        */
 
-            /*
-            |--------------------------------------------------------------------------
-            | Find User
-            |--------------------------------------------------------------------------
-            */
+        $user = User::where('id', $challenge['user_id'])
+            ->where('status', 'active')
+            ->first();
 
-            $user = User::where('id', $challenge['user_id'])
-                ->where('status', 'active')
-                ->first();
-
-            if (! $user) {
-
-                Cache::forget($challengeKey);
-
-                return response()->json([
-                    'message' => 'Unable to complete authentication.',
-                ], 422);
-            }
-
-            /*
-            |--------------------------------------------------------------------------
-            | Make Sure 2FA Is Still Enabled
-            |--------------------------------------------------------------------------
-            */
-
-            if (! $user->two_factor_enabled) {
-
-                Cache::forget($challengeKey);
-
-                return response()->json([
-                    'message' =>
-                        'Two-factor authentication is not enabled for this account.',
-                ], 422);
-            }
-
-            /*
-            |--------------------------------------------------------------------------
-            | Verify Authenticator Code
-            |--------------------------------------------------------------------------
-            */
-
-            $isValid = $this->twoFactorAuthenticationService
-                ->verifyCode(
-                    $user,
-                    $request->input('code')
-                );
-
-            if (! $isValid) {
-
-                return response()->json([
-                    'message' =>
-                        'Invalid authentication code. Please enter the current 6-digit code from your authenticator app.',
-                ], 422);
-            }
-
-            /*
-            |--------------------------------------------------------------------------
-            | One-Time Challenge
-            |--------------------------------------------------------------------------
-            |
-            | Delete it after successful verification.
-            |
-            */
+        if (! $user) {
 
             Cache::forget($challengeKey);
 
-            /*
-            |--------------------------------------------------------------------------
-            | Complete Login
-            |--------------------------------------------------------------------------
-            */
-
-            return $this->completeLogin(
-                $user,
-                (bool) ($challenge['remember_me'] ?? false),
-                $request
-            );
+            return response()->json([
+                'message' => 'Unable to complete authentication.',
+            ], 422);
         }
 
-    
+        /*
+        |--------------------------------------------------------------------------
+        | Make Sure 2FA Is Still Enabled
+        |--------------------------------------------------------------------------
+        */
 
-    //2FA set up
+        if (! $user->two_factor_enabled) {
+
+            Cache::forget($challengeKey);
+
+            return response()->json([
+                'message' => 'Two-factor authentication is not enabled for this account.',
+            ], 422);
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Verify Authenticator Code
+        |--------------------------------------------------------------------------
+        */
+
+        $isValid = $this->twoFactorAuthenticationService
+            ->verifyCode(
+                $user,
+                $request->input('code')
+            );
+
+        if (! $isValid) {
+
+            return response()->json([
+                'message' => 'Invalid authentication code. Please enter the current 6-digit code from your authenticator app.',
+            ], 422);
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | One-Time Challenge
+        |--------------------------------------------------------------------------
+        |
+        | Delete it after successful verification.
+        |
+        */
+
+        Cache::forget($challengeKey);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Complete Login
+        |--------------------------------------------------------------------------
+        */
+
+        return $this->completeLogin(
+            $user,
+            (bool) ($challenge['remember_me'] ?? false),
+            $request
+        );
+    }
+
+    // 2FA set up
 
     public function setupTwoFactor(): JsonResponse
     {
@@ -827,7 +811,6 @@ class AuthController extends Controller
             ],
         ]);
     }
-
 
     public function confirmTwoFactor(Request $request): JsonResponse
     {

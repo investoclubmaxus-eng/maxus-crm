@@ -26,6 +26,10 @@ import "./Profile.css";
 import api from "../../../services/api";
 import { QRCodeSVG } from "qrcode.react";
 import sweetAlert from "../../../utils/sweetAlert";
+import {
+    getAllowedFileTypes,
+    getAvatarUploadError,
+} from "../../../utils/avatarUploadSettings";
 
 
 const getProfileInitials = (name) => {
@@ -85,6 +89,9 @@ export default function Profile({ currentPath = "/profile", onNavigate }) {
     });
     const [selectedAvatar, setSelectedAvatar] = useState(null);
     const [avatarPreview, setAvatarPreview] = useState("");
+    const [avatarUploadSettings, setAvatarUploadSettings] = useState(null);
+    const [avatarSettingsError, setAvatarSettingsError] = useState("");
+    const [avatarFileError, setAvatarFileError] = useState("");
     const [activities, setActivities] = useState([]);
 
     const [twoFactorLoading, setTwoFactorLoading] = useState(false);
@@ -140,6 +147,27 @@ export default function Profile({ currentPath = "/profile", onNavigate }) {
             try {
                 const response = await api.get("/user");
                 const user = response.data.user;
+                const maxUploadSize = Number(
+                    user.avatar_upload_settings?.max_upload_size
+                );
+                const allowedFileTypes = getAllowedFileTypes(
+                    user.avatar_upload_settings?.allowed_file_types
+                );
+
+                if (
+                    Number.isInteger(maxUploadSize) &&
+                    maxUploadSize > 0 &&
+                    allowedFileTypes.length > 0
+                ) {
+                    setAvatarUploadSettings({
+                        maxUploadSize,
+                        allowedFileTypes,
+                    });
+                } else {
+                    setAvatarSettingsError(
+                        "Unable to load valid profile photo upload settings."
+                    );
+                }
 
                 setProfileData({
                     name: user.name || "",
@@ -159,6 +187,10 @@ export default function Profile({ currentPath = "/profile", onNavigate }) {
                     return;
                 }
 
+                setAvatarSettingsError(
+                    error.response?.data?.message ||
+                        "Unable to load profile photo upload settings."
+                );
                 setProfileError(
                     error.response?.data?.message ||
                     "Unable to load profile information."
@@ -228,12 +260,24 @@ export default function Profile({ currentPath = "/profile", onNavigate }) {
         }));
     };
 
-    const handleAvatarChange = (e) => {
-        const file = e.target.files?.[0];
+    const handleAvatarChange = (event) => {
+        const file = event.target.files?.[0];
 
-        if (file) {
-            setSelectedAvatar(file);
+        if (!file || !avatarUploadSettings) {
+            return;
         }
+
+        const error = getAvatarUploadError(file, avatarUploadSettings);
+
+        if (error) {
+            setSelectedAvatar(null);
+            setAvatarFileError(error);
+            event.target.value = "";
+            return;
+        }
+
+        setAvatarFileError("");
+        setSelectedAvatar(file);
     };
 
     const handlePasswordChange = (e) => {
@@ -437,6 +481,7 @@ export default function Profile({ currentPath = "/profile", onNavigate }) {
             );
         } catch (error) {
             await sweetAlert.error(
+                error.response?.data?.errors?.avatar?.[0] ||
                 error.response?.data?.message ||
                 "Unable to update profile information."
             );
@@ -888,14 +933,18 @@ export default function Profile({ currentPath = "/profile", onNavigate }) {
                                             <input
                                                 ref={avatarInputRef}
                                                 type="file"
-                                                accept="image/jpeg,image/png,image/gif,image/webp"
+                                                accept={avatarUploadSettings?.allowedFileTypes
+                                                    .map((extension) => `.${extension}`)
+                                                    .join(",")}
                                                 hidden
+                                                disabled={!avatarUploadSettings}
                                                 onChange={handleAvatarChange}
                                             />
 
                                             <button
                                                 type="button"
                                                 className="maxus-photo-button"
+                                                disabled={!avatarUploadSettings}
                                                 onClick={() => avatarInputRef.current?.click()}
                                             >
                                                 <Camera size={16} />
@@ -906,9 +955,30 @@ export default function Profile({ currentPath = "/profile", onNavigate }) {
                                     )}
 
                                     <span>
-                                        JPG, PNG or GIF
-                                        <br />
-                                        Maximum 2MB
+                                        {avatarUploadSettings ? (
+                                            <>
+                                                Images only. File Storage types:{" "}
+                                                {avatarUploadSettings.allowedFileTypes
+                                                    .map((extension) =>
+                                                        extension.toUpperCase()
+                                                    )
+                                                    .join(", ")}
+                                                <br />
+                                                Maximum{" "}
+                                                {avatarUploadSettings.maxUploadSize} MB
+                                            </>
+                                        ) : (
+                                            avatarSettingsError ||
+                                            "Loading profile photo upload settings..."
+                                        )}
+                                        {avatarFileError && (
+                                            <>
+                                                <br />
+                                                <small role="alert">
+                                                    {avatarFileError}
+                                                </small>
+                                            </>
+                                        )}
                                     </span>
 
                                 </div>

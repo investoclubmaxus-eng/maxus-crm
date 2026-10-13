@@ -414,14 +414,14 @@
 ========================================================= */
 
 .smtp-input-wrapper select {
-    flex: 1 1 auto;
+    position: absolute;
+    inset: 0;
+    z-index: 30;
 
-    width: 0;
-    min-width: 0;
+    width: 100%;
+    height: 100%;
 
-    height: 42px;
-
-    padding: 0;
+    padding: 0 38px 0 38px;
     margin: 0;
 
     border: none;
@@ -433,7 +433,7 @@
 
     font-family: inherit;
     font-size: 13px;
-    line-height: 42px;
+    line-height: normal;
 
     cursor: pointer;
 
@@ -444,10 +444,9 @@
     box-sizing: border-box;
 
     /*
-     * Keep native select above other content.
+     * A full-wrapper native select keeps its options popup aligned
+     * with the complete input, rather than starting beside the icon.
      */
-    position: relative;
-    z-index: 30;
 }
 
 
@@ -1403,6 +1402,11 @@
         line-height: 40px;
     }
 
+    .smtp-input-wrapper select {
+        height: 100%;
+        line-height: normal;
+    }
+
     .smtp-input-wrapper:has(select) {
         padding-right: 36px;
     }
@@ -1538,6 +1542,11 @@
         height: 39px;
         font-size: 11px;
         line-height: 39px;
+    }
+
+    .smtp-input-wrapper select {
+        height: 100%;
+        line-height: normal;
     }
 
     .smtp-input-wrapper:has(select) {

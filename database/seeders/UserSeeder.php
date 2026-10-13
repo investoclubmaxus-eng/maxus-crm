@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
                 'status' => 'active',
 
                 'phone' => '9823434565',
-                'location'=> 'Gurugram',
+                'location' => 'Gurugram',
                 'location' => null,
                 'avatar' => null,
 

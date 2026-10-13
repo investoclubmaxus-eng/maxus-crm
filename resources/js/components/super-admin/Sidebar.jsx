@@ -148,6 +148,17 @@ const effectiveCollapsed = isMobile
     }, [currentPath]);
 
     useEffect(() => {
+        if (!currentPath?.startsWith("/administrators")) {
+            return;
+        }
+
+        setOpenMenus((previous) => ({
+            ...previous,
+            administrators: true,
+        }));
+    }, [currentPath]);
+
+    useEffect(() => {
         const systemSettingKeys = [
             "general-settings",
             "date-time",
@@ -455,14 +466,16 @@ const effectiveCollapsed = isMobile
                         ADMINISTRATORS
                     ================================================== */}
 
-                    {/* <div className="super-admin-sidebar__menu-group">
+                    <div className="super-admin-sidebar__menu-group">
 
                         <button
                             type="button"
-                            className="super-admin-sidebar__item super-admin-sidebar__item--parent"
-                            onClick={() =>
-                                toggleMenu("administrators")
-                            }
+                            className={`super-admin-sidebar__item super-admin-sidebar__item--parent ${
+                                currentPath?.startsWith("/administrators")
+                                    ? "active"
+                                    : ""
+                            }`}
+                            onClick={() => toggleMenu("administrators")}
                         >
                             <Users size={19} />
 
@@ -491,31 +504,40 @@ const effectiveCollapsed = isMobile
 
                                     <button
                                         type="button"
-                                        className="super-admin-sidebar__submenu-item"
-                                        onClick={() =>
-                                            handleNavigation(
-                                                "administrators"
+                                        className={`super-admin-sidebar__submenu-item ${
+                                            currentPath === "/administrators" ||
+                                            /^\/administrators\/\d+(?:\/edit)?$/.test(
+                                                currentPath || ""
                                             )
-                                        }
+                                                ? "active"
+                                                : ""
+                                        }`}
+                                        onClick={() => handleNavigation("administrators")}
                                     >
                                         All Administrators
                                     </button>
 
                                     <button
                                         type="button"
-                                        className="super-admin-sidebar__submenu-item"
-                                        onClick={() =>
-                                            handleNavigation(
-                                                "administrators"
-                                            )
-                                        }
+                                        className={`super-admin-sidebar__submenu-item ${
+                                            currentPath === "/administrators/create"
+                                                ? "active"
+                                                : ""
+                                        }`}
+                                        onClick={() => {
+                                            onNavigate?.("/administrators/create");
+
+                                            if (window.innerWidth <= 768 && onClose) {
+                                                onClose();
+                                            }
+                                        }}
                                     >
                                         Add Administrator
                                     </button>
 
                                 </div>
                             )}
-                    </div> */}
+                    </div>
 
                     {/* =================================================
                         ACCESS / SECURITY

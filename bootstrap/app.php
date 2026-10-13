@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Middleware\CheckSecuritySession;
+use App\Http\Middleware\CheckSuperAdmin;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
-use App\Http\Middleware\CheckSecuritySession;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -16,8 +17,9 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->web();
         $middleware->alias([
-        'security.session' => CheckSecuritySession::class,
-    ]);
+            'security.session' => CheckSecuritySession::class,
+            'super.admin' => CheckSuperAdmin::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

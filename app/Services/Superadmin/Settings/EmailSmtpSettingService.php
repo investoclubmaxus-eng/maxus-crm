@@ -19,7 +19,7 @@ class EmailSmtpSettingService
     {
         $settings = EmailSmtpSetting::first();
 
-        if (!$settings) {
+        if (! $settings) {
             $settings = EmailSmtpSetting::create([
                 'mail_driver' => 'smtp',
                 'smtp_host' => '',
@@ -35,7 +35,6 @@ class EmailSmtpSettingService
 
         return $settings;
     }
-
 
     /**
      * Update SMTP settings.
@@ -74,17 +73,18 @@ class EmailSmtpSettingService
         return $settings->fresh();
     }
 
-
     /**
      * Apply database SMTP configuration to Laravel Mail.
      */
-    private function configureMailer(
-        EmailSmtpSetting $settings
+    public function configureMailer(
+        ?EmailSmtpSetting $settings = null
     ): void {
+        $settings ??= $this->getEmailSmtpSettings();
+
         Config::set('mail.default', $settings->mail_driver);
 
         Config::set(
-            'mail.mailers.' . $settings->mail_driver,
+            'mail.mailers.'.$settings->mail_driver,
             [
                 'transport' => 'smtp',
                 'host' => $settings->smtp_host,
@@ -115,7 +115,6 @@ class EmailSmtpSettingService
         Mail::purge($settings->mail_driver);
     }
 
-
     /**
      * Test SMTP configuration by sending a test email.
      */
@@ -134,7 +133,7 @@ class EmailSmtpSettingService
             Mail::mailer($settings->mail_driver)
                 ->raw(
                     'This is a test email from Maxus CRM. '
-                    . 'Your SMTP configuration is working correctly.',
+                    .'Your SMTP configuration is working correctly.',
                     function ($message) use (
                         $settings,
                         $recipient
@@ -160,8 +159,7 @@ class EmailSmtpSettingService
 
             return [
                 'status' => 'connected',
-                'message' =>
-                    'SMTP connection is working and the test email was sent successfully.',
+                'message' => 'SMTP connection is working and the test email was sent successfully.',
             ];
 
         } catch (Throwable $e) {
@@ -170,8 +168,7 @@ class EmailSmtpSettingService
 
             return [
                 'status' => 'unavailable',
-                'message' =>
-                    'Unable to connect to the configured SMTP server.',
+                'message' => 'Unable to connect to the configured SMTP server.',
             ];
         }
     }

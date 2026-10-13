@@ -1,0 +1,273 @@
+/* Shared typography and control styling for the settings modules. */
+
+:is(
+    .general-settings-page,
+    .datetime-settings-page,
+    .smtp-page,
+    .file-storage-page,
+    .security-settings-page,
+    .maintenance-page,
+    .email-draft-page,
+    .system-settings-page
+) {
+    font-family: inherit;
+}
+
+.general-title-section h1,
+.datetime-title-section h1,
+.smtp-title-section h1,
+.file-storage-heading h1,
+.security-page-heading h1,
+.maintenance-title-area h1,
+.email-draft-title-section h1,
+.system-settings-heading h1 {
+    color: #102f5b;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.general-title-section p,
+.datetime-title-section p,
+.smtp-title-section p,
+.file-storage-heading p,
+.security-page-heading p,
+.maintenance-title-area p,
+.email-draft-title-section p,
+.system-settings-heading p {
+    color: #6780a5;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.general-section-header h2,
+.datetime-section-heading h2,
+.smtp-section-header h2,
+.storage-card-header h2,
+.storage-usage-header h2,
+.security-section-header h2,
+.maintenance-section-header h2,
+.email-template-panel-header h2,
+.email-editor-heading h2,
+.system-settings-main .settings-card-content h2 {
+    color: #102f5b;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.general-section-header p,
+.datetime-section-heading p,
+.smtp-section-header p,
+.storage-card-header p,
+.storage-usage-header p,
+.security-section-header p,
+.maintenance-section-header p,
+.email-template-panel-header p,
+.email-editor-heading p,
+.system-settings-main .settings-card-content p {
+    color: #6680a5;
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+.general-form-group label,
+.datetime-form-group label,
+.smtp-field label,
+.storage-form-group label,
+.security-field label,
+.maintenance-field label,
+.email-form-field label,
+.email-modal-field label {
+    color: #17375f;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.general-form-group input,
+.general-form-group select,
+.datetime-select-wrapper select,
+.smtp-input-wrapper input,
+.smtp-input-wrapper select,
+.storage-form-group input,
+.storage-form-group select,
+.storage-form-group textarea,
+.security-field select,
+.maintenance-field textarea,
+.email-form-field input,
+.email-body-textarea,
+.email-modal-field input,
+.email-modal-field textarea {
+    color: #17375f;
+    font-family: inherit;
+    font-size: 13px;
+}
+
+.general-form-group input,
+.general-form-group select,
+.datetime-select-wrapper select,
+.storage-form-group input,
+.storage-form-group select,
+.storage-form-group textarea,
+.security-field select,
+.maintenance-field textarea,
+.email-form-field input,
+.email-body-textarea,
+.email-modal-field input,
+.email-modal-field textarea {
+    border-color: #cfe0f5;
+    border-radius: 8px;
+}
+
+.general-form-group input:focus,
+.general-form-group select:focus,
+.datetime-select-wrapper select:focus,
+.storage-form-group input:focus,
+.storage-form-group select:focus,
+.storage-form-group textarea:focus,
+.security-field select:focus,
+.maintenance-field textarea:focus,
+.email-form-field input:focus,
+.email-body-textarea:focus,
+.email-modal-field input:focus,
+.email-modal-field textarea:focus {
+    border-color: #2677e8;
+    box-shadow: 0 0 0 3px rgba(38, 119, 232, 0.1);
+}
+
+.general-settings-actions .general-cancel-btn,
+.general-settings-actions .general-save-btn,
+.datetime-actions button,
+.smtp-actions .smtp-cancel-button,
+.smtp-actions .smtp-save-button,
+.storage-actions .storage-reset-btn,
+.storage-actions .storage-save-btn,
+.security-action-buttons .security-reset-btn,
+.security-action-buttons .security-save-btn,
+.maintenance-save-wrapper .primary-button,
+.maintenance-bottom-bar .primary-button,
+.maintenance-page .secondary-button,
+.maintenance-page .outline-button,
+.email-editor-actions .email-secondary-action,
+.email-editor-actions .email-primary-action {
+    min-height: 42px;
+    padding-right: 18px;
+    padding-left: 18px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.general-settings-actions .general-cancel-btn,
+.datetime-actions .datetime-cancel-btn,
+.smtp-actions .smtp-cancel-button,
+.storage-actions .storage-reset-btn,
+.security-action-buttons .security-reset-btn,
+.maintenance-page .secondary-button,
+.maintenance-page .outline-button,
+.email-editor-actions .email-secondary-action {
+    border-color: #cbdced;
+    background: #ffffff;
+    color: #365a84;
+}
+
+.general-settings-actions .general-save-btn,
+.datetime-actions .datetime-save-btn,
+.smtp-actions .smtp-save-button,
+.storage-actions .storage-save-btn,
+.security-action-buttons .security-save-btn,
+.maintenance-save-wrapper .primary-button,
+.maintenance-bottom-bar .primary-button,
+.email-editor-actions .email-primary-action {
+    border-color: #1267e8;
+    background: #194799;
+    color: #ffffff;
+}
+
+@media (min-width: 1600px) {
+    .general-title-section h1,
+    .datetime-title-section h1,
+    .smtp-title-section h1,
+    .file-storage-heading h1,
+    .security-page-heading h1,
+    .maintenance-title-area h1,
+    .email-draft-title-section h1,
+    .system-settings-heading h1 {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .general-title-section h1,
+    .datetime-title-section h1,
+    .smtp-title-section h1,
+    .file-storage-heading h1,
+    .security-page-heading h1,
+    .maintenance-title-area h1,
+    .email-draft-title-section h1,
+    .system-settings-heading h1 {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .general-title-section h1,
+    .datetime-title-section h1,
+    .smtp-title-section h1,
+    .file-storage-heading h1,
+    .security-page-heading h1,
+    .maintenance-title-area h1,
+    .email-draft-title-section h1,
+    .system-settings-heading h1 {
+        font-size: 24px;
+    }
+
+    .general-title-section p,
+    .datetime-title-section p,
+    .smtp-title-section p,
+    .file-storage-heading p,
+    .security-page-heading p,
+    .maintenance-title-area p,
+    .email-draft-title-section p,
+    .system-settings-heading p {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 768px) {
+    .general-title-section h1,
+    .datetime-title-section h1,
+    .smtp-title-section h1,
+    .file-storage-heading h1,
+    .security-page-heading h1,
+    .maintenance-title-area h1,
+    .email-draft-title-section h1,
+    .system-settings-heading h1 {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 576px) {
+    .general-title-section h1,
+    .datetime-title-section h1,
+    .smtp-title-section h1,
+    .file-storage-heading h1,
+    .security-page-heading h1,
+    .maintenance-title-area h1,
+    .email-draft-title-section h1,
+    .system-settings-heading h1 {
+        font-size: 20px;
+    }
+
+    .general-title-section p,
+    .datetime-title-section p,
+    .smtp-title-section p,
+    .file-storage-heading p,
+    .security-page-heading p,
+    .maintenance-title-area p,
+    .email-draft-title-section p,
+    .system-settings-heading p {
+        font-size: 12px;
+    }
+}

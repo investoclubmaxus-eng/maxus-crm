@@ -2,17 +2,22 @@
 
 namespace App\Notifications;
 
+use App\Services\Superadmin\Settings\EmailSmtpSettingService;
 use Illuminate\Bus\Queueable;
-use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Mail\Mailable;
+use Illuminate\Mail\SentMessage;
+use Illuminate\Queue\SerializesModels;
+use Spatie\Multitenancy\Jobs\NotTenantAware;
 
-class TemplateEmail extends Mailable
+class TemplateEmail extends Mailable implements NotTenantAware, ShouldQueue
 {
     use Queueable, SerializesModels;
 
     public string $emailSubject;
+
     public string $fromName;
+
     public string $bodyHtml;
 
     public function __construct(
@@ -23,6 +28,14 @@ class TemplateEmail extends Mailable
         $this->emailSubject = $emailSubject;
         $this->fromName = $fromName;
         $this->bodyHtml = $bodyHtml;
+        $this->onQueue('emails')->afterCommit();
+    }
+
+    public function send($mailer): ?SentMessage
+    {
+        app(EmailSmtpSettingService::class)->configureMailer();
+
+        return parent::send($mailer);
     }
 
     public function build()

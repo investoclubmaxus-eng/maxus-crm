@@ -22,6 +22,10 @@ import EmailDraftFormat from './pages/super-admin/settings/EmailDraftFormat';
 import CreateCompany from './pages/super-admin/company/CreateCompany';
 import EditCompany from './pages/super-admin/company/EditCompany';
 import Companies from './pages/super-admin/company/Companies';
+import CreateAdmin from './pages/super-admin/admins/CreateAdmin';
+import Admins from './pages/super-admin/admins/Admins';
+import EditAdmin from './pages/super-admin/admins/EditAdmin';
+import './pages/super-admin/settings/SettingsVisualConsistency.css';
 
 function App() {
 
@@ -144,6 +148,13 @@ if (currentPath === '/reset-password') {
     |--------------------------------------------------------------------------
     */
 
+    const editAdminMatch = currentPath.match(
+        /^\/administrators\/(\d+)\/edit$/
+    );
+    const isAdministratorPage =
+        currentPath === '/administrators' ||
+        currentPath === '/administrators/create' ||
+        Boolean(editAdminMatch);
     const isAppPage = [
         '/dashboard',
         '/profile',
@@ -151,7 +162,8 @@ if (currentPath === '/reset-password') {
     ].includes(currentPath) || currentPath.startsWith('/system-settings')
     || currentPath === '/companies'
     || currentPath === '/companies/create'
-    || currentPath.startsWith('/companies/');
+    || currentPath.startsWith('/companies/')
+    || isAdministratorPage;
     const editCompanyMatch = currentPath.match(
         /^\/companies\/(\d+)\/edit$/
     );
@@ -169,7 +181,6 @@ if (currentPath === '/reset-password') {
 
         return null;
     }
-
 
     /*
     |--------------------------------------------------------------------------
@@ -386,6 +397,23 @@ if (currentPath === '/reset-password') {
 
                         <EditCompany
                             companyId={editCompanyMatch[1]}
+                            navigateTo={navigateTo}
+                        />
+
+                    ) : currentPath === '/administrators/create' ? (
+
+                        <CreateAdmin
+                            onBack={() => navigateTo('/administrators')}
+                        />
+
+                    ) : currentPath === '/administrators' ? (
+
+                        <Admins navigateTo={navigateTo} />
+
+                    ) : editAdminMatch ? (
+
+                        <EditAdmin
+                            adminId={editAdminMatch[1]}
                             navigateTo={navigateTo}
                         />
 

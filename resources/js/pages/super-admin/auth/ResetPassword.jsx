@@ -14,8 +14,37 @@ import api from "../../../services/api";
 import "./ResetPassword.css";
 
 const ResetPassword = ({ navigateTo }) => {
-    const [token, setToken] = useState("");
-    const [email, setEmail] = useState("");
+    // const [token, setToken] = useState(
+    //     () => new URLSearchParams(window.location.search).get("token") || ""
+    // );
+    // const [email, setEmail] = useState(
+    //     () => new URLSearchParams(window.location.search).get("email") || ""
+    // );
+    // const isInvitation =
+    //     new URLSearchParams(window.location.search).get("invitation") === "1";
+    // const [isInvitationValid, setIsInvitationValid] = useState(!isInvitation);
+    // const [isValidatingInvitation, setIsValidatingInvitation] =
+    //     useState(isInvitation);
+
+    
+const queryParams = new URLSearchParams(window.location.search);
+
+const [token, setToken] = useState(
+    () => queryParams.get("token") || ""
+);
+
+const [email, setEmail] = useState(
+    () => queryParams.get("email") || ""
+);
+
+const isInvitation = queryParams.get("invitation") === "1";
+
+const [isInvitationValid, setIsInvitationValid] = useState(false);
+
+const [isValidatingInvitation, setIsValidatingInvitation] = useState(
+    isInvitation
+);
+
 
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
@@ -70,20 +99,59 @@ const ResetPassword = ({ navigateTo }) => {
         loadGeneralSettings();
     }, []);
 
-    /*
-    |--------------------------------------------------------------------------
-    | Get token + email from reset URL
-    |--------------------------------------------------------------------------
-    */
-
     useEffect(() => {
-        const params = new URLSearchParams(
-            window.location.search
-        );
+        if (!isInvitation) {
+            return undefined;
+        }
 
-        setToken(params.get("token") || "");
-        setEmail(params.get("email") || "");
-    }, []);
+        if (!token || !email) {
+            setIsInvitationValid(false);
+            setIsValidatingInvitation(false);
+            setError(
+                "This invitation link is invalid or incomplete. Contact your system administrator for a new invitation."
+            );
+            return undefined;
+        }
+
+        let isCancelled = false;
+        setIsValidatingInvitation(true);
+        setError("");
+
+        api.post("/admin-invitations/validate", { token, email })
+            .then((response) => {
+                if (!response?.data?.success) {
+                    throw new Error(
+                        response?.data?.message ||
+                            "This invitation link is invalid or expired."
+                    );
+                }
+
+                if (!isCancelled) {
+                    setIsInvitationValid(true);
+                }
+            })
+            .catch((error) => {
+                console.error("Validate admin invitation error:", error);
+
+                if (!isCancelled) {
+                    setIsInvitationValid(false);
+                    setError(
+                        error?.response?.data?.message ||
+                            error.message ||
+                            "This invitation link is invalid or expired. Contact your system administrator for a new invitation."
+                    );
+                }
+            })
+            .finally(() => {
+                if (!isCancelled) {
+                    setIsValidatingInvitation(false);
+                }
+            });
+
+        return () => {
+            isCancelled = true;
+        };
+    }, [email, isInvitation, token]);
 
     /*
     |--------------------------------------------------------------------------
@@ -137,9 +205,22 @@ const ResetPassword = ({ navigateTo }) => {
         setValidationErrors({});
 
         if (!token || !email) {
-            setError(
-                "This password reset link is invalid or incomplete. Please request a new reset link."
-            );
+    console.log("Reset-password parameter check:", {
+        hasToken: Boolean(token),
+        hasEmail: Boolean(email),
+        search: window.location.search.replace(
+            /([?&]token=)[^&]*/,
+            "$1[REDACTED]"
+        ),
+    });
+
+    setError(
+        "Missing token or email. Please check the invitation URL."
+    );
+    return;
+}
+        if (isInvitation && !isInvitationValid) {
+            setError("Please use a valid activation invitation link.");
             return;
         }
 
@@ -183,6 +264,7 @@ const ResetPassword = ({ navigateTo }) => {
                     body: JSON.stringify({
                         token,
                         email,
+                        invitation: isInvitation,
                         password,
                         password_confirmation:
                             passwordConfirmation,
@@ -255,7 +337,9 @@ const ResetPassword = ({ navigateTo }) => {
 
                         {/* TITLE */}
                         <h1>
-                            Password Reset Successfully
+                            {isInvitation
+                                ? "Administrator Account Activated"
+                                : "Password Reset Successfully"}
                         </h1>
 
                         {/* DESCRIPTION */}
@@ -323,13 +407,16 @@ const ResetPassword = ({ navigateTo }) => {
 
                     {/* TITLE */}
                     <h1>
-                        Reset Password
+                        {isInvitation
+                            ? "Set Your Password"
+                            : "Reset Password"}
                     </h1>
 
                     {/* DESCRIPTION */}
                     <p className="maxus-reset-description">
-                        Create a new password for your
-                        Maxus CRM account.
+                        {isInvitation
+                            ? "Create a password to activate your Maxus CRM account."
+                            : "Create a new password for your Maxus CRM account."}
                     </p>
 
                     {/* EMAIL INFO */}
@@ -339,7 +426,9 @@ const ResetPassword = ({ navigateTo }) => {
 
                         <div>
                             <span>
-                                Resetting password for
+                                {isInvitation
+                                    ? "Activating account for"
+                                    : "Resetting password for"}
                             </span>
 
                             <strong>
@@ -360,7 +449,14 @@ const ResetPassword = ({ navigateTo }) => {
                         </div>
                     )}
 
-                    <form onSubmit={handleSubmit}>
+                    {isInvitation && isValidatingInvitation && (
+                        <p className="maxus-reset-description">
+                            Verifying your invitation link...
+                        </p>
+                    )}
+
+                    {(!isInvitation || isInvitationValid) && (
+                        <form onSubmit={handleSubmit}>
 
                         {/* NEW PASSWORD */}
                         <div className="maxus-reset-field">
@@ -594,13 +690,16 @@ const ResetPassword = ({ navigateTo }) => {
                                 </>
                             ) : (
                                 <>
-                                    Reset Password
+                                    {isInvitation
+                                        ? "Activate Account"
+                                        : "Reset Password"}
                                     <ArrowRight size={17} />
                                 </>
                             )}
                         </button>
 
-                    </form>
+                        </form>
+                    )}
 
                     {/* BACK TO LOGIN */}
                     <button

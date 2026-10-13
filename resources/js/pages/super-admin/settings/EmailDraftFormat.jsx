@@ -423,6 +423,15 @@ function EmailDraftFormat({ onNavigate }) {
             const response = await api.put(
                 `/superadmin/settings/email-templates/${selectedTemplate.id}`,
                 {
+                    name:
+                        selectedTemplate.name,
+
+                    description:
+                        selectedTemplate.description || "",
+
+                    trigger:
+                        selectedTemplate.trigger || "",
+
                     subject:
                         formData.subject,
 
@@ -990,9 +999,19 @@ Regards,
                     line.trim();
 
                 if (
-                    trimmedLine ===
-                    "[LOGIN_BUTTON]"
+                    trimmedLine === "[LOGIN_BUTTON]" ||
+                    trimmedLine === "[RESET_PASSWORD_BUTTON]" ||
+                    trimmedLine === "[RESET_BUTTON]" ||
+                    trimmedLine === "[BUTTON]"
                 ) {
+                    const buttonText =
+                        trimmedLine === "[RESET_PASSWORD_BUTTON]" ||
+                        trimmedLine === "[RESET_BUTTON]" ||
+                        selectedTemplate?.slug === "password-reset"
+                            ? "Reset Password"
+                            : selectedTemplate?.slug === "new-admin-invitation"
+                            ? "Activate Account"
+                            : "Login to CRM";
 
                     return (
                         <div
@@ -1006,7 +1025,7 @@ Regards,
                                     event.preventDefault()
                                 }
                             >
-                                Login to CRM
+                                {buttonText}
                             </a>
                         </div>
                     );
@@ -2330,8 +2349,7 @@ Regards,
                                     handleSaveChanges
                                 }
                                 disabled={
-                                    saving ||
-                                    !isDirty
+                                    saving
                                 }
                             >
 

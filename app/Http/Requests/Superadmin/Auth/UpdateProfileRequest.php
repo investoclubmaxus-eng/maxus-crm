@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Superadmin\Auth;
 
+use App\Services\Superadmin\Settings\FileStorageSettingService;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -22,6 +23,25 @@ class UpdateProfileRequest extends FormRequest
      */
     public function rules(): array
     {
+        $fileStorageSettingService = app(FileStorageSettingService::class);
+        $fileStorageSettings = $fileStorageSettingService->getFileStorageSettings();
+        $allowedFileTypes = $fileStorageSettingService->getAllowedFileTypes(
+            $fileStorageSettings
+        );
+        $avatarRules = [
+            'nullable',
+            'image',
+            'max:'.($fileStorageSettings->max_upload_size * 1024),
+        ];
+
+        if ($allowedFileTypes === []) {
+            $avatarRules[] = 'prohibited';
+        } else {
+            $extensions = implode(',', $allowedFileTypes);
+            $avatarRules[] = 'mimes:'.$extensions;
+            $avatarRules[] = 'extensions:'.$extensions;
+        }
+
         return [
             'name' => [
                 'required',
@@ -40,12 +60,7 @@ class UpdateProfileRequest extends FormRequest
                 'max:255',
             ],
 
-            'avatar' => [
-                'nullable',
-                'image',
-                'mimes:jpg,jpeg,png,gif,webp',
-                'max:2048',
-            ],
+            'avatar' => $avatarRules,
         ];
     }
 
@@ -61,8 +76,10 @@ class UpdateProfileRequest extends FormRequest
             'phone.digits' => 'Phone number must contain exactly 10 digits.',
             'location.max' => 'Location cannot exceed 255 characters.',
             'avatar.image' => 'Profile photo must be a valid image.',
-            'avatar.mimes' => 'Profile photo must be JPG, PNG, GIF, or WEBP.',
-            'avatar.max' => 'Profile photo must not exceed 2MB.',
+            'avatar.mimes' => 'Profile photo type must be allowed by File Storage settings.',
+            'avatar.extensions' => 'Profile photo extension must be allowed by File Storage settings.',
+            'avatar.max' => 'Profile photo exceeds the maximum size configured in File Storage settings.',
+            'avatar.prohibited' => 'No valid file types are configured for profile photos in File Storage settings.',
         ];
     }
 }

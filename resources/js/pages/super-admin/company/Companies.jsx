@@ -1177,11 +1177,11 @@ const Companies = ({ navigateTo }) => {
                                     </th>
 
                                     <th>
-                                        City
+                                        Headquarter
                                     </th>
 
                                     <th>
-                                        Created At
+                                        System Joined
                                     </th>
 
                                     <th className="companies-actions-column">
@@ -1802,7 +1802,7 @@ const Companies = ({ navigateTo }) => {
                                         />
 
                                         <DetailRow
-                                            label="Created By"
+                                            label="Author"
                                             value={
                                                 selectedCompany
                                                     ?.creator
@@ -1812,7 +1812,7 @@ const Companies = ({ navigateTo }) => {
                                         />
 
                                         <DetailRow
-                                            label="Created At"
+                                            label="System Joined"
                                             value={formatDateTime(
                                                 selectedCompany.created_at
                                             )}
@@ -1836,7 +1836,7 @@ const Companies = ({ navigateTo }) => {
                                         />
 
                                         <DetailRow
-                                            label="City"
+                                            label="Headquarter"
                                             value={
                                                 selectedCompany.city ||
                                                 "N/A"
@@ -1939,7 +1939,7 @@ const Companies = ({ navigateTo }) => {
                                     />
 
                                     <DetailRow
-                                        label="City"
+                                        label="Headquarter"
                                         value={
                                             selectedCompany.city ||
                                             "N/A"
@@ -1982,29 +1982,29 @@ const Companies = ({ navigateTo }) => {
                                     }
                                     title="Company Metadata"
                                 >
-                                    <DetailRow
+                                    {/* <DetailRow
                                         label="Company ID"
                                         value={
                                             selectedCompany.id
                                         }
-                                    />
+                                    /> */}
 
                                     <DetailRow
-                                        label="Created At"
+                                        label="System Joined"
                                         value={formatDateTime(
                                             selectedCompany.created_at
                                         )}
                                     />
 
                                     <DetailRow
-                                        label="Updated At"
+                                        label="Last Modified"
                                         value={formatDateTime(
                                             selectedCompany.updated_at
                                         )}
                                     />
 
                                     <DetailRow
-                                        label="Created By"
+                                        label="Author"
                                         value={
                                             selectedCompany
                                                 ?.creator

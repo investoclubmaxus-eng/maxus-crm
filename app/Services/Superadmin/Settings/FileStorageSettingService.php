@@ -14,7 +14,7 @@ class FileStorageSettingService
     {
         $settings = FileStorageSetting::first();
 
-        if (!$settings) {
+        if (! $settings) {
             $settings = FileStorageSetting::create([
                 'driver' => 'local',
                 'max_upload_size' => 10,
@@ -26,6 +26,26 @@ class FileStorageSettingService
         }
 
         return $settings;
+    }
+
+    /**
+     * Get configured file types as normalized extensions.
+     *
+     * @return array<int, string>
+     */
+    public function getAllowedFileTypes(FileStorageSetting $settings): array
+    {
+        return collect(explode(',', $settings->allowed_file_types))
+            ->map(fn (string $extension): string => strtolower(
+                ltrim(trim($extension), '.')
+            ))
+            ->filter(fn (string $extension): bool => preg_match(
+                '/\A[a-z0-9]+\z/',
+                $extension
+            ) === 1)
+            ->unique()
+            ->values()
+            ->all();
     }
 
     /**
@@ -53,7 +73,6 @@ class FileStorageSettingService
     // public function testStorage(): array
     // {
     //     $settings = $this->getFileStorageSettings();
-       
 
     //     try {
     //         $disk = Storage::disk($settings->driver);
@@ -87,53 +106,53 @@ class FileStorageSettingService
     // }
 
     public function testStorage(): array
-{
-    $settings = $this->getFileStorageSettings();
+    {
+        $settings = $this->getFileStorageSettings();
 
-    $testFile = 'settings/storage-test-' . uniqid() . '.txt';
+        $testFile = 'settings/storage-test-'.uniqid().'.txt';
 
-    try {
-        $disk = Storage::disk($settings->driver);
+        try {
+            $disk = Storage::disk($settings->driver);
 
-        $disk->put(
-            $testFile,
-            'Maxus CRM storage connection test.'
-        );
+            $disk->put(
+                $testFile,
+                'Maxus CRM storage connection test.'
+            );
 
-        if (!$disk->exists($testFile)) {
+            if (! $disk->exists($testFile)) {
+                return [
+                    'status' => 'unavailable',
+                    'message' => 'Storage connection test failed.',
+                ];
+            }
+
+            return [
+                'status' => 'connected',
+                'message' => 'Storage connection is working successfully.',
+            ];
+
+        } catch (\Throwable $e) {
             return [
                 'status' => 'unavailable',
-                'message' => 'Storage connection test failed.',
+                'message' => 'Unable to connect to the configured storage.',
             ];
-        }
 
-        return [
-            'status' => 'connected',
-            'message' => 'Storage connection is working successfully.',
-        ];
-
-    } catch (\Throwable $e) {
-        return [
-            'status' => 'unavailable',
-            'message' => 'Unable to connect to the configured storage.',
-        ];
-
-    } finally {
-        // Remove the temporary test file.
-        try {
-            if (isset($disk) && $disk->exists($testFile)) {
-                $disk->delete($testFile);
+        } finally {
+            // Remove the temporary test file.
+            try {
+                if (isset($disk) && $disk->exists($testFile)) {
+                    $disk->delete($testFile);
+                }
+            } catch (\Throwable $e) {
+                // Do not let cleanup failure change the test result.
             }
-        } catch (\Throwable $e) {
-            // Do not let cleanup failure change the test result.
         }
     }
-}
 
     /**
      * Get storage usage information.
      */
-   public function getStorageUsage(): array
+    public function getStorageUsage(): array
     {
         $settings = $this->getFileStorageSettings();
 
@@ -230,11 +249,11 @@ class FileStorageSettingService
 
     /**
      * Get the configured storage path.
-    */
+     */
     public function getStoragePath(): string
     {
         $settings = $this->getFileStorageSettings();
-         
+
         return match ($settings->driver) {
             'local' => storage_path(''),
             'public' => public_path(),
@@ -245,7 +264,7 @@ class FileStorageSettingService
 
     /**
      * Format bytes into readable format.
-    */
+     */
     private function formatBytes(int|float $bytes): string
     {
         if ($bytes <= 0) {
@@ -272,6 +291,6 @@ class FileStorageSettingService
         return round(
             $bytes / pow(1024, $power),
             1
-        ) . ' ' . $units[$power];
+        ).' '.$units[$power];
     }
 }

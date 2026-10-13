@@ -19,6 +19,11 @@ class ResetPasswordRequest extends FormRequest
                 'string',
             ],
 
+            'invitation' => [
+                'sometimes',
+                'boolean',
+            ],
+
             'email' => [
                 'required',
                 'email',
@@ -45,29 +50,21 @@ class ResetPasswordRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'token.required' =>
-                'The password reset token is required.',
+            'token.required' => 'The password reset token is required.',
 
-            'email.required' =>
-                'Please provide your email address.',
+            'email.required' => 'Please provide your email address.',
 
-            'email.email' =>
-                'Please provide a valid email address.',
+            'email.email' => 'Please provide a valid email address.',
 
-            'password.required' =>
-                'Please enter your new password.',
+            'password.required' => 'Please enter your new password.',
 
-            'password.min' =>
-                'Password must be at least 8 characters.',
+            'password.min' => 'Password must be at least 8 characters.',
 
-            'password.regex' =>
-                'Password must contain uppercase, lowercase, and a number.',
+            'password.regex' => 'Password must contain uppercase, lowercase, and a number.',
 
-            'password.confirmed' =>
-                'The passwords do not match.',
+            'password.confirmed' => 'The passwords do not match.',
 
-            'password_confirmation.required' =>
-                'Please confirm your new password.',
+            'password_confirmation.required' => 'Please confirm your new password.',
         ];
     }
 }

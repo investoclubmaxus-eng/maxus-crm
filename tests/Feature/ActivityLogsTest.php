@@ -20,7 +20,9 @@ class ActivityLogsTest extends TestCase
 
         $yesterdayActivity = ActivityLog::create([
             'user_id' => $user->id,
+            'module' => 'Authentication',
             'action' => 'logout',
+            'description' => 'User logged out.',
         ]);
         $yesterdayActivity->forceFill([
             'created_at' => Carbon::parse('2026-09-19 17:00:00'),
@@ -28,7 +30,9 @@ class ActivityLogsTest extends TestCase
 
         $todayActivity = ActivityLog::create([
             'user_id' => $user->id,
+            'module' => 'Authentication',
             'action' => 'login',
+            'description' => 'User logged in.',
         ]);
         $todayActivity->forceFill([
             'created_at' => Carbon::parse('2026-09-20 09:00:00'),
