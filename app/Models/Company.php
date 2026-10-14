@@ -3,14 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Spatie\Multitenancy\Models\Tenant;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Company extends Model
+
+class Company extends Tenant
 {
     use HasFactory, SoftDeletes;
 
     protected $table = 'companies';
+    protected $connection = 'landlord';
 
     protected $fillable = [
         'name',
@@ -27,6 +29,7 @@ class Company extends Model
         'logo_path',
         'status',
         'created_by',
+        'database',
     ];
 
     protected $casts = [
