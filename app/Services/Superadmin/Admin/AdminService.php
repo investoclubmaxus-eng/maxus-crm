@@ -68,7 +68,8 @@ class AdminService
      */
     public function createAdmin(array $data): User
     {
-        return DB::transaction(function () use ($data) {
+
+        $admin = DB::transaction(function () use ($data) {
             $requestedCompanyIds = collect($data['companies'] ?? [])
                 ->pluck('company_id')
                 ->map(fn ($companyId): int => (int) $companyId);
@@ -130,20 +131,26 @@ class AdminService
                         )
                         : $index === 0;
 
-                    $admin->companies()->attach($company->id, [
+                    DB::table('company_user_access')->insert([
+                        'user_id' => $admin->id,
+                        'company_id' => $company->id,
                         'role' => $companyData['role'] ?? 'admin',
                         'status' => $companyData['status'] ?? 'active',
                         'is_default' => $isDefault,
                         'granted_by' => auth()->id(),
                         'granted_at' => now(),
+                        'created_at' => now(),
+                        'updated_at' => now(),
                     ]);
                 }
             }
 
-            return $admin->fresh([
-                'companies',
-            ]);
+            return $admin;
         });
+
+        return $admin->fresh([
+            'companies',
+        ]);
     }
 
     /**

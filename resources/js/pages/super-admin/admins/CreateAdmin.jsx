@@ -575,7 +575,7 @@ export default function CreateAdmin({
             const response = await api.post(
                 isEditing
                     ? `/superadmin/admins-update/${adminId}`
-                    : "/superadmin/admins",
+                    : "/superadmin/admins-store",
                 payload,
                 {
                     headers: {

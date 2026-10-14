@@ -157,7 +157,7 @@ Route::middleware(['auth:sanctum', 'super.admin'])->prefix('superadmin')->group(
 
     Route::get('/admins/available-companies', [AdminController::class, 'availableCompanies']);
 
-    Route::post('/admins', [AdminController::class, 'store']);
+    
 
     Route::post('/admins-store', [AdminController::class, 'store']);
 

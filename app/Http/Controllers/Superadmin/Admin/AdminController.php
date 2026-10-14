@@ -79,6 +79,7 @@ class AdminController extends Controller
      */
     public function store(AdminRequest $request): JsonResponse
     {
+        
         $admin = $this->adminService->createAdmin(
             $request->validated()
         );
