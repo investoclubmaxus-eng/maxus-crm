@@ -1,8 +1,8 @@
 /* =========================================================
-   MAXUS SUPER ADMIN BREADCRUMB
+   MAXUS COMPANY REAL ESTATE BREADCRUMB
    ========================================================= */
 
-.super-admin-breadcrumb {
+.company-re-breadcrumb {
     width: 100%;
 
     background: #ffffff;
@@ -13,7 +13,7 @@
         border-color 0.25s ease;
 }
 
-.super-admin-breadcrumb__container {
+.company-re-breadcrumb__container {
     width: 100%;
 
     min-height: 68px;
@@ -31,7 +31,7 @@
    PAGE TITLE
    ========================================================= */
 
-.super-admin-breadcrumb__title {
+.company-re-breadcrumb__title {
     color: #101828;
 
     font-size: 18px;
@@ -44,7 +44,7 @@
    BREADCRUMB TRAIL
    ========================================================= */
 
-.super-admin-breadcrumb__trail {
+.company-re-breadcrumb__trail {
     display: flex;
     align-items: center;
 
@@ -59,7 +59,7 @@
    HOME
    ========================================================= */
 
-.super-admin-breadcrumb__home {
+.company-re-breadcrumb__home {
     width: 28px;
     height: 28px;
 
@@ -83,7 +83,7 @@
         color 0.2s ease;
 }
 
-.super-admin-breadcrumb__home:hover {
+.company-re-breadcrumb__home:hover {
     background: #f2f4f7;
     color: #2457d6;
 }
@@ -92,7 +92,7 @@
    SEPARATOR
    ========================================================= */
 
-.super-admin-breadcrumb__separator {
+.company-re-breadcrumb__separator {
     flex-shrink: 0;
 
     color: #98a2b3;
@@ -102,7 +102,7 @@
    LINK
    ========================================================= */
 
-.super-admin-breadcrumb__link {
+.company-re-breadcrumb__link {
     padding: 4px 2px;
 
     border: 0;
@@ -120,7 +120,7 @@
     transition: color 0.2s ease;
 }
 
-.super-admin-breadcrumb__link:hover {
+.company-re-breadcrumb__link:hover {
     color: #2457d6;
 }
 
@@ -128,7 +128,7 @@
    CURRENT PAGE
    ========================================================= */
 
-.super-admin-breadcrumb__current {
+.company-re-breadcrumb__current {
     max-width: 260px;
 
     overflow: hidden;
@@ -145,37 +145,37 @@
    DARK MODE
    ========================================================= */
 
-[data-theme="dark"] .super-admin-breadcrumb {
+[data-theme="dark"] .company-re-breadcrumb {
     background: #111827;
     border-bottom-color: #273244;
 }
 
-[data-theme="dark"] .super-admin-breadcrumb__title {
+[data-theme="dark"] .company-re-breadcrumb__title {
     color: #f9fafb;
 }
 
-[data-theme="dark"] .super-admin-breadcrumb__home {
+[data-theme="dark"] .company-re-breadcrumb__home {
     color: #98a2b3;
 }
 
-[data-theme="dark"] .super-admin-breadcrumb__home:hover {
+[data-theme="dark"] .company-re-breadcrumb__home:hover {
     background: #1b2638;
     color: #8aa4ff;
 }
 
-[data-theme="dark"] .super-admin-breadcrumb__separator {
+[data-theme="dark"] .company-re-breadcrumb__separator {
     color: #667085;
 }
 
-[data-theme="dark"] .super-admin-breadcrumb__link {
+[data-theme="dark"] .company-re-breadcrumb__link {
     color: #98a2b3;
 }
 
-[data-theme="dark"] .super-admin-breadcrumb__link:hover {
+[data-theme="dark"] .company-re-breadcrumb__link:hover {
     color: #8aa4ff;
 }
 
-[data-theme="dark"] .super-admin-breadcrumb__current {
+[data-theme="dark"] .company-re-breadcrumb__current {
     color: #d0d5dd;
 }
 
@@ -185,13 +185,13 @@
 
 @media (max-width: 900px) {
 
-    .super-admin-breadcrumb__container {
+    .company-re-breadcrumb__container {
         min-height: 62px;
 
         padding: 14px 20px;
     }
 
-    .super-admin-breadcrumb__title {
+    .company-re-breadcrumb__title {
         font-size: 16px;
     }
 
@@ -203,7 +203,7 @@
 
 @media (max-width: 700px) {
 
-    .super-admin-breadcrumb__container {
+    .company-re-breadcrumb__container {
         min-height: auto;
 
         padding: 12px 16px;
@@ -211,13 +211,13 @@
         display: block;
     }
 
-    .super-admin-breadcrumb__title {
+    .company-re-breadcrumb__title {
         margin-bottom: 7px;
 
         font-size: 16px;
     }
 
-    .super-admin-breadcrumb__trail {
+    .company-re-breadcrumb__trail {
         gap: 5px;
 
         width: 100%;
@@ -225,7 +225,7 @@
         overflow: hidden;
     }
 
-    .super-admin-breadcrumb__current {
+    .company-re-breadcrumb__current {
         max-width: 180px;
     }
 
@@ -237,20 +237,20 @@
 
 @media (max-width: 400px) {
 
-    .super-admin-breadcrumb__container {
+    .company-re-breadcrumb__container {
         padding: 11px 12px;
     }
 
-    .super-admin-breadcrumb__title {
+    .company-re-breadcrumb__title {
         font-size: 15px;
     }
 
-    .super-admin-breadcrumb__trail {
+    .company-re-breadcrumb__trail {
         font-size: 11px;
     }
 
-    .super-admin-breadcrumb__current,
-    .super-admin-breadcrumb__link {
+    .company-re-breadcrumb__current,
+    .company-re-breadcrumb__link {
         font-size: 11px;
     }
 

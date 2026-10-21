@@ -8,23 +8,23 @@ export default function Breadcrumb({
     title = "",
 }) {
     return (
-        <div className="super-admin-breadcrumb">
+        <div className="company-re-breadcrumb">
 
-            <div className="super-admin-breadcrumb__container">
+            <div className="company-re-breadcrumb__container">
 
                 {/* Page title */}
                 {title && (
-                    <div className="super-admin-breadcrumb__title">
+                    <div className="company-re-breadcrumb__title">
                         {title}
                     </div>
                 )}
 
                 {/* Breadcrumb */}
-                <div className="super-admin-breadcrumb__trail">
+                <div className="company-re-breadcrumb__trail">
 
                     <button
                         type="button"
-                        className="super-admin-breadcrumb__home"
+                        className="company-re-breadcrumb__home"
                         // onClick={() => {
                         //     window.location.href = "/";
                         // }}
@@ -42,18 +42,18 @@ export default function Breadcrumb({
                             <React.Fragment key={index}>
 
                                 <ChevronRight
-                                    className="super-admin-breadcrumb__separator"
+                                    className="company-re-breadcrumb__separator"
                                     size={14}
                                 />
 
                                 {isLast ? (
-                                    <span className="super-admin-breadcrumb__current">
+                                    <span className="company-re-breadcrumb__current">
                                         {item.label}
                                     </span>
                                 ) : (
                                     <button
                                         type="button"
-                                        className="super-admin-breadcrumb__link"
+                                        className="company-re-breadcrumb__link"
                                         onClick={() => {
                                             if (item.path) {
                                                 window.location.href =

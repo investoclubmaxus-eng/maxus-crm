@@ -385,7 +385,7 @@ const headerDateTime =
     */
 
     return (
-        <header className="super-admin-header">
+        <header className="company-re-header">
 
             {/* -------------------------------------------------------------
                 Mobile Search Overlay

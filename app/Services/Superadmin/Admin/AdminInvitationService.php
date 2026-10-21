@@ -22,9 +22,11 @@ class AdminInvitationService
         User $admin,
         ?int $createdBy = null
     ): array {
-        if (strtolower((string) $admin->user_type) !== 'admin') {
+        $userType = strtolower(trim((string) $admin->user_type));
+
+        if (! in_array($userType, ['admin', 'sub admin'], true)) {
             throw ValidationException::withMessages([
-                'admin' => ['Invitations can only be created for Admin accounts.'],
+                'admin' => ['Invitations can only be created for Admin or Sub Admin accounts.'],
             ]);
         }
 
@@ -72,35 +74,6 @@ class AdminInvitationService
     /**
      * Find a valid, unused invitation by its raw token.
      */
-    // public function findValidInvitation(string $rawToken,bool $lockForUpdate = false): AdminInvitation
-    // {
-    //     $tokenHash = hash('sha256', $rawToken);
-
-    //     $query = AdminInvitation::with('user')
-    //         ->where('token_hash', $tokenHash)
-    //         ->whereNull('accepted_at')
-    //         ->whereNull('revoked_at')
-    //         ->where('expires_at', '>', now())
-    //         ->whereHas('user', function (Builder $query): void {
-    //             $query->whereRaw('LOWER(user_type) = ?', ['admin']);
-    //         });
-
-    //     if ($lockForUpdate) {
-    //         $query->lockForUpdate();
-    //     }
-
-    //     $invitation = $query->first();
-
-    //     if (! $invitation) {
-    //         throw ValidationException::withMessages([
-    //             'token' => [
-    //                 'This invitation is invalid, expired, or already used.',
-    //             ],
-    //         ]);
-    //     }
-
-    //     return $invitation;
-    // }
 
     public function findValidInvitation(
         string $rawToken,
@@ -138,7 +111,11 @@ class AdminInvitationService
             $reason = 'expired';
         } elseif (
             ! $invitation->user ||
-            strtolower((string) $invitation->user->user_type) !== 'admin'
+            ! in_array(
+                strtolower(trim((string) $invitation->user->user_type)),
+                ['admin', 'sub admin'],
+                true
+            )
         ) {
             $reason = 'user_missing_or_not_admin';
         }

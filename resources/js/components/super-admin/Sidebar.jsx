@@ -310,6 +310,14 @@ const effectiveCollapsed = isMobile
                         ====================================================== */}
                         {!effectiveCollapsed  ? (
                             <div className="super-admin-sidebar__brand-logo super-admin-sidebar__brand-logo--image">
+                                <img
+                                        src={generalSettings.logoUrl}
+                                        alt={
+                                            generalSettings.applicationName ||
+                                            "Maxus CRM"
+                                        }
+                                        className="super-admin-sidebar__logo-image"
+                                    />
                             </div>
                         ) : (
                             /* =================================================

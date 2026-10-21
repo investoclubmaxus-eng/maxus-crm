@@ -1,0 +1,514 @@
+/* ============================================================
+   CREATE / EDIT BRANCH PAGE
+   MAXUS CRM - COMPANY REAL ESTATE
+============================================================ */
+
+.branch-create-page {
+    width: 100%;
+    max-width: 100%;
+    padding: 4px 0 30px;
+    box-sizing: border-box;
+}
+
+/* Page Header */
+.branch-page-header {
+    width: 100%;
+    margin-bottom: 22px;
+}
+
+.branch-breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 13px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #7188a6;
+}
+
+.branch-breadcrumb-home {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #5e789d;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.branch-breadcrumb-home:hover {
+    background: #edf5ff;
+    color: #1267e8;
+}
+
+.branch-breadcrumb-link {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #5e789d;
+    font-size: 12px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.branch-breadcrumb-link:hover {
+    color: #1267e8;
+}
+
+.branch-breadcrumb-current {
+    color: #1267e8;
+    font-weight: 600;
+}
+
+.branch-header-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.branch-title-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+}
+
+.branch-title-icon {
+    width: 58px;
+    height: 58px;
+    min-width: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    color: #1267e8;
+    background: #eaf3ff;
+}
+
+.branch-title-section h1 {
+    margin: 0 0 5px;
+    font-size: 28px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #102f5b;
+}
+
+.branch-title-section p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #6780a5;
+}
+
+.branch-title-section .required-mark {
+    color: #e53935;
+    font-weight: 700;
+}
+
+.branch-back-button {
+    min-height: 42px;
+    padding: 0 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-shrink: 0;
+    border: 1px solid #cbdced;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #1d4c8b;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.branch-back-button:hover {
+    background: #f2f7fd;
+    border-color: #bad3f3;
+    color: #1267e8;
+}
+
+/* Card */
+.branch-card {
+    background: #ffffff;
+    border: 1px solid #e1eaf5;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(18, 55, 105, 0.05);
+    overflow: hidden;
+}
+
+.branch-card-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #edf2f9;
+}
+
+.branch-card-header h2 {
+    margin: 0 0 4px;
+    font-size: 16px;
+    line-height: 1.35;
+    font-weight: 700;
+    color: #102f5b;
+}
+
+.branch-card-header p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.55;
+    color: #6680a5;
+}
+
+/* Form Body */
+.branch-form-body {
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+/* 3-column Grid like CreateCompany */
+.branch-form-grid {
+    display: grid;
+    gap: 18px;
+    margin-bottom: 20px;
+}
+
+.branch-grid-three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.branch-grid-address-row {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+}
+
+.branch-grid-country-postal {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Form Group */
+.branch-form-group {
+    width: 100%;
+    min-width: 0;
+}
+
+.branch-form-group > label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    line-height: 1.4;
+    font-weight: 600;
+    color: #17375f;
+}
+
+.branch-form-group > label .required-mark {
+    color: #e53935;
+}
+
+/* Input wrappers matching user UI image */
+.branch-input-wrapper {
+    position: relative;
+    width: 100%;
+    height: 44px;
+}
+
+.branch-input-wrapper > svg {
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #5f7ca2;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.branch-input-wrapper input {
+    width: 100%;
+    height: 44px;
+    padding: 0 13px 0 40px;
+    box-sizing: border-box;
+    border: 1px solid #cfe0f5;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #18385f;
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.branch-input-wrapper input::placeholder {
+    color: #91a5c0;
+}
+
+.branch-input-wrapper input:hover {
+    border-color: #a9c8ee;
+}
+
+.branch-input-wrapper input:focus {
+    border-color: #2677e8;
+    box-shadow: 0 0 0 3px rgba(38, 119, 232, 0.10);
+}
+
+/* Disabled input for Company */
+.branch-input-wrapper input.branch-input--disabled,
+.branch-input-wrapper input:disabled {
+    background: #f4f7fa;
+    color: #6d85a4;
+    cursor: not-allowed;
+    border-color: #d8e4f1;
+}
+
+.branch-input-wrapper .branch-lock-badge {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 11px;
+    font-weight: 600;
+    color: #728aa8;
+    background: #e8f0fa;
+    padding: 2px 7px;
+    border-radius: 4px;
+}
+
+/* Phone input with code */
+.branch-phone-country-code {
+    position: absolute;
+    top: 50%;
+    left: 40px;
+    z-index: 2;
+    padding-right: 8px;
+    transform: translateY(-50%);
+    border-right: 1px solid #cfe0f5;
+    color: #18385f;
+    font-size: 13px;
+    line-height: 22px;
+}
+
+.branch-input-wrapper input.branch-phone-input {
+    padding-left: 82px;
+}
+
+/* Select wrapper */
+.branch-select-wrapper {
+    position: relative;
+    width: 100%;
+    height: 44px;
+}
+
+.branch-select-wrapper > svg:first-child {
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #5f7ca2;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.branch-select-wrapper > svg:last-child {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #738ba9;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.branch-select-wrapper select {
+    width: 100%;
+    height: 44px;
+    padding: 0 36px 0 40px;
+    box-sizing: border-box;
+    border: 1px solid #cfe0f5;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #18385f;
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.branch-select-wrapper select:hover {
+    border-color: #a9c8ee;
+}
+
+.branch-select-wrapper select:focus {
+    border-color: #2677e8;
+    box-shadow: 0 0 0 3px rgba(38, 119, 232, 0.10);
+}
+
+/* Textarea wrapper */
+.branch-textarea-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.branch-textarea-wrapper > svg {
+    position: absolute;
+    left: 13px;
+    top: 14px;
+    color: #5f7ca2;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.branch-textarea-wrapper textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 12px 13px 12px 40px;
+    box-sizing: border-box;
+    border: 1px solid #cfe0f5;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #18385f;
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+    resize: vertical;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.branch-textarea-wrapper textarea:focus {
+    border-color: #2677e8;
+    box-shadow: 0 0 0 3px rgba(38, 119, 232, 0.10);
+}
+
+/* Error text */
+.branch-error-text {
+    display: block;
+    margin-top: 6px;
+    color: #d32f2f;
+    font-size: 12px;
+}
+
+/* Status selection pills */
+.branch-status-options {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 4px;
+}
+
+.branch-status-pill {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid #cfe0f5;
+    background: #ffffff;
+    color: #436186;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.branch-status-pill.active {
+    background: #ebfaf1;
+    color: #108548;
+    border-color: #a4e5bd;
+}
+
+.branch-status-pill.inactive {
+    background: #f4f6f8;
+    color: #657993;
+    border-color: #d0d9e4;
+}
+
+/* Card Footer / Buttons */
+.branch-card-footer {
+    padding: 18px 24px;
+    background: #f8fbff;
+    border-top: 1px solid #edf2f9;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.branch-btn-cancel {
+    height: 42px;
+    padding: 0 20px;
+    border: 1px solid #cfe0f5;
+    background: #ffffff;
+    border-radius: 8px;
+    color: #496890;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.branch-btn-cancel:hover {
+    background: #f1f6fc;
+    color: #173a67;
+}
+
+.branch-btn-save {
+    height: 42px;
+    padding: 0 22px;
+    border: 1px solid #1267e8;
+    background: #194799;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.branch-btn-save:hover:not(:disabled) {
+    background: #1267e8;
+}
+
+.branch-btn-save:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .branch-grid-three {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .branch-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .branch-back-button {
+        width: 100%;
+    }
+
+    .branch-grid-three,
+    .branch-grid-address-row,
+    .branch-grid-country-postal {
+        grid-template-columns: 1fr;
+    }
+
+    .branch-card-footer {
+        flex-direction: column-reverse;
+    }
+
+    .branch-btn-cancel,
+    .branch-btn-save {
+        width: 100%;
+        justify-content: center;
+    }
+}

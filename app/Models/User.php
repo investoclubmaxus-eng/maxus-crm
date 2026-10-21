@@ -13,6 +13,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Multitenancy\Models\Concerns\UsesLandlordConnection;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 #[Fillable([
     'name',
@@ -28,6 +30,7 @@ use Laravel\Sanctum\HasApiTokens;
     'remember_token',
     'created_at',
     'updated_at',
+    
     'two_factor_enabled',
     'two_factor_secret',
     'two_factor_confirmed_at',
@@ -42,7 +45,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use CanResetPassword, HasApiTokens, HasFactory,Notifiable;
+    use CanResetPassword, HasApiTokens, HasFactory, Notifiable, UsesLandlordConnection,SoftDeletes;
 
     /**
      * Get the attributes that should be cast.
@@ -57,6 +60,7 @@ class User extends Authenticatable
             'last_login_at' => 'datetime',
             'two_factor_enabled' => 'boolean',
             'two_factor_confirmed_at' => 'datetime',
+             'deleted_at' => 'datetime',
         ];
     }
 

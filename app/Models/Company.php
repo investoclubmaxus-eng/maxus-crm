@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Spatie\Multitenancy\Models\Tenant;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Company extends Model
+class Company extends Tenant
 {
     use HasFactory, SoftDeletes;
 
+    protected $connection = 'landlord';
     protected $table = 'companies';
 
     protected $fillable = [
@@ -27,6 +28,7 @@ class Company extends Model
         'logo_path',
         'status',
         'created_by',
+        'database',
     ];
 
     protected $casts = [
@@ -34,6 +36,11 @@ class Company extends Model
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime',
     ];
+
+    public function getDatabaseName(): string
+    {
+        return (string) ($this->database ?: config('database.connections.landlord.database', 'maxus_crm'));
+    }
 
     /*
     |--------------------------------------------------------------------------

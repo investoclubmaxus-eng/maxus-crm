@@ -1,8 +1,8 @@
 /* =========================================================
-   MAXUS SUPER ADMIN SIDEBAR
+   MAXUS COMPANY REAL ESTATE SIDEBAR
    ========================================================= */
 
-.super-admin-sidebar {
+.company-re-sidebar {
     position: fixed;
     top: 0;
     left: 0;
@@ -27,41 +27,41 @@
     overflow-x: hidden;
 }
 
-.super-admin-sidebar--collapsed {
+.company-re-sidebar--collapsed {
     width: 72px;
 }
 
-.super-admin-sidebar--collapsed .super-admin-sidebar__header {
+.company-re-sidebar--collapsed .company-re-sidebar__header {
     justify-content: center;
     padding: 0 10px;
 }
-.super-admin-sidebar--collapsed .super-admin-sidebar__brand {
+.company-re-sidebar--collapsed .company-re-sidebar__brand {
     justify-content: center;
     width: 100%;
 }
 
-.super-admin-sidebar--collapsed .super-admin-sidebar__brand-text,
-.super-admin-sidebar--collapsed .super-admin-sidebar__item span,
-.super-admin-sidebar--collapsed .super-admin-sidebar__section-title,
-.super-admin-sidebar--collapsed .super-admin-sidebar__submenu,
-.super-admin-sidebar--collapsed .super-admin-sidebar__status div {
+.company-re-sidebar--collapsed .company-re-sidebar__brand-text,
+.company-re-sidebar--collapsed .company-re-sidebar__item span,
+.company-re-sidebar--collapsed .company-re-sidebar__section-title,
+.company-re-sidebar--collapsed .company-re-sidebar__submenu,
+.company-re-sidebar--collapsed .company-re-sidebar__status div {
     display: none;
 }
 
-.super-admin-sidebar--collapsed .super-admin-sidebar__nav {
+.company-re-sidebar--collapsed .company-re-sidebar__nav {
     padding: 18px 10px;
 }
 
-.super-admin-sidebar--collapsed .super-admin-sidebar__item {
+.company-re-sidebar--collapsed .company-re-sidebar__item {
     justify-content: center;
     padding: 0;
 }
 
-.super-admin-sidebar--collapsed .super-admin-sidebar__footer {
+.company-re-sidebar--collapsed .company-re-sidebar__footer {
     padding: 14px 10px;
 }
 
-.super-admin-sidebar--collapsed .super-admin-sidebar__status {
+.company-re-sidebar--collapsed .company-re-sidebar__status {
     justify-content: center;
     padding: 10px 0;
 }
@@ -70,7 +70,7 @@
    HEADER
    ========================================================= */
 
-.super-admin-sidebar__header {
+.company-re-sidebar__header {
     height: 72px;
 
     padding: 0 18px;
@@ -84,36 +84,44 @@
     flex-shrink: 0;
 }
 
-.super-admin-sidebar__brand {
+.company-re-sidebar__brand {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    min-width: 0;
+    overflow: hidden;
 }
 
-
-
-.super-admin-sidebar__brand-text {
+.company-re-sidebar__brand-text {
     display: flex;
     flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
 }
 
-.super-admin-sidebar__brand-text strong {
-    height: 40px;
-    width: 100%;
-    margin-left: auto;
-}
-
-.super-admin-sidebar__brand-text span {
-    margin-top: 2px;
-
-    color: #98a2b3;
-
-    font-size: 13px;
-    letter-spacing: 1.8px;
+.company-re-sidebar__brand-text strong {
+    font-size: 15px;
     font-weight: 700;
+    color: #1e293b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2;
 }
 
-.super-admin-sidebar__close {
+.company-re-sidebar__brand-text span {
+    margin-top: 3px;
+    color: #98a2b3;
+    font-size: 11px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.company-re-sidebar__close {
     display: none;
 
     border: 0;
@@ -130,7 +138,7 @@
    NAVIGATION
    ========================================================= */
 
-.super-admin-sidebar__nav {
+.company-re-sidebar__nav {
     flex: 1;
 
     padding: 18px 12px;
@@ -138,7 +146,7 @@
     overflow-y: auto;
 }
 
-.super-admin-sidebar__section-title {
+.company-re-sidebar__section-title {
     padding: 10px 12px 8px;
 
     color: #98a2b3;
@@ -149,7 +157,7 @@
     letter-spacing: 1px;
 }
 
-.super-admin-sidebar__item {
+.company-re-sidebar__item {
     width: 100%;
 
     min-height: 44px;
@@ -183,22 +191,22 @@
         color 0.2s ease;
 }
 
-.super-admin-sidebar__item svg {
+.company-re-sidebar__item svg {
     flex-shrink: 0;
 }
 
-.super-admin-sidebar__item:hover {
+.company-re-sidebar__item:hover {
     background: #f3f6fb;
     color: #2457d6;
 }
 
-.super-admin-sidebar__item.active {
+.company-re-sidebar__item.active {
     background: #edf3ff;
     color: #2457d6;
     font-weight: 600;
 }
 
-.super-admin-sidebar__arrow {
+.company-re-sidebar__arrow {
     margin-left: auto;
 
     display: flex;
@@ -209,7 +217,7 @@
    SUBMENU
    ========================================================= */
 
-.super-admin-sidebar__submenu {
+.company-re-sidebar__submenu {
     margin: 1px 0 7px 43px;
 
     padding-left: 13px;
@@ -221,7 +229,7 @@
     gap: 2px;
 }
 
-.super-admin-sidebar__submenu button {
+.company-re-sidebar__submenu button {
     width: 100%;
 
     padding: 8px 10px;
@@ -245,12 +253,12 @@
         color 0.2s ease;
 }
 
-.super-admin-sidebar__submenu button:hover {
+.company-re-sidebar__submenu button:hover {
     background: #f3f6fb;
     color: #2457d6;
 }
 
-.super-admin-sidebar__submenu button.active {
+.company-re-sidebar__submenu button.active {
     color: #2457d6;
     background: #f3f6fb;
     font-weight: 600;
@@ -260,7 +268,7 @@
    SIDEBAR FOOTER
    ========================================================= */
 
-.super-admin-sidebar__footer {
+.company-re-sidebar__footer {
     padding: 14px 12px;
 
     border-top: 1px solid #eef0f4;
@@ -268,7 +276,7 @@
     flex-shrink: 0;
 }
 
-.super-admin-sidebar__status {
+.company-re-sidebar__status {
     padding: 10px;
 
     border-radius: 8px;
@@ -281,7 +289,7 @@
     gap: 9px;
 }
 
-.super-admin-sidebar__status .status-dot {
+.company-re-sidebar__status .status-dot {
     width: 8px;
     height: 8px;
 
@@ -294,19 +302,19 @@
     flex-shrink: 0;
 }
 
-.super-admin-sidebar__status div {
+.company-re-sidebar__status div {
     display: flex;
     flex-direction: column;
 }
 
-.super-admin-sidebar__status strong {
+.company-re-sidebar__status strong {
     color: #344054;
 
     font-size: 11px;
     font-weight: 600;
 }
 
-.super-admin-sidebar__status small {
+.company-re-sidebar__status small {
     margin-top: 2px;
 
     color: #98a2b3;
@@ -318,72 +326,72 @@
    DARK MODE
    ========================================================= */
 
-[data-theme="dark"] .super-admin-sidebar {
+[data-theme="dark"] .company-re-sidebar {
     background: #111827;
     border-right-color: #273244;
 }
 
-[data-theme="dark"] .super-admin-sidebar__header {
+[data-theme="dark"] .company-re-sidebar__header {
     border-bottom-color: #273244;
 }
 
-[data-theme="dark"] .super-admin-sidebar__brand-text strong {
+[data-theme="dark"] .company-re-sidebar__brand-text strong {
     color: #6d8df7;
 }
 
-[data-theme="dark"] .super-admin-sidebar__brand-text span {
+[data-theme="dark"] .company-re-sidebar__brand-text span {
     color: #667085;
 }
 
-[data-theme="dark"] .super-admin-sidebar__close {
+[data-theme="dark"] .company-re-sidebar__close {
     color: #98a2b3;
 }
 
-[data-theme="dark"] .super-admin-sidebar__section-title {
+[data-theme="dark"] .company-re-sidebar__section-title {
     color: #667085;
 }
 
-[data-theme="dark"] .super-admin-sidebar__item {
+[data-theme="dark"] .company-re-sidebar__item {
     color: #98a2b3;
 }
 
-[data-theme="dark"] .super-admin-sidebar__item:hover {
+[data-theme="dark"] .company-re-sidebar__item:hover {
     background: #1b2638;
     color: #8aa4ff;
 }
 
-[data-theme="dark"] .super-admin-sidebar__item.active {
+[data-theme="dark"] .company-re-sidebar__item.active {
     background: #1d2d52;
     color: #8aa4ff;
 }
 
-[data-theme="dark"] .super-admin-sidebar__submenu {
+[data-theme="dark"] .company-re-sidebar__submenu {
     border-left-color: #344054;
 }
 
-[data-theme="dark"] .super-admin-sidebar__submenu button {
+[data-theme="dark"] .company-re-sidebar__submenu button {
     color: #98a2b3;
 }
 
-[data-theme="dark"] .super-admin-sidebar__submenu button:hover,
-[data-theme="dark"] .super-admin-sidebar__submenu button.active {
+[data-theme="dark"] .company-re-sidebar__submenu button:hover,
+[data-theme="dark"] .company-re-sidebar__submenu button.active {
     background: #1b2638;
     color: #8aa4ff;
 }
 
-[data-theme="dark"] .super-admin-sidebar__footer {
+[data-theme="dark"] .company-re-sidebar__footer {
     border-top-color: #273244;
 }
 
-[data-theme="dark"] .super-admin-sidebar__status {
+[data-theme="dark"] .company-re-sidebar__status {
     background: #172033;
 }
 
-[data-theme="dark"] .super-admin-sidebar__status strong {
+[data-theme="dark"] .company-re-sidebar__status strong {
     color: #d0d5dd;
 }
 
-[data-theme="dark"] .super-admin-sidebar__status small {
+[data-theme="dark"] .company-re-sidebar__status small {
     color: #667085;
 }
 
@@ -391,7 +399,7 @@
    MOBILE OVERLAY
    ========================================================= */
 
-.super-admin-sidebar-overlay {
+.company-re-sidebar-overlay {
     display: none;
 
     position: fixed;
@@ -408,7 +416,7 @@
 
 @media (max-width: 1024px) {
 
-    .super-admin-sidebar {
+    .company-re-sidebar {
         width: 230px;
     }
 
@@ -420,7 +428,7 @@
 
 @media (max-width: 768px) {
 
-    .super-admin-sidebar {
+    .company-re-sidebar {
         width: 270px;
 
         transform: translateX(-100%);
@@ -428,56 +436,56 @@
         box-shadow: 10px 0 30px rgba(0, 0, 0, 0.08);
     }
 
-    .super-admin-sidebar--collapsed {
+    .company-re-sidebar--collapsed {
         width: 270px;
     }
 
-    .super-admin-sidebar--collapsed .super-admin-sidebar__header {
+    .company-re-sidebar--collapsed .company-re-sidebar__header {
         justify-content: space-between;
         padding: 0 18px;
     }
 
-    .super-admin-sidebar--collapsed .super-admin-sidebar__brand-text,
-    .super-admin-sidebar--collapsed .super-admin-sidebar__item span,
-    .super-admin-sidebar--collapsed .super-admin-sidebar__section-title,
-    .super-admin-sidebar--collapsed .super-admin-sidebar__submenu,
-    .super-admin-sidebar--collapsed .super-admin-sidebar__status div {
+    .company-re-sidebar--collapsed .company-re-sidebar__brand-text,
+    .company-re-sidebar--collapsed .company-re-sidebar__item span,
+    .company-re-sidebar--collapsed .company-re-sidebar__section-title,
+    .company-re-sidebar--collapsed .company-re-sidebar__submenu,
+    .company-re-sidebar--collapsed .company-re-sidebar__status div {
         display: flex;
     }
 
-    .super-admin-sidebar--collapsed .super-admin-sidebar__section-title {
+    .company-re-sidebar--collapsed .company-re-sidebar__section-title {
         padding: 10px 12px 8px;
     }
 
-    .super-admin-sidebar--collapsed .super-admin-sidebar__nav {
+    .company-re-sidebar--collapsed .company-re-sidebar__nav {
         padding: 18px 12px;
     }
 
-    .super-admin-sidebar--collapsed .super-admin-sidebar__item {
+    .company-re-sidebar--collapsed .company-re-sidebar__item {
         justify-content: flex-start;
         padding: 0 12px;
     }
 
-    .super-admin-sidebar--collapsed .super-admin-sidebar__footer {
+    .company-re-sidebar--collapsed .company-re-sidebar__footer {
         padding: 14px 12px;
     }
 
-    .super-admin-sidebar--collapsed .super-admin-sidebar__status {
+    .company-re-sidebar--collapsed .company-re-sidebar__status {
         justify-content: flex-start;
         padding: 10px;
     }
 
-    .super-admin-sidebar--open {
+    .company-re-sidebar--open {
         transform: translateX(0);
     }
 
-    .super-admin-sidebar__close {
+    .company-re-sidebar__close {
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
-    .super-admin-sidebar-overlay {
+    .company-re-sidebar-overlay {
         display: block;
     }
 
@@ -489,7 +497,7 @@
 
 @media (max-width: 400px) {
 
-    .super-admin-sidebar {
+    .company-re-sidebar {
         width: 85vw;
         max-width: 280px;
     }
@@ -501,7 +509,7 @@
    BRAND LOGO
    ========================================================= */
 
-.super-admin-sidebar__brand-logo {
+.company-re-sidebar__brand-logo {
     width: 40px;
     height: 40px;
     min-width: 40px;
@@ -522,11 +530,11 @@
    EXPANDED SIDEBAR - APPLICATION LOGO
    ========================================================= */
 
-.super-admin-sidebar__brand-logo--image {
+.company-re-sidebar__brand-logo--image {
     background: #ffffff;
 }
 
-.super-admin-sidebar__logo-image {
+.company-re-sidebar__logo-image {
     width: 100%;
     height: 100%;
 
@@ -540,7 +548,7 @@
    FALLBACK LOGO
    ========================================================= */
 
-.super-admin-sidebar__fallback-logo {
+.company-re-sidebar__fallback-logo {
     width: 40px;
     height: 40px;
 
@@ -562,12 +570,12 @@
    COLLAPSED SIDEBAR - M ONLY
    ========================================================= */
 
-.super-admin-sidebar__brand-logo--collapsed {
+.company-re-sidebar__brand-logo--collapsed {
     background: #174898;
     color: #ffffff;
 }
 
-.super-admin-sidebar__brand-logo--collapsed span {
+.company-re-sidebar__brand-logo--collapsed span {
     font-size: 20px;
     font-weight: 800;
     line-height: 1;

@@ -1,8 +1,8 @@
 /* =========================================================
-   MAXUS SUPER ADMIN FOOTER
+   MAXUS COMPANY REAL ESTATE FOOTER
    ========================================================= */
 
-.super-admin-footer {
+.company-re-footer {
     width: 100%;
     flex-shrink: 0;
 
@@ -17,7 +17,7 @@
         color 0.25s ease;
 }
 
-.super-admin-footer__inner {
+.company-re-footer__inner {
     width: 100%;
     min-height: 64px;
 
@@ -34,14 +34,14 @@
    COPYRIGHT
    ========================================================= */
 
-.super-admin-footer__copyright {
+.company-re-footer__copyright {
     font-size: 13px;
     line-height: 20px;
     white-space: nowrap;
     text-align: center;
 }
 
-.super-admin-footer__copyright strong {
+.company-re-footer__copyright strong {
     color: #2457d6;
     font-weight: 700;
 }
@@ -50,14 +50,14 @@
    LINKS
    ========================================================= */
 
-.super-admin-footer__links {
+.company-re-footer__links {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 22px;
 }
 
-.super-admin-footer__links a {
+.company-re-footer__links a {
     color: #667085;
     text-decoration: none;
 
@@ -67,7 +67,7 @@
     transition: color 0.2s ease;
 }
 
-.super-admin-footer__links a:hover {
+.company-re-footer__links a:hover {
     color: #2457d6;
 }
 
@@ -75,7 +75,7 @@
    VERSION
    ========================================================= */
 
-.super-admin-footer__version {
+.company-re-footer__version {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -94,25 +94,25 @@
    DARK MODE
    ========================================================= */
 
-[data-theme="dark"] .super-admin-footer {
+[data-theme="dark"] .company-re-footer {
     background: #111827;
     border-top-color: #273244;
     color: #98a2b3;
 }
 
-[data-theme="dark"] .super-admin-footer__copyright strong {
+[data-theme="dark"] .company-re-footer__copyright strong {
     color: #6d8df7;
 }
 
-[data-theme="dark"] .super-admin-footer__links a {
+[data-theme="dark"] .company-re-footer__links a {
     color: #98a2b3;
 }
 
-[data-theme="dark"] .super-admin-footer__links a:hover {
+[data-theme="dark"] .company-re-footer__links a:hover {
     color: #8aa4ff;
 }
 
-[data-theme="dark"] .super-admin-footer__version {
+[data-theme="dark"] .company-re-footer__version {
     color: #667085;
 }
 
@@ -126,20 +126,20 @@
 
 @media (max-width: 900px) {
 
-    .super-admin-footer__inner {
+    .company-re-footer__inner {
         padding: 14px 20px;
         gap: 14px;
     }
 
-    .super-admin-footer__links {
+    .company-re-footer__links {
         gap: 15px;
     }
 
-    .super-admin-footer__links a {
+    .company-re-footer__links a {
         font-size: 12px;
     }
 
-    .super-admin-footer__copyright {
+    .company-re-footer__copyright {
         font-size: 12px;
     }
 }
@@ -150,7 +150,7 @@
 
 @media (max-width: 700px) {
 
-    .super-admin-footer__inner {
+    .company-re-footer__inner {
         min-height: auto;
 
         padding: 18px 16px;
@@ -163,12 +163,12 @@
         gap: 12px;
     }
 
-    .super-admin-footer__copyright {
+    .company-re-footer__copyright {
         white-space: normal;
         font-size: 12px;
     }
 
-    .super-admin-footer__links {
+    .company-re-footer__links {
         width: 100%;
 
         flex-wrap: wrap;
@@ -176,11 +176,11 @@
         gap: 8px 16px;
     }
 
-    .super-admin-footer__links a {
+    .company-re-footer__links a {
         font-size: 12px;
     }
 
-    .super-admin-footer__version {
+    .company-re-footer__version {
         font-size: 11px;
     }
 }
@@ -191,11 +191,11 @@
 
 @media (max-width: 400px) {
 
-    .super-admin-footer__inner {
+    .company-re-footer__inner {
         padding: 16px 12px;
     }
 
-    .super-admin-footer__links {
+    .company-re-footer__links {
         gap: 7px 12px;
     }
 }

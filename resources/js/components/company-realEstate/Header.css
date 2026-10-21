@@ -1,8 +1,8 @@
 /* ============================================================
-   MAXUS SUPER ADMIN HEADER
+   MAXUS COMPANY REAL ESTATE HEADER
    ============================================================ */
 
-.super-admin-header {
+.company-re-header {
     --header-bg: #ffffff;
     --header-border: #e7ebf2;
     --header-text: #182230;
@@ -42,7 +42,7 @@
    DARK MODE
    ============================================================ */
 
-[data-theme="dark"] .super-admin-header {
+[data-theme="dark"] .company-re-header {
     --header-bg: #0f172a;
     --header-border: #1e293b;
     --header-text: #f8fafc;
@@ -1186,7 +1186,7 @@ html.dark .language-option.active {
 
 @media (max-width: 640px) {
 
-    .super-admin-header {
+    .company-re-header {
         height: 62px;
     }
 

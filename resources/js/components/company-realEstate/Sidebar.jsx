@@ -9,6 +9,7 @@ import {
     BarChart3,
     Settings,
     Activity,
+    GitBranch,
     ChevronDown,
     ChevronRight,
     X,
@@ -24,7 +25,35 @@ export default function Sidebar({
     onClose,
     onNavigate,
     currentPath,
+    company,
 }) {
+    const activeCompany = company || (() => {
+        try {
+            const raw =
+                localStorage.getItem("active_company") ||
+                sessionStorage.getItem("active_company");
+            return raw ? JSON.parse(raw) : null;
+        } catch {
+            return null;
+        }
+    })();
+
+    const getCompanyLogoUrl = (rawPath) => {
+        if (!rawPath || typeof rawPath !== "string") return null;
+        const path = rawPath.trim();
+        if (!path) return null;
+        if (/^https?:\/\//i.test(path)) return path;
+        if (path.startsWith("/")) return path;
+        return `/storage/${path}`;
+    };
+
+    const companyLogo = getCompanyLogoUrl(
+        activeCompany?.logo_url || activeCompany?.logo_path
+    );
+    const companyName =
+        activeCompany?.name || "Company";
+    const companyInitial =
+        companyName.trim().charAt(0).toUpperCase() || "C";
     /*
     |--------------------------------------------------------------------------
     | General Settings
@@ -136,6 +165,21 @@ const effectiveCollapsed = isMobile
     const [activeItem, setActiveItem] = useState("dashboard");
 
     useEffect(() => {
+        if (currentPath?.startsWith("/company/branches")) {
+            setActiveItem("branches");
+            return;
+        }
+
+        if (currentPath?.startsWith("/company/sub-admins")) {
+            setActiveItem("sub-admins");
+            return;
+        }
+
+        if (currentPath === "/company/dashboard") {
+            setActiveItem("dashboard");
+            return;
+        }
+
         if (!currentPath?.startsWith("/companies")) {
             return;
         }
@@ -221,7 +265,9 @@ const effectiveCollapsed = isMobile
         setActiveItem(item);
 
         const paths = {
-            dashboard: "/dashboard",
+            dashboard: "/company/dashboard",
+            branches: "/company/branches",
+            "sub-admins": "/company/sub-admins",
 
             companies: "/companies",
             administrators: "/administrators",
@@ -279,7 +325,7 @@ const effectiveCollapsed = isMobile
 
             {isOpen && (
                 <div
-                    className="super-admin-sidebar-overlay"
+                    className="company-re-sidebar-overlay"
                     onClick={onClose}
                 />
             )}
@@ -288,11 +334,11 @@ const effectiveCollapsed = isMobile
 
             <aside
                 className={`
-                    super-admin-sidebar
-                    ${isOpen ? "super-admin-sidebar--open" : ""}
+                    company-re-sidebar
+                    ${isOpen ? "company-re-sidebar--open" : ""}
                     ${
                         effectiveCollapsed
-                            ? "super-admin-sidebar--collapsed"
+                            ? "company-re-sidebar--collapsed"
                             : ""
                     }
                 `}
@@ -301,46 +347,47 @@ const effectiveCollapsed = isMobile
                     SIDEBAR HEADER
                 ====================================================== */}
 
-                <div className="super-admin-sidebar__header">
-                    <div className="super-admin-sidebar__brand">
-    
+                <div className="company-re-sidebar__header">
+                    <div className="company-re-sidebar__brand">
+
                         {/* =====================================================
-                            EXPANDED SIDEBAR
-                            Show application logo
+                            EXPANDED / COLLAPSED BRAND
                         ====================================================== */}
-                        {!effectiveCollapsed  ? (
-                            <div className="super-admin-sidebar__brand-logo super-admin-sidebar__brand-logo--image">
-                            </div>
+                        {!effectiveCollapsed ? (
+                            <>
+                                <div className="company-re-sidebar__brand-logo company-re-sidebar__brand-logo--image">
+                                    {companyLogo ? (
+                                        <img
+                                            src={companyLogo}
+                                            alt={companyName}
+                                            className="company-re-sidebar__logo-image"
+                                        />
+                                    ) : (
+                                        <div className="company-re-sidebar__fallback-logo">
+                                            {companyInitial}
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div className="company-re-sidebar__brand-text">
+                                    <strong>{companyName}</strong>
+                                    <span>{activeCompany?.industry || "Real Estate"}</span>
+                                </div>
+                            </>
                         ) : (
                             /* =================================================
                             COLLAPSED SIDEBAR
-                            Show only M
                             ================================================== */
-                            <div className="super-admin-sidebar__brand-logo super-admin-sidebar__brand-logo--collapsed">
-                                <span>M</span>
-                            </div>
-                        )}
-
-                        {/* =====================================================
-                            APPLICATION NAME
-                            Only visible when sidebar is expanded
-                        ====================================================== */}
-                        {!effectiveCollapsed && (
-                            <div className="super-admin-sidebar__brand-text">
-                                <strong>
+                            <div className="company-re-sidebar__brand-logo company-re-sidebar__brand-logo--collapsed">
+                                {companyLogo ? (
                                     <img
-                                        src={generalSettings.logoUrl}
-                                        alt={
-                                            generalSettings.applicationName ||
-                                            "Maxus CRM"
-                                        }
-                                        className="super-admin-sidebar__logo-image"
+                                        src={companyLogo}
+                                        alt={companyName}
+                                        className="company-re-sidebar__logo-image"
                                     />
-                                </strong>
-
-                                <span>
-                                    {generalSettings.applicationName || "Maxus CRM"}
-                                </span>
+                                ) : (
+                                    <span>{companyInitial}</span>
+                                )}
                             </div>
                         )}
                     </div>
@@ -349,7 +396,7 @@ const effectiveCollapsed = isMobile
 
                     <button
                         type="button"
-                        className="super-admin-sidebar__close"
+                        className="company-re-sidebar__close"
                         onClick={onClose}
                         aria-label="Close sidebar"
                     >
@@ -361,7 +408,7 @@ const effectiveCollapsed = isMobile
                     SIDEBAR NAVIGATION
                 ====================================================== */}
 
-                <nav className="super-admin-sidebar__nav">
+                <nav className="company-re-sidebar__nav">
 
                     {/* =================================================
                         DASHBOARD
@@ -370,7 +417,7 @@ const effectiveCollapsed = isMobile
                     <button
                         type="button"
                         className={`
-                            super-admin-sidebar__item
+                            company-re-sidebar__item
                             ${
                                 activeItem === "dashboard"
                                     ? "active"
@@ -388,469 +435,90 @@ const effectiveCollapsed = isMobile
                         )}
                     </button>
 
+                    {/* =================================================
+                        BRANCHES
+                    ================================================== */}
+
+                    <button
+                        type="button"
+                        className={`
+                            company-re-sidebar__item
+                            ${
+                                activeItem === "branches"
+                                    ? "active"
+                                    : ""
+                            }
+                        `}
+                        onClick={() =>
+                            handleNavigation("branches")
+                        }
+                    >
+                        <GitBranch size={19} />
+
+                        {!effectiveCollapsed && (
+                            <span>Branches</span>
+                        )}
+                    </button>
+
+                    {/* =================================================
+                        SUB ADMINS
+                    ================================================== */}
+
+                    <button
+                        type="button"
+                        className={`
+                            company-re-sidebar__item
+                            ${
+                                activeItem === "sub-admins"
+                                    ? "active"
+                                    : ""
+                            }
+                        `}
+                        onClick={() =>
+                            handleNavigation("sub-admins")
+                        }
+                    >
+                        <Users size={19} />
+
+                        {!effectiveCollapsed && (
+                            <span>Sub Admins</span>
+                        )}
+                    </button>
+
                    {/* =================================================
     COMPANIES
 ================================================== */}
 
-<div className="super-admin-sidebar__menu-group">
 
-    <button
-        type="button"
-        className={`super-admin-sidebar__item super-admin-sidebar__item--parent ${
-            currentPath?.startsWith("/companies") ? "active" : ""
-        }`}
-        onClick={() => toggleMenu("companies")}
-    >
-        <Building2 size={19} />
-
-        {!effectiveCollapsed && (
-            <>
-                <span>Companies</span>
-
-                {openMenus.companies ? (
-                    <ChevronDown
-                        size={17}
-                        className="menu-arrow"
-                    />
-                ) : (
-                    <ChevronRight
-                        size={17}
-                        className="menu-arrow"
-                    />
-                )}
-            </>
-        )}
-    </button>
-
-    {!effectiveCollapsed && openMenus.companies && (
-        <div className="super-admin-sidebar__submenu">
-
-            {/* All Companies */}
-
-            <button
-                type="button"
-                className={`super-admin-sidebar__submenu-item ${
-                    currentPath === "/companies" ? "active" : ""
-                }`}
-                onClick={() => handleNavigation("companies")}
-            >
-                All Companies
-            </button>
-
-            {/* Add Company */}
-
-            <button
-                type="button"
-                className={`super-admin-sidebar__submenu-item ${
-                    currentPath === "/companies/create" ||
-                    /^\/companies\/\d+\/edit$/.test(currentPath || "")
-                        ? "active"
-                        : ""
-                }`}
-                onClick={() => {
-                    onNavigate?.("/companies/create");
-
-                    if (window.innerWidth <= 768 && onClose) {
-                        onClose();
-                    }
-                }}
-            >
-                Add Company
-            </button>
-
-        </div>
-    )}
-
-</div>
                     {/* =================================================
                         ADMINISTRATORS
                     ================================================== */}
 
-                    <div className="super-admin-sidebar__menu-group">
-
-                        <button
-                            type="button"
-                            className={`super-admin-sidebar__item super-admin-sidebar__item--parent ${
-                                currentPath?.startsWith("/administrators")
-                                    ? "active"
-                                    : ""
-                            }`}
-                            onClick={() => toggleMenu("administrators")}
-                        >
-                            <Users size={19} />
-
-                            {!effectiveCollapsed && (
-                                <>
-                                    <span>Administrators</span>
-
-                                    {openMenus.administrators ? (
-                                        <ChevronDown
-                                            size={17}
-                                            className="menu-arrow"
-                                        />
-                                    ) : (
-                                        <ChevronRight
-                                            size={17}
-                                            className="menu-arrow"
-                                        />
-                                    )}
-                                </>
-                            )}
-                        </button>
-
-                        {!effectiveCollapsed &&
-                            openMenus.administrators && (
-                                <div className="super-admin-sidebar__submenu">
-
-                                    <button
-                                        type="button"
-                                        className={`super-admin-sidebar__submenu-item ${
-                                            currentPath === "/administrators" ||
-                                            /^\/administrators\/\d+(?:\/edit)?$/.test(
-                                                currentPath || ""
-                                            )
-                                                ? "active"
-                                                : ""
-                                        }`}
-                                        onClick={() => handleNavigation("administrators")}
-                                    >
-                                        All Administrators
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        className={`super-admin-sidebar__submenu-item ${
-                                            currentPath === "/administrators/create"
-                                                ? "active"
-                                                : ""
-                                        }`}
-                                        onClick={() => {
-                                            onNavigate?.("/administrators/create");
-
-                                            if (window.innerWidth <= 768 && onClose) {
-                                                onClose();
-                                            }
-                                        }}
-                                    >
-                                        Add Administrator
-                                    </button>
-
-                                </div>
-                            )}
-                    </div>
+                   
 
                     {/* =================================================
                         ACCESS / SECURITY
                     ================================================== */}
 
-                    {/* <button
-                        type="button"
-                        className={`
-                            super-admin-sidebar__item
-                            ${
-                                activeItem === "access"
-                                    ? "active"
-                                    : ""
-                            }
-                        `}
-                        onClick={() =>
-                            setActiveItem("access")
-                        }
-                    >
-                        <ShieldCheck size={19} />
-
-                        {!effectiveCollapsed && (
-                            <span>Access Control</span>
-                        )}
-                    </button> */}
+                   
 
                     {/* =================================================
                         REPORTS
                     ================================================== */}
 
-                    {/* <div className="super-admin-sidebar__menu-group">
-
-                        <button
-                            type="button"
-                            className="super-admin-sidebar__item super-admin-sidebar__item--parent"
-                            onClick={() =>
-                                toggleMenu("reports")
-                            }
-                        >
-                            <BarChart3 size={19} />
-
-                            {!effectiveCollapsed && (
-                                <>
-                                    <span>Reports</span>
-
-                                    {openMenus.reports ? (
-                                        <ChevronDown
-                                            size={17}
-                                            className="menu-arrow"
-                                        />
-                                    ) : (
-                                        <ChevronRight
-                                            size={17}
-                                            className="menu-arrow"
-                                        />
-                                    )}
-                                </>
-                            )}
-                        </button>
-
-                        {!effectiveCollapsed &&
-                            openMenus.reports && (
-                                <div className="super-admin-sidebar__submenu">
-
-                                    <button
-                                        type="button"
-                                        className="super-admin-sidebar__submenu-item"
-                                        onClick={() =>
-                                            handleNavigation(
-                                                "reports"
-                                            )
-                                        }
-                                    >
-                                        System Reports
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        className="super-admin-sidebar__submenu-item"
-                                        onClick={() =>
-                                            handleNavigation(
-                                                "reports"
-                                            )
-                                        }
-                                    >
-                                        Usage Reports
-                                    </button>
-
-                                </div>
-                            )}
-                    </div> */}
+                    
 
                     {/* =================================================
                         ACTIVITY LOG
                     ================================================== */}
 
-                    {/* <button
-                        type="button"
-                        className={`
-                            super-admin-sidebar__item
-                            ${
-                                activeItem === "activity"
-                                    ? "active"
-                                    : ""
-                            }
-                        `}
-                        onClick={() =>
-                            handleNavigation("activity")
-                        }
-                    >
-                        <Activity size={19} />
-
-                        {!effectiveCollapsed && (
-                            <span>Activity Logs</span>
-                        )}
-                    </button> */}
+                   
 
                     {/* =================================================
                         SYSTEM SETTINGS
                     ================================================== */}
 
-                    <div className="super-admin-sidebar__menu-group">
-
-                        <button
-                            type="button"
-                            className={`super-admin-sidebar__item super-admin-sidebar__item--parent ${
-                                activeItem === "settings" ? "active" : ""
-                            }`}
-                            onClick={handleSystemSettingsClick}
-                        >
-                            <Settings size={19} />
-
-                            {!effectiveCollapsed && (
-                                <>
-                                    <span>System Settings</span>
-
-                                    {openMenus.systemSettings ? (
-                                        <ChevronDown
-                                            size={17}
-                                            className="menu-arrow"
-                                        />
-                                    ) : (
-                                        <ChevronRight
-                                            size={17}
-                                            className="menu-arrow"
-                                        />
-                                    )}
-                                </>
-                            )}
-                        </button>
-
-                        {/* System Settings Submenu */}
-
-                        {!effectiveCollapsed &&
-                            openMenus.systemSettings && (
-                                <div className="super-admin-sidebar__submenu">
-
-                                    {/* General */}
-
-                                    <button
-                                        type="button"
-                                        className={`
-                                            super-admin-sidebar__submenu-item
-                                            ${
-                                                activeItem ===
-                                                "general-settings"
-                                                    ? "active"
-                                                    : ""
-                                            }
-                                        `}
-                                        onClick={() =>
-                                            handleNavigation(
-                                                "general-settings"
-                                            )
-                                        }
-                                    >
-                                        General Settings
-                                    </button>
-
-                                    {/* Date & Time */}
-
-                                    <button
-                                        type="button"
-                                        className={`
-                                            super-admin-sidebar__submenu-item
-                                            ${
-                                                activeItem ===
-                                                "date-time"
-                                                    ? "active"
-                                                    : ""
-                                            }
-                                        `}
-                                        onClick={() =>
-                                            handleNavigation(
-                                                "date-time"
-                                            )
-                                        }
-                                    >
-                                        Date & Time
-                                    </button>
-
-                                    {/* Email / SMTP */}
-
-                                    <button
-                                        type="button"
-                                        className={`
-                                            super-admin-sidebar__submenu-item
-                                            ${
-                                                activeItem ===
-                                                "email-smtp"
-                                                    ? "active"
-                                                    : ""
-                                            }
-                                        `}
-                                        onClick={() =>
-                                            handleNavigation(
-                                                "email-smtp"
-                                            )
-                                        }
-                                    >
-                                        Email / SMTP
-                                    </button>
-
-                                    {/* File / Storage */}
-
-                                    <button
-                                        type="button"
-                                        className={`
-                                            super-admin-sidebar__submenu-item
-                                            ${
-                                                activeItem ===
-                                                "file-storage"
-                                                    ? "active"
-                                                    : ""
-                                            }
-                                        `}
-                                        onClick={() =>
-                                            handleNavigation(
-                                                "file-storage"
-                                            )
-                                        }
-                                    >
-                                        File / Storage
-                                    </button>
-
-                                    {/* Maintenance */}
-
-                                    <button
-                                        type="button"
-                                        className={`
-                                            super-admin-sidebar__submenu-item
-                                            ${
-                                                activeItem ===
-                                                "maintenance"
-                                                    ? "active"
-                                                    : ""
-                                            }
-                                        `}
-                                        onClick={() =>
-                                            handleNavigation(
-                                                "maintenance"
-                                            )
-                                        }
-                                    >
-                                        Maintenance
-                                    </button>
-
-                                    {/* Security */}
-
-                                    <button
-                                        type="button"
-                                        className={`
-                                            super-admin-sidebar__submenu-item
-                                            ${
-                                                activeItem ===
-                                                "security"
-                                                    ? "active"
-                                                    : ""
-                                            }
-                                        `}
-                                        onClick={() =>
-                                            handleNavigation(
-                                                "security"
-                                            )
-                                        }
-                                    >
-                                        Security
-                                    </button>
-
-                                    {/* Email Draft Format */}
-
-                                    <button
-                                        type="button"
-                                        className={`
-                                            super-admin-sidebar__submenu-item
-                                            ${
-                                                activeItem ===
-                                                "email-draft-format"
-                                                    ? "active"
-                                                    : ""
-                                            }
-                                        `}
-                                        onClick={() =>
-                                            handleNavigation(
-                                                "email-draft-format"
-                                            )
-                                        }
-                                    >
-                                        Email Draft Format
-                                    </button>
-                                </div>
-                            )}
-                    </div>
+                    
                 </nav>
             </aside>
         </>
