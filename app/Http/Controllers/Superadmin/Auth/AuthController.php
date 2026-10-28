@@ -357,61 +357,157 @@ class AuthController extends Controller
     /**
      * Complete the login flow based on user role and company access.
      */
-    private function completeLogin(
-        User $user,
-        bool $rememberMe,
-        Request $request
-    ): JsonResponse {
-        $normalizedType = strtolower(str_replace(' ', '_', (string) $user->user_type));
+    // private function completeLogin(
+    //     User $user,
+    //     bool $rememberMe,
+    //     Request $request
+    // ): JsonResponse {
+    //     $normalizedType = strtolower(str_replace(' ', '_', (string) $user->user_type));
 
-        if ($normalizedType === 'super_admin') {
-            return $this->issueLoginResponse($user, null, $rememberMe, $request);
-        }
+    //     if ($normalizedType === 'super_admin') {
+    //         return $this->issueLoginResponse($user, null, $rememberMe, $request);
+    //     }
 
-        if ($normalizedType === 'admin') {
-            $companies = $this->getEligibleCompanies($user);
+    //     if ($normalizedType === 'admin') {
+    //         $companies = $this->getEligibleCompanies($user);
 
-            if ($companies->isEmpty()) {
-                return response()->json([
-                    'message' => 'You do not have access to any active company.',
-                ], 403);
-            }
+    //         if ($companies->isEmpty()) {
+    //             return response()->json([
+    //                 'message' => 'You do not have access to any active company.',
+    //             ], 403);
+    //         }
 
-            // If admin has only 1 company: directly complete login and return that company's info
-            if ($companies->count() === 1) {
-                return $this->issueLoginResponse($user, $companies->first(), $rememberMe, $request);
-            }
+    //        // Only Real Estate companies are supported for login right now
+    //         $realEstateCompanies = $companies->filter(
+    //             fn ($company) => $this->isRealEstateIndustry($company)
+    //         )->values();
+    //         if ($realEstateCompanies->isEmpty()) {
+    //             return $this->industryNotAvailableResponse();
+    //         }
 
-            // If admin has 2 or more companies: require company selection popup
-            $selectionToken = Str::random(64);
-            $cacheKey = 'login_company:'.hash('sha256', $selectionToken);
 
-            Cache::put(
-                $cacheKey,
-                [
-                    'user_id' => $user->id,
-                    'remember_me' => $rememberMe,
-                ],
-                now()->addMinutes(10)
-            );
+    //         // If admin has 2 or more companies: require company selection popup
+    //         $selectionToken = Str::random(64);
+    //         $cacheKey = 'login_company:'.hash('sha256', $selectionToken);
 
-            return response()->json([
-                'message' => 'Please select a company to continue.',
-                'requires_company_selection' => true,
-                'company_selection_token' => $selectionToken,
-                'companies' => $companies->map(fn ($company) => [
-                    'id' => $company->id,
-                    'name' => $company->name,
-                    'code' => $company->code ?? null,
-                    'industry' => $company->industry ?? null,
-                ])->values(),
-            ]);
-        }
+    //         Cache::put(
+    //             $cacheKey,
+    //             [
+    //                 'user_id' => $user->id,
+    //                 'remember_me' => $rememberMe,
+    //             ],
+    //             now()->addMinutes(10)
+    //         );
 
+    //         return response()->json([
+    //             'message' => 'Please select a company to continue.',
+    //             'requires_company_selection' => true,
+    //             'company_selection_token' => $selectionToken,
+    //             'companies' => $realEstateCompanies->map(fn ($company) => [                    
+    //                 'id' => $company->id,
+    //                 'name' => $company->name,
+    //                 'code' => $company->code ?? null,
+    //                 'industry' => $company->industry ?? null,
+    //             ])->values(),
+    //         ]);
+    //     }
+
+    //     return response()->json([
+    //         'message' => 'Your account role is not authorized to log in.',
+    //     ], 403);
+    // }
+
+    
+private function completeLogin(
+    User $user,
+    bool $rememberMe,
+    Request $request
+): JsonResponse {
+    $normalizedType = strtolower(
+        str_replace(' ', '_', (string) $user->user_type)
+    );
+
+    if ($normalizedType === 'super_admin') {
+        return $this->issueLoginResponse(
+            $user,
+            null,
+            $rememberMe,
+            $request
+        );
+    }
+
+    if ($normalizedType !== 'admin') {
         return response()->json([
+            'success' => false,
             'message' => 'Your account role is not authorized to log in.',
         ], 403);
     }
+
+    // Get every active company this admin is authorized to access.
+    $companies = $this->getEligibleCompanies($user)->values();
+
+    if ($companies->isEmpty()) {
+        return response()->json([
+            'success' => false,
+            'message' => 'You do not have access to any active company.',
+            'code' => 'no_active_company',
+        ], 403);
+    }
+
+    // If there is only one company, validate its industry before login.
+    if ($companies->count() === 1) {
+        $company = $companies->first();
+
+        if (! $this->isRealEstateIndustry($company)) {
+            return $this->industryNotAvailableResponse();
+        }
+
+        return $this->issueLoginResponse(
+            $user,
+            $company,
+            $rememberMe,
+            $request
+        );
+    }
+
+    // Multiple companies: show ALL eligible companies.
+    $selectionToken = Str::random(64);
+
+    $cacheKey = 'login_company:' . hash(
+        'sha256',
+        $selectionToken
+    );
+
+    Cache::put(
+        $cacheKey,
+        [
+            'user_id' => $user->id,
+            'remember_me' => $rememberMe,
+            'allowed_company_ids' => $companies
+                ->pluck('id')
+                ->values()
+                ->all(),
+        ],
+        now()->addMinutes(10)
+    );
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Please select a company to continue.',
+        'requires_company_selection' => true,
+        'company_selection_token' => $selectionToken,
+        'companies' => $companies->map(fn ($company) => [
+            'id' => $company->id,
+            'name' => $company->name,
+            'code' => $company->code ?? null,
+            'industry' => $company->industry ?? null,
+        ])->values(),
+    ]);
+}
+
+
+
+    
 
     /**
      * Issue authenticated Sanctum token and user/company payload.
@@ -487,6 +583,7 @@ class AuthController extends Controller
      */
     public function selectCompany(Request $request): JsonResponse
     {
+        
         $request->validate([
             'company_id' => ['required', 'integer'],
             'company_selection_token' => ['nullable', 'string'],
@@ -531,8 +628,13 @@ class AuthController extends Controller
             ], 401);
         }
 
+        
         $companies = $this->getEligibleCompanies($user);
-        $company = $companies->firstWhere('id', (int) $request->input('company_id'));
+
+        $company = $companies->firstWhere(
+            'id',
+            (int) $request->input('company_id')
+        );
 
         if (! $company) {
             return response()->json([
@@ -540,7 +642,45 @@ class AuthController extends Controller
             ], 403);
         }
 
-        return $this->issueLoginResponse($user, $company, $rememberMe, $request);
+        // Check industry BEFORE issuing the login token.
+        if (! $this->isRealEstateIndustry($company)) {
+            return $this->industryNotAvailableResponse();
+        }
+
+        return $this->issueLoginResponse(
+            $user,
+            $company,
+            $rememberMe,
+            $request
+        );
+
+    }
+
+
+  
+
+    private function isRealEstateIndustry(?Company $company): bool
+    {
+        if (! $company) {
+            return false;
+        }
+
+        $industry = strtolower(trim((string) ($company->industry ?? '')));
+
+        return in_array($industry, [
+            'real estate',
+            'realestate',
+            'real-estate',
+        ], true);
+    }
+
+    private function industryNotAvailableResponse(): JsonResponse
+    {
+        return response()->json([
+            'success' => false,
+            'message' => 'This company industry is under maintenance. Currently only Real Estate companies are supported. Additional industries will be available soon.',
+            'code' => 'industry_not_available',
+        ], 403);
     }
 
     public function loginSettings(): JsonResponse

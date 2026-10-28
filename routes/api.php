@@ -8,6 +8,8 @@ use App\Http\Controllers\Superadmin\Settings\SuperadminSettingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyRealEstate\BranchController;
 use App\Http\Controllers\CompanyRealEstate\SubAdminController;
+use App\Http\Controllers\CompanyRealEstate\DepartmentController;
+use App\Http\Controllers\CompanyRealEstate\DesignationController;
 
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::get('/login-settings', [AuthController::class, 'loginSettings'])->name('auth.login-settings');
@@ -212,5 +214,23 @@ Route::middleware('auth:sanctum')->prefix('company')->group(function () {
     Route::delete('/sub-admins-destroy/{subAdmin}', [SubAdminController::class, 'destroy'])->name('company.sub-admins.destroy');
     Route::delete('/sub-admins/{subAdmin}', [SubAdminController::class, 'destroy']);
     Route::post('/sub-admins/{subAdmin}/send-invitation',[SubAdminController::class, 'sendInvitation'])->name('company.sub-admins.send-invitation');
+
+    // Department APIs
+    Route::get('/departments', [DepartmentController::class, 'index'])->name('company.departments.index');
+    Route::get('/departments/next-code', [DepartmentController::class, 'nextCode'])->name('company.departments.next-code');
+    Route::post('/departments-store', [DepartmentController::class, 'store'])->name('company.departments.store');
+    Route::get('/departments-show/{id}', [DepartmentController::class, 'show'])->name('company.departments.show');
+    Route::put('/departments-update/{id}', [DepartmentController::class, 'update'])->name('company.departments.update');
+    Route::patch('/departments-status/{id}', [DepartmentController::class, 'updateStatus'])->name('company.departments.status');
+    Route::delete('/departments-destroy/{id}', [DepartmentController::class, 'destroy'])->name('company.departments.destroy');
+
+    // Designation APIs
+    Route::get('/designations', [DesignationController::class, 'index'])->name('company.designations.index');
+    Route::get('/designations/next-code', [DesignationController::class, 'nextCode'])->name('company.designations.next-code');
+    Route::post('/designations-store', [DesignationController::class, 'store'])->name('company.designations.store');
+    Route::get('/designations-show/{id}', [DesignationController::class, 'show'])->name('company.designations.show');
+    Route::put('/designations-update/{id}', [DesignationController::class, 'update'])->name('company.designations.update');
+    Route::patch('/designations-status/{id}', [DesignationController::class, 'updateStatus'])->name('company.designations.status');
+    Route::delete('/designations-destroy/{id}', [DesignationController::class, 'destroy'])->name('company.designations.destroy');
 });
 

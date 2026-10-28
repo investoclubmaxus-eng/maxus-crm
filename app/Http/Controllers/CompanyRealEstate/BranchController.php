@@ -94,8 +94,10 @@ class BranchController extends Controller
     */
     public function index(Request $request): JsonResponse
     {
-        //dd("sdsdsd");
+        
         $company = $this->resolveCompany($request);
+        
+        
        
         $perPage = (int) $request->query('per_page', 10);
 
@@ -104,7 +106,7 @@ class BranchController extends Controller
             'status' => $request->query('status'),
             'state' => $request->query('state'),
         ], $perPage);
-
+        
         return response()->json([
             'success' => true,
             'message' => 'Branches retrieved successfully.',

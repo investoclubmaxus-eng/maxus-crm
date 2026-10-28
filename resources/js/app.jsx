@@ -51,6 +51,12 @@ import ViewBranch       from './pages/company-realEstate/branches/ViewBranch';
 import SubAdmins        from './pages/company-realEstate/sub-admins/SubAdmins';
 import CreateSubAdmin   from './pages/company-realEstate/sub-admins/CreateSubAdmin';
 import ViewSubAdmin     from './pages/company-realEstate/sub-admins/ViewSubAdmin';
+import Departments     from './pages/company-realEstate/departments/Departments';
+import CreateDepartment from './pages/company-realEstate/departments/CreateDepartment';
+import ViewDepartment   from './pages/company-realEstate/departments/ViewDepartment';
+import Designations     from './pages/company-realEstate/designation/Designations';
+import CreateDesignation from './pages/company-realEstate/designation/CreateDesignation';
+import ViewDesignation   from './pages/company-realEstate/designation/ViewDesignation';
 
 /*
 |--------------------------------------------------------------------------
@@ -390,6 +396,20 @@ function App() {
                         const isSubAdminCreate = currentPath === '/company/sub-admins/create';
                         const isSubAdminList = currentPath === '/company/sub-admins';
 
+                        const editDepartmentMatch = currentPath.match(/^\/company\/departments\/(\d+)\/edit$/);
+                        const isDepartmentEdit = Boolean(editDepartmentMatch);
+                        const viewDepartmentMatch = currentPath.match(/^\/company\/departments\/(\d+)(\/view)?$/);
+                        const isDepartmentView = Boolean(viewDepartmentMatch) && !isDepartmentEdit;
+                        const isDepartmentCreate = currentPath === '/company/departments/create';
+                        const isDepartmentList = currentPath === '/company/departments';
+
+                        const editDesignationMatch = currentPath.match(/^\/company\/designations\/(\d+)\/edit$/);
+                        const isDesignationEdit = Boolean(editDesignationMatch);
+                        const viewDesignationMatch = currentPath.match(/^\/company\/designations\/(\d+)(\/view)?$/);
+                        const isDesignationView = Boolean(viewDesignationMatch) && !isDesignationEdit;
+                        const isDesignationCreate = currentPath === '/company/designations/create';
+                        const isDesignationList = currentPath === '/company/designations';
+
                         let breadcrumbTitle = storedCompany?.name
                             ? `${storedCompany.name} Dashboard`
                             : "Company Dashboard";
@@ -457,6 +477,60 @@ function App() {
                                 { label: 'Dashboard', path: '/company/dashboard' },
                                 { label: 'Sub Admins', path: '/company/sub-admins' },
                             ];
+                        } else if (isDepartmentCreate) {
+                            breadcrumbTitle = "Create Department";
+                            breadcrumbItems = [
+                                { label: 'Dashboard', path: '/company/dashboard' },
+                                { label: 'Departments', path: '/company/departments' },
+                                { label: 'Create', path: '/company/departments/create' },
+                            ];
+                        } else if (isDepartmentEdit) {
+                            breadcrumbTitle = "Edit Department";
+                            breadcrumbItems = [
+                                { label: 'Dashboard', path: '/company/dashboard' },
+                                { label: 'Departments', path: '/company/departments' },
+                                { label: 'Edit', path: currentPath },
+                            ];
+                        } else if (isDepartmentView) {
+                            breadcrumbTitle = "Department Details";
+                            breadcrumbItems = [
+                                { label: 'Dashboard', path: '/company/dashboard' },
+                                { label: 'Departments', path: '/company/departments' },
+                                { label: 'Details', path: currentPath },
+                            ];
+                        } else if (isDepartmentList) {
+                            breadcrumbTitle = "Departments";
+                            breadcrumbItems = [
+                                { label: 'Dashboard', path: '/company/dashboard' },
+                                { label: 'Departments', path: '/company/departments' },
+                            ];
+                        } else if (isDesignationCreate) {
+                            breadcrumbTitle = "Create Designation";
+                            breadcrumbItems = [
+                                { label: 'Dashboard', path: '/company/dashboard' },
+                                { label: 'Designations', path: '/company/designations' },
+                                { label: 'Create', path: '/company/designations/create' },
+                            ];
+                        } else if (isDesignationEdit) {
+                            breadcrumbTitle = "Edit Designation";
+                            breadcrumbItems = [
+                                { label: 'Dashboard', path: '/company/dashboard' },
+                                { label: 'Designations', path: '/company/designations' },
+                                { label: 'Edit', path: currentPath },
+                            ];
+                        } else if (isDesignationView) {
+                            breadcrumbTitle = "Designation Details";
+                            breadcrumbItems = [
+                                { label: 'Dashboard', path: '/company/dashboard' },
+                                { label: 'Designations', path: '/company/designations' },
+                                { label: 'Details', path: currentPath },
+                            ];
+                        } else if (isDesignationList) {
+                            breadcrumbTitle = "Designations";
+                            breadcrumbItems = [
+                                { label: 'Dashboard', path: '/company/dashboard' },
+                                { label: 'Designations', path: '/company/designations' },
+                            ];
                         }
 
                         return (
@@ -517,6 +591,54 @@ function App() {
                                         />
                                     ) : isSubAdminList ? (
                                         <SubAdmins
+                                            navigateTo={navigateTo}
+                                            company={storedCompany}
+                                        />
+                                    ) : isDepartmentCreate ? (
+                                        <CreateDepartment
+                                            navigateTo={navigateTo}
+                                            mode="create"
+                                            company={storedCompany}
+                                        />
+                                    ) : isDepartmentEdit ? (
+                                        <CreateDepartment
+                                            navigateTo={navigateTo}
+                                            mode="edit"
+                                            departmentId={editDepartmentMatch[1]}
+                                            company={storedCompany}
+                                        />
+                                    ) : isDepartmentView ? (
+                                        <ViewDepartment
+                                            navigateTo={navigateTo}
+                                            departmentId={viewDepartmentMatch[1]}
+                                            company={storedCompany}
+                                        />
+                                    ) : isDepartmentList ? (
+                                        <Departments
+                                            navigateTo={navigateTo}
+                                            company={storedCompany}
+                                        />
+                                    ) : isDesignationCreate ? (
+                                        <CreateDesignation
+                                            navigateTo={navigateTo}
+                                            mode="create"
+                                            company={storedCompany}
+                                        />
+                                    ) : isDesignationEdit ? (
+                                        <CreateDesignation
+                                            navigateTo={navigateTo}
+                                            mode="edit"
+                                            designationId={editDesignationMatch[1]}
+                                            company={storedCompany}
+                                        />
+                                    ) : isDesignationView ? (
+                                        <ViewDesignation
+                                            navigateTo={navigateTo}
+                                            designationId={viewDesignationMatch[1]}
+                                            company={storedCompany}
+                                        />
+                                    ) : isDesignationList ? (
+                                        <Designations
                                             navigateTo={navigateTo}
                                             company={storedCompany}
                                         />

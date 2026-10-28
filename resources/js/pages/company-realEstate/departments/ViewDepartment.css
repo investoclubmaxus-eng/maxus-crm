@@ -1,0 +1,372 @@
+/* ============================================================
+   VIEW DEPARTMENT DETAILS CSS
+   MAXUS CRM - COMPANY REAL ESTATE
+============================================================ */
+
+.view-department-page {
+    width: 100%;
+    max-width: 100%;
+    padding: 4px 0 30px;
+    box-sizing: border-box;
+}
+
+/* Page Header */
+.view-department-header {
+    width: 100%;
+    margin-bottom: 22px;
+}
+
+.view-department-breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #7188a6;
+}
+
+.view-department-breadcrumb-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border: 0;
+    background: transparent;
+    color: #5e789d;
+    cursor: pointer;
+    padding: 0;
+    font-size: 12px;
+    font-family: inherit;
+    transition: color 0.15s ease;
+}
+
+.view-department-breadcrumb-link:hover {
+    color: #1267e8;
+}
+
+.view-department-breadcrumb-current {
+    color: #1267e8;
+    font-weight: 600;
+}
+
+.view-department-header-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.view-department-title-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+}
+
+.view-department-title-icon {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    color: #1267e8;
+    background: #eaf3ff;
+}
+
+.view-department-title-section h1 {
+    margin: 0 0 4px;
+    font-size: 26px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #102f5b;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.view-department-code-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 9px;
+    border-radius: 6px;
+    background: #eef4fc;
+    color: #1e5bb8;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    border: 1px solid #dbe6f5;
+}
+
+.view-department-title-section p {
+    margin: 0;
+    font-size: 14px;
+    color: #627d9e;
+}
+
+.view-department-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.view-department-btn {
+    min-height: 38px;
+    padding: 0 14px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.view-department-btn-back {
+    background: #ffffff;
+    color: #4b6689;
+    border-color: #cbd8e8;
+}
+
+.view-department-btn-back:hover {
+    background: #f1f5fa;
+    color: #102f5b;
+}
+
+.view-department-btn-edit {
+    background: #194799;
+    color: #ffffff;
+    border-color: #194799;
+}
+
+.view-department-btn-edit:hover {
+    background: #1267e8;
+    border-color: #1267e8;
+}
+
+.view-department-btn-delete {
+    background: #ffffff;
+    color: #dc2626;
+    border-color: #fecaca;
+}
+
+.view-department-btn-delete:hover {
+    background: #fef2f2;
+    border-color: #f87171;
+}
+
+.view-department-btn-status-activate {
+    background: #ecfdf5;
+    color: #059669;
+    border-color: #a7f3d0;
+}
+
+.view-department-btn-status-activate:hover {
+    background: #d1fae5;
+}
+
+.view-department-btn-status-deactivate {
+    background: #fef3c7;
+    color: #b45309;
+    border-color: #fde68a;
+}
+
+.view-department-btn-status-deactivate:hover {
+    background: #fde68a;
+}
+
+/* Status Banner */
+.view-department-status-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    margin-bottom: 22px;
+    flex-wrap: wrap;
+}
+
+.view-department-status-banner.is-active {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+}
+
+.view-department-status-banner.is-inactive {
+    background: #fffbeb;
+    border: 1px solid #fef3c7;
+}
+
+.view-department-status-banner-text {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.view-department-status-banner-text strong {
+    display: block;
+    font-size: 14.5px;
+    color: #102f5b;
+    margin-bottom: 2px;
+}
+
+.view-department-status-banner-text p {
+    margin: 0;
+    font-size: 13px;
+    color: #64748b;
+}
+
+/* Grid Layout */
+.view-department-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+/* Cards */
+.view-department-card {
+    background: #ffffff;
+    border: 1px solid #dbe6f5;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(16, 47, 91, 0.04);
+}
+
+.view-department-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 22px;
+    border-bottom: 1px solid #edf2f9;
+    background: #fafcff;
+}
+
+.view-department-card-title {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: #102f5b;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.view-department-card-title svg {
+    color: #1267e8;
+}
+
+.view-department-card-body {
+    padding: 22px;
+}
+
+/* Fields Grid */
+.view-department-fields-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.view-department-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.view-department-field-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #6780a5;
+}
+
+.view-department-field-value {
+    font-size: 14.5px;
+    font-weight: 500;
+    color: #102f5b;
+}
+
+/* Status Pill */
+.view-department-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.view-department-status-pill.active {
+    background: #ebfaf1;
+    color: #108548;
+    border: 1px solid #b7eccb;
+}
+
+.view-department-status-pill.inactive {
+    background: #f3f5f8;
+    color: #6a7f98;
+    border: 1px solid #dbe2eb;
+}
+
+/* Description Box */
+.view-department-desc-box {
+    background: #f8fbff;
+    border: 1px solid #e1ecf8;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #334155;
+}
+
+/* Loading & Error */
+.view-department-loading,
+.view-department-error {
+    padding: 80px 20px;
+    text-align: center;
+    color: #64748b;
+}
+
+.view-department-spinner {
+    color: #1267e8;
+    animation: viewDeptSpin 1s linear infinite;
+    margin-bottom: 12px;
+}
+
+@keyframes viewDeptSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+    .view-department-fields-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .view-department-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .view-department-header-actions {
+        width: 100%;
+    }
+
+    .view-department-btn {
+        flex: 1;
+    }
+}

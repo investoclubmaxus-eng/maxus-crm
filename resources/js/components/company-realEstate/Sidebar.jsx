@@ -10,6 +10,8 @@ import {
     Settings,
     Activity,
     GitBranch,
+    FolderTree,
+    Briefcase,
     ChevronDown,
     ChevronRight,
     X,
@@ -170,6 +172,16 @@ const effectiveCollapsed = isMobile
             return;
         }
 
+        if (currentPath?.startsWith("/company/departments")) {
+            setActiveItem("departments");
+            return;
+        }
+
+        if (currentPath?.startsWith("/company/designations")) {
+            setActiveItem("designations");
+            return;
+        }
+
         if (currentPath?.startsWith("/company/sub-admins")) {
             setActiveItem("sub-admins");
             return;
@@ -267,6 +279,8 @@ const effectiveCollapsed = isMobile
         const paths = {
             dashboard: "/company/dashboard",
             branches: "/company/branches",
+            departments: "/company/departments",
+            designations: "/company/designations",
             "sub-admins": "/company/sub-admins",
 
             companies: "/companies",
@@ -457,6 +471,56 @@ const effectiveCollapsed = isMobile
 
                         {!effectiveCollapsed && (
                             <span>Branches</span>
+                        )}
+                    </button>
+
+                    {/* =================================================
+                        DEPARTMENTS
+                    ================================================== */}
+
+                    <button
+                        type="button"
+                        className={`
+                            company-re-sidebar__item
+                            ${
+                                activeItem === "departments"
+                                    ? "active"
+                                    : ""
+                            }
+                        `}
+                        onClick={() =>
+                            handleNavigation("departments")
+                        }
+                    >
+                        <FolderTree size={19} />
+
+                        {!effectiveCollapsed && (
+                            <span>Departments</span>
+                        )}
+                    </button>
+
+                    {/* =================================================
+                        DESIGNATIONS
+                    ================================================== */}
+
+                    <button
+                        type="button"
+                        className={`
+                            company-re-sidebar__item
+                            ${
+                                activeItem === "designations"
+                                    ? "active"
+                                    : ""
+                            }
+                        `}
+                        onClick={() =>
+                            handleNavigation("designations")
+                        }
+                    >
+                        <Briefcase size={19} />
+
+                        {!effectiveCollapsed && (
+                            <span>Designations</span>
                         )}
                     </button>
 
