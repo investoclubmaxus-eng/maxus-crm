@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Multitenancy\Models\Tenant;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-
 class Company extends Tenant
 {
     use HasFactory, SoftDeletes;
 
+    
     protected $table = 'companies';
     protected $connection = 'landlord';
 
@@ -37,6 +37,11 @@ class Company extends Tenant
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime',
     ];
+
+    public function getDatabaseName(): string
+    {
+        return (string) ($this->database ?: config('database.connections.landlord.database', 'maxus_crm'));
+    }
 
     /*
     |--------------------------------------------------------------------------

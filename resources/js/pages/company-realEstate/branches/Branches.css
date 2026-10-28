@@ -1,0 +1,770 @@
+/* ============================================================
+   BRANCHES PAGE
+   MAXUS CRM - COMPANY REAL ESTATE
+============================================================ */
+
+.branches-page {
+    width: 100%;
+    max-width: 100%;
+    padding: 4px 0 30px;
+    box-sizing: border-box;
+}
+
+/* Page Header */
+.branches-page-header {
+    width: 100%;
+    margin-bottom: 22px;
+}
+
+.branches-breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 13px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #7188a6;
+}
+
+.branches-breadcrumb-home {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #5e789d;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.branches-breadcrumb-home:hover {
+    background: #edf5ff;
+    color: #1267e8;
+}
+
+.branches-breadcrumb-current {
+    color: #1267e8;
+    font-weight: 600;
+}
+
+.branches-header-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.branches-title-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+}
+
+.branches-title-icon {
+    width: 58px;
+    height: 58px;
+    min-width: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    color: #1267e8;
+    background: #eaf3ff;
+}
+
+.branches-title-section h1 {
+    margin: 0 0 5px;
+    font-size: 28px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #102f5b;
+}
+
+.branches-title-section p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #6780a5;
+}
+
+.branches-add-button {
+    min-height: 42px;
+    padding: 0 17px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-shrink: 0;
+    border: 1px solid #1267e8;
+    border-radius: 8px;
+    background: #194799;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.branches-add-button:hover {
+    background: #1267e8;
+    border-color: #0d59cd;
+}
+
+.branches-add-button:active {
+    transform: translateY(1px);
+}
+
+/* Main Container */
+.branches-main-container {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #e1eaf5;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(18, 55, 105, 0.05);
+    overflow: hidden;
+}
+
+/* Filter Bar */
+.branches-filter-bar {
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #edf2f9;
+}
+
+.branches-search-wrapper {
+    position: relative;
+    flex: 1;
+    min-width: 260px;
+    max-width: 380px;
+}
+
+.branches-search-wrapper > svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #728aa8;
+    pointer-events: none;
+}
+
+.branches-search-wrapper input {
+    width: 100%;
+    height: 40px;
+    padding: 0 12px 0 38px;
+    box-sizing: border-box;
+    border: 1px solid #cfe0f5;
+    border-radius: 8px;
+    background: #fbfdff;
+    color: #16365f;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.branches-search-wrapper input:focus {
+    border-color: #2677e8;
+    box-shadow: 0 0 0 3px rgba(38, 119, 232, 0.10);
+    background: #ffffff;
+}
+
+.branches-filter-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.branches-select-wrapper {
+    position: relative;
+    min-width: 140px;
+}
+
+.branches-select-wrapper select {
+    width: 100%;
+    height: 40px;
+    padding: 0 32px 0 12px;
+    border: 1px solid #cfe0f5;
+    border-radius: 8px;
+    background: #fbfdff;
+    color: #17375f;
+    font-size: 13px;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+.branches-select-wrapper select:focus {
+    border-color: #2677e8;
+    background: #ffffff;
+}
+
+.branches-select-wrapper > svg {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #728aa8;
+    pointer-events: none;
+}
+
+.branches-reset-button {
+    height: 40px;
+    padding: 0 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid #cfe0f5;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #557399;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.branches-reset-button:hover {
+    background: #f1f6fc;
+    color: #1267e8;
+    border-color: #b9d5f7;
+}
+
+/* Table */
+.branches-table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.branches-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 13px;
+}
+
+.branches-table th {
+    padding: 13px 18px;
+    background: #f8fbff;
+    color: #59779d;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #e5effa;
+    white-space: nowrap;
+}
+
+.branches-table td {
+    padding: 14px 18px;
+    color: #23446d;
+    border-bottom: 1px solid #f0f5fc;
+    vertical-align: middle;
+}
+
+.branches-table tr:hover td {
+    background: #fafcff;
+}
+
+.branch-name-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.branch-avatar-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background: #eaf3ff;
+    color: #1267e8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.branch-name-info strong {
+    display: block;
+    font-size: 14px;
+    color: #11315c;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.branch-name-info span {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 4px;
+    background: #eef3f9;
+    color: #49678e;
+    font-size: 11px;
+    font-family: monospace;
+    font-weight: 600;
+}
+
+.branch-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12.5px;
+    color: #425f84;
+    margin-bottom: 3px;
+}
+
+.branch-contact-item:last-child {
+    margin-bottom: 0;
+}
+
+.branch-contact-item svg {
+    color: #728aa8;
+    flex-shrink: 0;
+}
+
+/* Status Badge */
+.branch-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.branch-status-badge.active {
+    background: #ebfaf1;
+    color: #108548;
+    border: 1px solid #b7eccb;
+}
+
+.branch-status-badge.inactive {
+    background: #f3f5f8;
+    color: #6a7f98;
+    border: 1px solid #dbe2eb;
+}
+
+/* Actions Menu */
+.branches-actions-btn {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #cfe0f5;
+    background: #ffffff;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #5d7a9f;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.branches-actions-btn:hover {
+    background: #edf5ff;
+    color: #1267e8;
+    border-color: #bad6fa;
+}
+
+/* Pagination */
+.branches-pagination {
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    border-top: 1px solid #edf2f9;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: #637e9f;
+}
+
+.branches-pagination-buttons {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.branches-page-nav-btn {
+    min-width: 34px;
+    height: 34px;
+    padding: 0 8px;
+    border: 1px solid #cfe0f5;
+    background: #ffffff;
+    border-radius: 6px;
+    color: #274872;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.branches-page-nav-btn:hover:not(:disabled) {
+    background: #edf5ff;
+    color: #1267e8;
+    border-color: #bad6fa;
+}
+
+.branches-page-nav-btn.active {
+    background: #194799;
+    color: #ffffff;
+    border-color: #194799;
+    font-weight: 600;
+}
+
+.branches-page-nav-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* Empty & Loading states */
+.branches-loading-state,
+.branches-empty-state {
+    padding: 64px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #6b84a5;
+}
+
+.branches-empty-state svg,
+.branches-loading-state svg {
+    margin-bottom: 14px;
+    color: #9cb2cd;
+    flex-shrink: 0;
+}
+
+.branches-empty-state h3 {
+    margin: 0 0 6px;
+    font-size: 17px;
+    color: #12315b;
+}
+
+.branches-empty-state p {
+    margin: 0 0 20px;
+    font-size: 13.5px;
+}
+
+/* Keep the "Add First Branch" button compact & centered inside empty state */
+.branches-empty-state .branches-add-button {
+    width: auto;
+    align-self: center;
+    padding: 0 22px;
+}
+
+.branches-menu-dropdown {
+    position: fixed;
+    z-index: 9999;
+    min-width: 165px;
+    background: #ffffff;
+    border: 1px solid #d5e3f4;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(16, 47, 91, 0.12);
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.branches-menu-divider {
+    height: 1px;
+    background: #edf2f9;
+    margin: 4px 0;
+}
+
+.branches-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 12px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #244670;
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+    width: 100%;
+}
+
+.branches-menu-item:hover {
+    background: #edf5ff;
+    color: #1267e8;
+}
+
+.branches-menu-item.status-active {
+    color: #16a34a;
+}
+
+.branches-menu-item.status-active:hover {
+    background: #ecfdf3;
+    color: #15803d;
+}
+
+.branches-menu-item.status-inactive {
+    color: #d97706;
+}
+
+.branches-menu-item.status-inactive:hover {
+    background: #fffbeb;
+    color: #b45309;
+}
+
+.branches-menu-item.delete {
+    color: #d32f2f;
+}
+
+.branches-menu-item.delete:hover {
+    background: #fdf2f2;
+    color: #b71c1c;
+}
+
+/* Clickable branch name button */
+.branch-name-button {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    font-family: inherit;
+    cursor: pointer;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.branch-name-button strong {
+    font-size: 14px;
+    color: #173864;
+    transition: color 0.15s ease;
+}
+
+.branch-name-button:hover strong {
+    color: #1267e8;
+    text-decoration: underline;
+}
+
+.branch-name-button span {
+    font-size: 11.5px;
+    color: #7b94b5;
+    margin-top: 1px;
+    font-weight: 500;
+}
+
+/* Interactive Status Badge */
+.branch-status-badge.interactive {
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.branch-status-badge.interactive:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.branch-status-badge.active.interactive:hover {
+    background: #dcfce7;
+    border-color: #86efac;
+}
+
+.branch-status-badge.inactive.interactive:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+}
+
+/* Quick View Branch Modal */
+.branches-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(3px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.branches-details-modal {
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2);
+    width: 100%;
+    max-width: 620px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 1px solid #e2e8f0;
+    animation: branchesModalIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes branchesModalIn {
+    from {
+        opacity: 0;
+        transform: scale(0.96) translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.branches-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 22px;
+    border-bottom: 1px solid #edf2f9;
+}
+
+.branches-modal-header h3 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 700;
+    color: #102f5b;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.branches-modal-header h3 span.code {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    background: #edf5ff;
+    color: #1267e8;
+    border-radius: 5px;
+    font-size: 11.5px;
+    font-weight: 700;
+}
+
+.branches-modal-close-btn {
+    width: 32px;
+    height: 32px;
+    border: 0;
+    background: transparent;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.branches-modal-close-btn:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+}
+
+.branches-modal-body {
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.branches-modal-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+@media (max-width: 540px) {
+    .branches-modal-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.branches-modal-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.branches-modal-item.full-width {
+    grid-column: 1 / -1;
+}
+
+.branches-modal-item-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #7188a6;
+}
+
+.branches-modal-item-value {
+    font-size: 13.5px;
+    color: #1e293b;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.branches-modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 16px 22px;
+    border-top: 1px solid #edf2f9;
+    background: #f8fafc;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    flex-wrap: wrap;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .branches-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .branches-add-button {
+        width: 100%;
+    }
+
+    .branches-filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .branches-search-wrapper {
+        max-width: 100%;
+    }
+
+    .branches-filter-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .branches-select-wrapper {
+        width: 100%;
+    }
+
+    .branches-reset-button {
+        width: 100%;
+        justify-content: center;
+    }
+}

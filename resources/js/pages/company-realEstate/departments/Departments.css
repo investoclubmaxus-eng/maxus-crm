@@ -1,0 +1,623 @@
+/* ============================================================
+   DEPARTMENTS PAGE
+   MAXUS CRM - COMPANY REAL ESTATE
+============================================================ */
+
+.departments-page {
+    width: 100%;
+    max-width: 100%;
+    padding: 4px 0 30px;
+    box-sizing: border-box;
+}
+
+/* Page Header */
+.departments-page-header {
+    width: 100%;
+    margin-bottom: 22px;
+}
+
+.departments-breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 13px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #7188a6;
+}
+
+.departments-breadcrumb-home {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #5e789d;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.departments-breadcrumb-home:hover {
+    background: #edf5ff;
+    color: #1267e8;
+}
+
+.departments-breadcrumb-current {
+    color: #1267e8;
+    font-weight: 600;
+}
+
+.departments-header-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.departments-title-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+}
+
+.departments-title-icon {
+    width: 58px;
+    height: 58px;
+    min-width: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    color: #1267e8;
+    background: #eaf3ff;
+}
+
+.departments-title-section h1 {
+    margin: 0 0 5px;
+    font-size: 28px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #102f5b;
+}
+
+.departments-title-section p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #6780a5;
+}
+
+.departments-add-button {
+    min-height: 42px;
+    padding: 0 17px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-shrink: 0;
+    border: 1px solid #1267e8;
+    border-radius: 8px;
+    background: #194799;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.departments-add-button:hover {
+    background: #1267e8;
+    border-color: #0d59cd;
+}
+
+/* Main Container */
+.departments-main-container {
+    background: #ffffff;
+    border: 1px solid #dbe6f5;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(16, 47, 91, 0.04);
+}
+
+/* Filter Bar */
+.departments-filter-bar {
+    padding: 16px 20px;
+    border-bottom: 1px solid #e5edf7;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    background: #fafcff;
+}
+
+.departments-search-wrapper {
+    position: relative;
+    flex: 1;
+    min-width: 260px;
+    max-width: 380px;
+}
+
+.departments-search-wrapper > svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #728aa8;
+    pointer-events: none;
+}
+
+.departments-search-wrapper input {
+    width: 100%;
+    height: 40px;
+    padding: 0 12px 0 38px;
+    box-sizing: border-box;
+    border: 1px solid #cfe0f5;
+    border-radius: 8px;
+    background: #fbfdff;
+    color: #16365f;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.departments-search-wrapper input:focus {
+    border-color: #2677e8;
+    box-shadow: 0 0 0 3px rgba(38, 119, 232, 0.10);
+    background: #ffffff;
+}
+
+.departments-filter-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.departments-select-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.departments-select-wrapper select {
+    height: 38px;
+    padding: 0 32px 0 14px;
+    border: 1px solid #c9d8ea;
+    border-radius: 8px;
+    background: #ffffff;
+    font-size: 13px;
+    font-weight: 500;
+    color: #102f5b;
+    outline: none;
+    cursor: pointer;
+    font-family: inherit;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: border-color 0.15s ease;
+}
+
+.departments-select-wrapper select:focus {
+    border-color: #1267e8;
+}
+
+.departments-select-wrapper svg {
+    position: absolute;
+    right: 11px;
+    color: #6b82a3;
+    pointer-events: none;
+}
+
+.departments-reset-button {
+    height: 38px;
+    padding: 0 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid #d2dfea;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #557297;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.departments-reset-button svg {
+    position: relative;
+    top: -0.5px; /* Fine-tunes pixel-level optical alignment */
+    flex-shrink: 0;
+}
+
+.departments-reset-button:hover {
+    background: #f1f5f9;
+    color: #102f5b;
+}
+
+/* Table Container */
+.departments-table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.departments-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.departments-table th {
+    padding: 13px 20px;
+    background: #f8fbff;
+    font-size: 11.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #5a7599;
+    border-bottom: 1px solid #e1ecf8;
+    white-space: nowrap;
+}
+
+.departments-table td {
+    padding: 16px 20px;
+    border-bottom: 1px solid #edf3fa;
+    font-size: 13px;
+    color: #1e293b;
+    vertical-align: middle;
+}
+
+.departments-table tr:hover td {
+    background: #fafcff;
+}
+
+/* Code Badge */
+.dept-code-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 9px;
+    border-radius: 6px;
+    background: #f1f5f9;
+    color: #334155;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid #e2e8f0;
+}
+
+/* Name cell */
+.dept-name-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.dept-name-cell strong {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.dept-name-cell span {
+    font-size: 12px;
+    color: #64748b;
+    max-width: 320px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Slug Badge */
+.dept-slug-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    border-radius: 5px;
+    background: #eff6ff;
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid #dbeafe;
+}
+
+/* ============================================================
+   STATUS BADGE (Exact match with Branches module)
+============================================================ */
+.dept-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: inherit;
+    border: 1px solid transparent;
+}
+
+.dept-status-badge.active {
+    background: #ebfaf1;
+    color: #108548;
+    border: 1px solid #b7eccb;
+}
+
+.dept-status-badge.inactive {
+    background: #f3f5f8;
+    color: #6a7f98;
+    border: 1px solid #dbe2eb;
+}
+
+.dept-status-badge.interactive {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.dept-status-badge.interactive:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.dept-status-badge.active.interactive:hover {
+    background: #dcfce7;
+    border-color: #86efac;
+}
+
+.dept-status-badge.inactive.interactive:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+}
+
+/* ============================================================
+   ACTIONS BUTTON (3 dots - Exact match with Branches module)
+============================================================ */
+.departments-actions-btn {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #cfe0f5;
+    background: #ffffff;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #5d7a9f;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.departments-actions-btn:hover {
+    background: #edf5ff;
+    color: #1267e8;
+    border-color: #bad6fa;
+}
+
+/* ============================================================
+   ACTIONS CONTEXT MENU DROPDOWN
+============================================================ */
+.departments-menu-dropdown {
+    position: fixed;
+    background: #ffffff;
+    border: 1px solid #dbe6f5;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px -5px rgba(16, 47, 91, 0.15), 0 8px 10px -6px rgba(16, 47, 91, 0.08);
+    min-width: 175px;
+    z-index: 99999;
+    padding: 4px;
+    animation: deptMenuFadeIn 0.15s ease-out;
+}
+
+@keyframes deptMenuFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.96) translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.departments-menu-item {
+    width: 100%;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    border: none;
+    background: transparent;
+    border-radius: 6px;
+    color: #334155;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.12s ease, color 0.12s ease;
+}
+
+.departments-menu-item:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+}
+
+.departments-menu-item svg {
+    color: #64748b;
+    flex-shrink: 0;
+}
+
+.departments-menu-item:hover svg {
+    color: #1267e8;
+}
+
+.departments-menu-item.status-active:hover {
+    background: #ecfdf5;
+    color: #059669;
+}
+
+.departments-menu-item.status-active:hover svg {
+    color: #059669;
+}
+
+.departments-menu-item.status-inactive:hover {
+    background: #fffbeb;
+    color: #d97706;
+}
+
+.departments-menu-item.status-inactive:hover svg {
+    color: #d97706;
+}
+
+.departments-menu-item.delete:hover {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.departments-menu-item.delete:hover svg {
+    color: #dc2626;
+}
+
+.departments-menu-divider {
+    height: 1px;
+    background: #e2e8f0;
+    margin: 4px 0;
+}
+
+/* Loading & Empty States */
+.departments-loading-state,
+.departments-empty-state {
+    padding: 64px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #6b84a5;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.departments-empty-state svg,
+.departments-loading-state svg {
+    margin: 0 auto 14px auto;
+    color: #9cb2cd;
+    flex-shrink: 0;
+    display: block;
+}
+
+.departments-empty-state h3 {
+    margin: 0 0 6px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #12315b;
+}
+
+.departments-empty-state p {
+    margin: 0 0 20px;
+    font-size: 13.5px;
+    color: #64748b;
+}
+
+.departments-empty-state .departments-add-button,
+.departments-empty-state .departments-reset-button {
+    width: auto;
+    align-self: center;
+    padding: 0 20px;
+}
+
+.dept-spinner {
+    animation: deptSpin 1s linear infinite;
+}
+
+@keyframes deptSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Pagination */
+.departments-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    border-top: 1px solid #e5edf7;
+    background: #fafcff;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.departments-pagination-info {
+    font-size: 12.5px;
+    color: #64748b;
+}
+
+.departments-pagination-buttons {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.departments-page-btn {
+    min-width: 34px;
+    height: 34px;
+    padding: 0 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #cfe0f5;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #274872;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.departments-page-btn:hover:not(:disabled) {
+    background: #edf5ff;
+    border-color: #bad6fa;
+    color: #1267e8;
+}
+
+.departments-page-btn.active {
+    background: #194799;
+    border-color: #194799;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.departments-page-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .departments-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .departments-filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .departments-search-wrapper {
+        max-width: 100%;
+    }
+
+    .departments-pagination {
+        flex-direction: column;
+        align-items: center;
+    }
+}

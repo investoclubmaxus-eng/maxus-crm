@@ -37,7 +37,8 @@ return [
      */
     'switch_tenant_tasks' => [
         // \Spatie\Multitenancy\Tasks\PrefixCacheTask::class,
-        \Spatie\Multitenancy\Tasks\SwitchTenantDatabaseTask::class,
+            \Spatie\Multitenancy\Tasks\SwitchTenantDatabaseTask::class,
+
         // \Spatie\Multitenancy\Tasks\SwitchRouteCacheTask::class,
         
     ],
@@ -48,7 +49,7 @@ return [
      * It must  extend `Spatie\Multitenancy\Models\Tenant::class` or
      * implement `Spatie\Multitenancy\Contracts\IsTenant::class` interface
      */
-    'tenant_model' => Tenant::class,
+    'tenant_model' => \App\Models\Company::class,
 
     /*
      * If there is a current tenant when dispatching a job, the id of the current tenant
@@ -67,7 +68,7 @@ return [
     /*
      * The connection name to reach the landlord database.
      */
-    'landlord_database_connection_name' => 'landlord',
+    'landlord_database_connection_name' => env('LANDLORD_DB_CONNECTION', 'landlord'),
 
     /*
      * This key will be used to associate the current tenant in the context

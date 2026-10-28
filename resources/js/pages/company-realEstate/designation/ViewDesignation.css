@@ -1,0 +1,372 @@
+/* ============================================================
+   VIEW DESIGNATION DETAILS CSS
+   MAXUS CRM - COMPANY REAL ESTATE
+============================================================ */
+
+.view-designation-page {
+    width: 100%;
+    max-width: 100%;
+    padding: 4px 0 30px;
+    box-sizing: border-box;
+}
+
+/* Page Header */
+.view-designation-header {
+    width: 100%;
+    margin-bottom: 22px;
+}
+
+.view-designation-breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #7188a6;
+}
+
+.view-designation-breadcrumb-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border: 0;
+    background: transparent;
+    color: #5e789d;
+    cursor: pointer;
+    padding: 0;
+    font-size: 12px;
+    font-family: inherit;
+    transition: color 0.15s ease;
+}
+
+.view-designation-breadcrumb-link:hover {
+    color: #1267e8;
+}
+
+.view-designation-breadcrumb-current {
+    color: #1267e8;
+    font-weight: 600;
+}
+
+.view-designation-header-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.view-designation-title-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+}
+
+.view-designation-title-icon {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    border-radius: 14px;
+    background: #eaf3ff;
+    color: #1267e8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.view-designation-title-section h1 {
+    margin: 0 0 5px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #102f5b;
+    line-height: 1.25;
+}
+
+.view-designation-title-section p {
+    margin: 0;
+    font-size: 13.5px;
+    color: #64748b;
+}
+
+/* Header Action Buttons */
+.view-designation-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.view-designation-btn {
+    height: 38px;
+    padding: 0 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    border: 1px solid transparent;
+}
+
+.view-designation-btn.back {
+    background: #ffffff;
+    border-color: #d4e2f4;
+    color: #43628b;
+}
+
+.view-designation-btn.back:hover {
+    background: #edf5ff;
+    border-color: #bad6fa;
+    color: #1267e8;
+}
+
+.view-designation-btn.edit {
+    background: #1267e8;
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(18, 103, 232, 0.2);
+}
+
+.view-designation-btn.edit:hover {
+    background: #0d54c2;
+}
+
+.view-designation-btn.status-toggle {
+    background: #ffffff;
+    border-color: #d4e2f4;
+    color: #334d70;
+}
+
+.view-designation-btn.status-toggle:hover {
+    background: #f1f6fd;
+}
+
+.view-designation-btn.delete {
+    background: #ffffff;
+    border-color: #fecaca;
+    color: #dc2626;
+}
+
+.view-designation-btn.delete:hover {
+    background: #fef2f2;
+    border-color: #f87171;
+}
+
+.view-designation-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/* Main Card */
+.view-designation-card {
+    background: #ffffff;
+    border: 1px solid #e1ecf8;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(16, 47, 91, 0.04);
+    padding: 28px 30px;
+    box-sizing: border-box;
+}
+
+.view-designation-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 20px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #edf3fa;
+    flex-wrap: wrap;
+}
+
+.view-designation-banner-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.view-designation-banner-left h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #102f5b;
+}
+
+.view-designation-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12.5px;
+    font-weight: 600;
+}
+
+.view-designation-status-pill.active {
+    background: #ecfdf5;
+    color: #059669;
+    border: 1px solid #a7f3d0;
+}
+
+.view-designation-status-pill.inactive {
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+}
+
+/* Fields Grid */
+.view-designation-fields-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px 28px;
+    margin-bottom: 28px;
+}
+
+.view-designation-field-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.view-designation-field-item.full-width {
+    grid-column: 1 / -1;
+}
+
+.view-designation-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #64748b;
+}
+
+.view-designation-value {
+    font-size: 14.5px;
+    color: #102f5b;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.view-designation-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12.5px;
+    font-weight: 600;
+    width: fit-content;
+}
+
+.view-designation-badge.code {
+    background: #eef5ff;
+    color: #1267e8;
+    border: 1px solid #d3e5fe;
+    font-family: monospace;
+}
+
+.view-designation-badge.department {
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid #e2e8f0;
+}
+
+.view-designation-badge.slug {
+    background: #f4f7fb;
+    color: #557297;
+    border: 1px solid #e2eaf5;
+    font-family: monospace;
+}
+
+/* Description Box */
+.view-designation-desc-box {
+    background: #f8fbff;
+    border: 1px solid #e1ecf8;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #334155;
+}
+
+/* Timestamps Audit Box */
+.view-designation-audit-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    border-top: 1px solid #edf3fa;
+    font-size: 12.5px;
+    color: #64748b;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.view-designation-audit-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Loading & Error States */
+.view-designation-loading,
+.view-designation-error {
+    padding: 80px 20px;
+    text-align: center;
+    color: #64748b;
+}
+
+.view-designation-spinner {
+    color: #1267e8;
+    animation: desigSpin 1s linear infinite;
+    margin-bottom: 12px;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN (Tablets & Mobile)
+============================================================ */
+
+@media (max-width: 768px) {
+    .view-designation-fields-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .view-designation-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .view-designation-header-actions {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .view-designation-btn {
+        width: 100%;
+    }
+
+    .view-designation-card {
+        padding: 20px 18px;
+    }
+
+    .view-designation-title-section h1 {
+        font-size: 20px;
+    }
+
+    .view-designation-audit-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+}

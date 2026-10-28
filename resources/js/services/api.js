@@ -26,6 +26,16 @@ const getAuthToken = () => {
     );
 };
 
+const getActiveCompany = () => {
+    try {
+        const raw =
+            localStorage.getItem("active_company") ||
+            sessionStorage.getItem("active_company");
+        return raw ? JSON.parse(raw) : null;
+    } catch {
+        return null;
+    }
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -35,23 +45,23 @@ const getAuthToken = () => {
 
 api.interceptors.request.use(
     (config) => {
-
         const token = getAuthToken();
 
         if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
 
-            config.headers.Authorization =
-                `Bearer ${token}`;
+        const activeCompany = getActiveCompany();
+        if (activeCompany?.id && !config.headers["X-Company-Id"]) {
+            config.headers["X-Company-Id"] = String(activeCompany.id);
         }
 
         return config;
     },
-
     (error) => {
         return Promise.reject(error);
     }
 );
-
 
 /*
 |--------------------------------------------------------------------------
@@ -60,33 +70,16 @@ api.interceptors.request.use(
 */
 
 api.interceptors.response.use(
-
     (response) => {
         return response;
     },
-
     (error) => {
-
         if (error.response?.status === 401) {
-
             localStorage.removeItem("auth_token");
             sessionStorage.removeItem("auth_token");
-
-            /*
-            | Do not redirect automatically here if you
-            | already handle authentication in App.jsx.
-            |
-            | If you want automatic redirect, uncomment:
-            |
-            | window.location.href = "/login";
-            */
-
         }
-
         return Promise.reject(error);
     }
-
 );
-
 
 export default api;

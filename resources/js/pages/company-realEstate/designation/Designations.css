@@ -1,0 +1,655 @@
+/* ============================================================
+   DESIGNATIONS PAGE CSS
+   MAXUS CRM - COMPANY REAL ESTATE
+============================================================ */
+
+.designations-page {
+    width: 100%;
+    max-width: 100%;
+    padding: 4px 0 30px;
+    box-sizing: border-box;
+}
+
+/* Page Header */
+.designations-page-header {
+    width: 100%;
+    margin-bottom: 22px;
+}
+
+.designations-breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 13px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #7188a6;
+}
+
+.designations-breadcrumb-home {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #5e789d;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.designations-breadcrumb-home:hover {
+    background: #edf5ff;
+    color: #1267e8;
+}
+
+.designations-breadcrumb-current {
+    color: #1267e8;
+    font-weight: 600;
+}
+
+.designations-header-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.designations-title-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+}
+
+.designations-title-icon {
+    width: 58px;
+    height: 58px;
+    min-width: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    color: #1267e8;
+    background: #eaf3ff;
+}
+
+.designations-title-section h1 {
+    margin: 0 0 5px;
+    font-size: 28px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #102f5b;
+}
+
+.designations-title-section p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #6780a5;
+}
+
+.designations-add-button {
+    min-height: 42px;
+    padding: 0 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid #1267e8;
+    border-radius: 8px;
+    background: #1267e8;
+    color: #ffffff;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(18, 103, 232, 0.25);
+    transition: all 0.15s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.designations-add-button:hover {
+    background: #0d54c2;
+    border-color: #0d54c2;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(18, 103, 232, 0.3);
+}
+
+/* Main Container */
+.designations-main-container {
+    background: #ffffff;
+    border: 1px solid #e1ecf8;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(16, 47, 91, 0.04);
+    overflow: hidden;
+}
+
+/* Filter Bar */
+.designations-filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 20px;
+    background: #fafcff;
+    border-bottom: 1px solid #e5edf7;
+    flex-wrap: wrap;
+}
+
+.designations-search-wrapper {
+    position: relative;
+    flex: 1;
+    min-width: 240px;
+    max-width: 360px;
+}
+
+.designations-search-wrapper svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8da4be;
+    pointer-events: none;
+}
+
+.designations-search-wrapper input {
+    width: 100%;
+    height: 38px;
+    padding: 0 12px 0 36px;
+    border: 1px solid #cfe0f5;
+    border-radius: 7px;
+    background: #ffffff;
+    font-size: 13.5px;
+    color: #102f5b;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.designations-search-wrapper input:focus {
+    border-color: #1267e8;
+    box-shadow: 0 0 0 3px rgba(18, 103, 232, 0.12);
+}
+
+.designations-search-wrapper input::placeholder {
+    color: #9cb1cb;
+}
+
+.designations-filter-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.designations-select-wrapper {
+    position: relative;
+    min-width: 150px;
+}
+
+.designations-select-wrapper select {
+    width: 100%;
+    height: 38px;
+    padding: 0 32px 0 12px;
+    border: 1px solid #cfe0f5;
+    border-radius: 7px;
+    background: #ffffff;
+    font-size: 13.5px;
+    color: #102f5b;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: border-color 0.15s ease;
+}
+
+.designations-select-wrapper select:focus {
+    border-color: #1267e8;
+}
+
+.designations-select-wrapper svg {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8da4be;
+    pointer-events: none;
+}
+
+.designations-reset-button {
+    height: 38px;
+    padding: 0 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid #d4e2f4;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #557297;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.designations-reset-button:hover {
+    background: #f1f6fd;
+    color: #1267e8;
+    border-color: #bad6fa;
+}
+
+/* Table Container */
+.designations-table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.designations-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    min-width: 800px;
+}
+
+.designations-table th {
+    padding: 13px 18px;
+    font-size: 11.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #5a7599;
+    background: #f8fbff;
+    border-bottom: 1px solid #e5edf7;
+    white-space: nowrap;
+}
+
+.designations-table td {
+    padding: 14px 18px;
+    font-size: 13.5px;
+    color: #1e3a63;
+    border-bottom: 1px solid #edf3fa;
+    vertical-align: middle;
+}
+
+.designations-table tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+.designations-table tbody tr:hover {
+    background-color: #f9fbff;
+}
+
+/* Badges & Cells */
+.desig-code-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 9px;
+    border-radius: 6px;
+    background: #eef5ff;
+    color: #1267e8;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: monospace;
+    border: 1px solid #d3e5fe;
+}
+
+.desig-name-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    max-width: 260px;
+}
+
+.desig-name-cell strong {
+    font-size: 14px;
+    font-weight: 600;
+    color: #102f5b;
+}
+
+.desig-name-cell span {
+    font-size: 12px;
+    color: #7188a6;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.desig-dept-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 8px;
+    border-radius: 5px;
+    background: #f1f5f9;
+    color: #475569;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid #e2e8f0;
+}
+
+.desig-slug-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 8px;
+    border-radius: 5px;
+    background: #f4f7fb;
+    color: #557297;
+    font-size: 12px;
+    font-family: monospace;
+    border: 1px solid #e2eaf5;
+}
+
+.desig-industry-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12.5px;
+    color: #64748b;
+}
+
+/* Status Button Badge */
+.desig-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.15s ease;
+    background: none;
+}
+
+.desig-status-badge.active {
+    background: #ecfdf5;
+    color: #059669;
+    border-color: #a7f3d0;
+}
+
+.desig-status-badge.active:hover {
+    background: #d1fae5;
+    border-color: #6ee7b7;
+}
+
+.desig-status-badge.inactive {
+    background: #fef2f2;
+    color: #dc2626;
+    border-color: #fecaca;
+}
+
+.desig-status-badge.inactive:hover {
+    background: #fee2e2;
+    border-color: #fca5a5;
+}
+
+.desig-status-badge:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+/* 3-Dot Action Button */
+.desig-action-button {
+    width: 32px;
+    height: 32px;
+    border: 1px solid transparent;
+    background: transparent;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b82a0;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.desig-action-button:hover,
+.desig-action-button.active {
+    background: #edf5ff;
+    color: #1267e8;
+    border-color: #d1e3fa;
+}
+
+/* Fixed/Floating Dropdown Menu */
+.desig-floating-menu {
+    position: fixed;
+    z-index: 9999;
+    min-width: 175px;
+    background: #ffffff;
+    border: 1px solid #dbe6f3;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(16, 47, 91, 0.12);
+    padding: 5px 0;
+    animation: desigMenuFadeIn 0.15s ease-out;
+}
+
+@keyframes desigMenuFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.desig-menu-item {
+    width: 100%;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    border: 0;
+    background: transparent;
+    color: #334d70;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.12s ease, color 0.12s ease;
+}
+
+.desig-menu-item:hover {
+    background: #edf5ff;
+    color: #1267e8;
+}
+
+.desig-menu-item.danger {
+    color: #dc2626;
+}
+
+.desig-menu-item.danger:hover {
+    background: #fef2f2;
+    color: #b91c1c;
+}
+
+/* Loading & Empty States */
+.designations-loading-state,
+.designations-empty-state {
+    padding: 60px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.designations-empty-state svg {
+    color: #9cb1cb;
+    margin-bottom: 14px;
+}
+
+.designations-empty-state h3 {
+    margin: 0 0 6px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #12315b;
+}
+
+.designations-empty-state p {
+    margin: 0 0 20px;
+    font-size: 13.5px;
+    color: #64748b;
+}
+
+.desig-spinner {
+    animation: desigSpin 1s linear infinite;
+}
+
+@keyframes desigSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Pagination */
+.designations-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    border-top: 1px solid #e5edf7;
+    background: #fafcff;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.designations-pagination-info {
+    font-size: 12.5px;
+    color: #64748b;
+}
+
+.designations-pagination-buttons {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.designations-page-btn {
+    min-width: 34px;
+    height: 34px;
+    padding: 0 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #cfe0f5;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #274872;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.designations-page-btn:hover:not(:disabled) {
+    background: #edf5ff;
+    border-color: #bad6fa;
+    color: #1267e8;
+}
+
+.designations-page-btn.active {
+    background: #194799;
+    border-color: #194799;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.designations-page-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN (Tablets & Mobile)
+============================================================ */
+
+@media (max-width: 992px) {
+    .designations-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .designations-add-button {
+        width: 100%;
+    }
+
+    .designations-filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .designations-search-wrapper {
+        max-width: 100%;
+        min-width: 100%;
+    }
+
+    .designations-filter-controls {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .designations-reset-button {
+        grid-column: 1 / -1;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .designations-page {
+        padding: 0 0 20px;
+    }
+
+    .designations-title-section {
+        gap: 12px;
+    }
+
+    .designations-title-icon {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        border-radius: 10px;
+    }
+
+    .designations-title-section h1 {
+        font-size: 22px;
+    }
+
+    .designations-title-section p {
+        font-size: 13px;
+    }
+
+    .designations-filter-controls {
+        grid-template-columns: 1fr;
+    }
+
+    .designations-pagination {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .designations-title-section {
+        flex-direction: row;
+    }
+
+    .designations-pagination-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

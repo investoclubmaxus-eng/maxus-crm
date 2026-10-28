@@ -1,0 +1,527 @@
+/* ============================================================
+   CREATE / EDIT DESIGNATION PAGE CSS
+   MAXUS CRM - COMPANY REAL ESTATE
+============================================================ */
+
+.designation-create-page {
+    width: 100%;
+    max-width: 100%;
+    padding: 4px 0 30px;
+    box-sizing: border-box;
+}
+
+/* Page Header */
+.designation-page-header {
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.designation-breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #7188a6;
+}
+
+.designation-breadcrumb-home {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #5e789d;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.designation-breadcrumb-home:hover {
+    background: #edf5ff;
+    color: #1267e8;
+}
+
+.designation-breadcrumb-link {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #5e789d;
+    font-size: 12px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.designation-breadcrumb-link:hover {
+    color: #1267e8;
+}
+
+.designation-breadcrumb-current {
+    color: #1267e8;
+    font-weight: 600;
+}
+
+.designation-header-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.designation-title-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+}
+
+.designation-title-icon {
+    width: 58px;
+    height: 58px;
+    min-width: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    color: #1267e8;
+    background: #eaf3ff;
+}
+
+.designation-title-section h1 {
+    margin: 0 0 5px;
+    font-size: 26px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #102f5b;
+}
+
+.designation-title-section p {
+    margin: 0;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #6780a5;
+}
+
+.designation-back-button {
+    height: 40px;
+    padding: 0 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid #d4e2f4;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #43628b;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.designation-back-button:hover {
+    background: #edf5ff;
+    border-color: #bad6fa;
+    color: #1267e8;
+}
+
+/* Card Container */
+.designation-card {
+    background: #ffffff;
+    border: 1px solid #e1ecf8;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(16, 47, 91, 0.04);
+    padding: 28px 30px;
+    box-sizing: border-box;
+}
+
+.designation-card-header {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #edf3fa;
+}
+
+.designation-card-header h2 {
+    margin: 0 0 4px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #102f5b;
+}
+
+.designation-card-header p {
+    margin: 0;
+    font-size: 13px;
+    color: #64748b;
+}
+
+/* Form Grid */
+.designation-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px 24px;
+    margin-bottom: 26px;
+}
+
+.designation-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.designation-form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.designation-form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a365d;
+    margin-bottom: 7px;
+}
+
+.required-mark {
+    color: #ef4444;
+    margin-left: 2px;
+}
+
+.designation-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.designation-input-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8da4be;
+    pointer-events: none;
+}
+
+.designation-input {
+    width: 100%;
+    height: 42px;
+    padding: 0 14px;
+    border: 1px solid #cfe0f5;
+    border-radius: 8px;
+    background: #ffffff;
+    font-size: 13.5px;
+    color: #102f5b;
+    outline: none;
+    box-sizing: border-box;
+    transition: all 0.15s ease;
+}
+
+.designation-input.with-icon {
+    padding-left: 38px;
+}
+
+.designation-input:focus {
+    border-color: #1267e8;
+    box-shadow: 0 0 0 3px rgba(18, 103, 232, 0.12);
+}
+
+.designation-input.readonly {
+    background: #f8fafc;
+    color: #64748b;
+    cursor: default;
+}
+
+.designation-input.error {
+    border-color: #ef4444;
+    background: #fffcfc;
+}
+
+.designation-input.error:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+.designation-select {
+    width: 100%;
+    height: 42px;
+    padding: 0 34px 0 38px;
+    border: 1px solid #cfe0f5;
+    border-radius: 8px;
+    background: #ffffff;
+    font-size: 13.5px;
+    color: #102f5b;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: border-color 0.15s ease;
+}
+
+.designation-select:focus {
+    border-color: #1267e8;
+    box-shadow: 0 0 0 3px rgba(18, 103, 232, 0.12);
+}
+
+.designation-select.error {
+    border-color: #ef4444;
+    background: #fffcfc;
+}
+
+.designation-select.error:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+.designation-input-wrapper.has-error {
+    position: relative;
+}
+
+.designation-input-wrapper.has-error .designation-select,
+.designation-input-wrapper.has-error .designation-input {
+    border-color: #ef4444;
+    background: #fffcfc;
+}
+
+.designation-select-chevron {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8da4be;
+    pointer-events: none;
+}
+
+.designation-textarea {
+    width: 100%;
+    min-height: 96px;
+    padding: 12px 14px;
+    border: 1px solid #cfe0f5;
+    border-radius: 8px;
+    background: #ffffff;
+    font-size: 13.5px;
+    font-family: inherit;
+    color: #102f5b;
+    outline: none;
+    box-sizing: border-box;
+    resize: vertical;
+    transition: all 0.15s ease;
+}
+
+.designation-textarea:focus {
+    border-color: #1267e8;
+    box-shadow: 0 0 0 3px rgba(18, 103, 232, 0.12);
+}
+
+.designation-help-text {
+    font-size: 11.5px;
+    color: #7188a6;
+    margin-top: 5px;
+}
+
+.designation-error-text {
+    font-size: 12px;
+    color: #ef4444;
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+/* Custom Status Dropdown Menu */
+.designation-status-select-container {
+    position: relative;
+    width: 100%;
+}
+
+.designation-status-trigger {
+    width: 100%;
+    height: 42px;
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #cfe0f5;
+    border-radius: 8px;
+    background: #ffffff;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    box-sizing: border-box;
+}
+
+.designation-status-trigger:hover {
+    border-color: #bad6fa;
+}
+
+.designation-status-trigger.open {
+    border-color: #1267e8;
+    box-shadow: 0 0 0 3px rgba(18, 103, 232, 0.12);
+}
+
+.designation-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.designation-status-pill.active {
+    color: #059669;
+}
+
+.designation-status-pill.inactive {
+    color: #dc2626;
+}
+
+.designation-status-dropdown {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: #ffffff;
+    border: 1px solid #dbe6f3;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(16, 47, 91, 0.12);
+    padding: 5px 0;
+    animation: desigMenuFadeIn 0.15s ease-out;
+}
+
+.designation-status-option {
+    width: 100%;
+    padding: 9px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.12s ease;
+}
+
+.designation-status-option:hover {
+    background: #edf5ff;
+}
+
+.designation-status-option.selected {
+    background: #f0f7ff;
+}
+
+/* Actions Footer */
+.designation-form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 1px solid #edf3fa;
+}
+
+.designation-cancel-button {
+    height: 42px;
+    padding: 0 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #d4e2f4;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #475569;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.designation-cancel-button:hover {
+    background: #f8fafc;
+    border-color: #94a3b8;
+    color: #0f172a;
+}
+
+.designation-submit-button {
+    height: 42px;
+    padding: 0 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid #1267e8;
+    border-radius: 8px;
+    background: #1267e8;
+    color: #ffffff;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(18, 103, 232, 0.25);
+    transition: all 0.15s ease;
+}
+
+.designation-submit-button:hover:not(:disabled) {
+    background: #0d54c2;
+    border-color: #0d54c2;
+}
+
+.designation-submit-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* Loading State */
+.designation-loading-card {
+    padding: 60px 20px;
+    text-align: center;
+    color: #64748b;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN (Tablets & Mobile)
+============================================================ */
+
+@media (max-width: 992px) {
+    .designation-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .designation-back-button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .designation-form-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .designation-card {
+        padding: 20px 18px;
+    }
+
+    .designation-title-section {
+        gap: 12px;
+    }
+
+    .designation-title-icon {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        border-radius: 10px;
+    }
+
+    .designation-title-section h1 {
+        font-size: 22px;
+    }
+
+    .designation-form-actions {
+        flex-direction: column-reverse;
+        gap: 10px;
+    }
+
+    .designation-cancel-button,
+    .designation-submit-button {
+        width: 100%;
+    }
+}

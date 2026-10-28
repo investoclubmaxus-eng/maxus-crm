@@ -1,0 +1,483 @@
+/* ============================================================
+   VIEW SUB ADMIN DETAILS CSS
+   MAXUS CRM - COMPANY REAL ESTATE
+   Aligned with ViewBranch styles
+============================================================ */
+
+.view-subadmin-page {
+    width: 100%;
+    max-width: 100%;
+    padding: 4px 0 30px;
+    box-sizing: border-box;
+}
+
+/* Page Header */
+.view-subadmin-header {
+    width: 100%;
+    margin-bottom: 22px;
+}
+
+.view-subadmin-breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #7188a6;
+}
+
+.view-subadmin-breadcrumb-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border: 0;
+    background: transparent;
+    color: #5e789d;
+    cursor: pointer;
+    padding: 0;
+    font-size: 12px;
+    font-family: inherit;
+    transition: color 0.15s ease;
+}
+
+.view-subadmin-breadcrumb-link:hover {
+    color: #1267e8;
+}
+
+.view-subadmin-breadcrumb-current {
+    color: #1267e8;
+    font-weight: 600;
+}
+
+.view-subadmin-header-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.view-subadmin-title-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+}
+
+/* Avatar matches Branch title-icon size feel */
+.view-subadmin-avatar-large {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    border-radius: 14px;          /* same radius as branch icon */
+    background: #194799;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    overflow: hidden;
+}
+
+.view-subadmin-avatar-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.view-subadmin-title-section h1 {
+    margin: 0 0 4px;
+    font-size: 26px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #102f5b;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.view-subadmin-role-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 9px;
+    border-radius: 6px;
+    background: #eef4fc;
+    color: #1e5bb8;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.view-subadmin-title-section p {
+    margin: 0;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: #6780a5;
+}
+
+/* Header Action Buttons – identical to Branch */
+.view-subadmin-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.view-subadmin-btn {
+    min-height: 40px;
+    padding: 0 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.view-subadmin-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.view-subadmin-btn-back {
+    background: #ffffff;
+    border-color: #cfe0f5;
+    color: #244670;
+}
+
+.view-subadmin-btn-back:hover:not(:disabled) {
+    background: #f1f6fc;
+    color: #1267e8;
+    border-color: #bad6fa;
+}
+
+.view-subadmin-btn-edit {
+    background: #194799;
+    color: #ffffff;
+    border-color: #194799;
+}
+
+.view-subadmin-btn-edit:hover:not(:disabled) {
+    background: #1267e8;
+    border-color: #0d59cd;
+}
+
+.view-subadmin-btn-status-activate {
+    background: #e8f8f0;
+    color: #117a43;
+    border-color: #b7e8d0;
+}
+
+.view-subadmin-btn-status-activate:hover:not(:disabled) {
+    background: #199855;
+    color: #ffffff;
+    border-color: #199855;
+}
+
+.view-subadmin-btn-status-deactivate {
+    background: #fff4e5;
+    color: #b25e02;
+    border-color: #fdd8a8;
+}
+
+.view-subadmin-btn-status-deactivate:hover:not(:disabled) {
+    background: #d97706;
+    color: #ffffff;
+    border-color: #d97706;
+}
+
+.view-subadmin-btn-delete {
+    background: #ffffff;
+    color: #d32f2f;
+    border-color: #f7c5c5;
+}
+
+.view-subadmin-btn-delete:hover:not(:disabled) {
+    background: #fdf2f2;
+    color: #b71c1c;
+    border-color: #f2a7a7;
+}
+
+/* Status Banner – same as Branch */
+.view-subadmin-status-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.view-subadmin-status-banner.is-active {
+    background: #eefcf4;
+    border: 1px solid #c3edd3;
+}
+
+.view-subadmin-status-banner.is-inactive {
+    background: #fdf5e8;
+    border: 1px solid #fae1b9;
+}
+
+.view-subadmin-status-banner-text {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.view-subadmin-status-banner-text strong {
+    display: block;
+    font-size: 14px;
+    color: #16365f;
+}
+
+.view-subadmin-status-banner-text p {
+    margin: 2px 0 0;
+    font-size: 12.5px;
+    color: #627c9f;
+}
+
+/* Main Grid */
+.view-subadmin-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    width: 100%;
+}
+
+@media (max-width: 992px) {
+    .view-subadmin-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Cards – identical to Branch */
+.view-subadmin-card {
+    background: #ffffff;
+    border: 1px solid #e1eaf5;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(18, 55, 105, 0.05);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.view-subadmin-card-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #edf2f9;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.view-subadmin-card-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: #15365f;
+}
+
+.view-subadmin-card-title svg {
+    color: #1267e8;
+}
+
+.view-subadmin-card-body {
+    padding: 22px 20px;
+}
+
+/* Fields Grid – same sizes as Branch */
+.view-subadmin-fields-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.view-subadmin-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.view-subadmin-field.full-width {
+    grid-column: 1 / -1;
+}
+
+.view-subadmin-field-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #728aa8;
+}
+
+.view-subadmin-field-label svg {
+    color: #8fa5c2;
+}
+
+.view-subadmin-field-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: #16365f;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+.view-subadmin-field-value a {
+    color: #1267e8;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.view-subadmin-field-value a:hover {
+    text-decoration: underline;
+}
+
+/* Status Pill */
+.view-subadmin-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12.5px;
+    font-weight: 600;
+}
+
+.view-subadmin-status-pill.active {
+    background: #e8f8f0;
+    color: #117a43;
+    border: 1px solid #b7e8d0;
+}
+
+.view-subadmin-status-pill.inactive {
+    background: #f3f5f8;
+    color: #6a7f98;
+    border: 1px solid #dbe2eb;
+}
+
+/* Branch Access list */
+.view-subadmin-branch-count {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.view-subadmin-empty-text {
+    color: #94a3b8;
+    margin: 0;
+    font-size: 13.5px;
+}
+
+.view-subadmin-branch-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.view-subadmin-branch-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    background: #f8fafc;
+    border: 1px solid #e2eaf4;
+    border-radius: 9px;
+    gap: 12px;
+}
+
+.view-subadmin-branch-row-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.view-subadmin-branch-icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 8px;
+    background: #eaf3ff;
+    color: #1267e8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.view-subadmin-branch-name {
+    font-size: 13.5px;
+    color: #16365f;
+    display: block;
+}
+
+.view-subadmin-branch-meta {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.view-subadmin-branch-pill {
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    background: #eef2ff;
+    color: #4338ca;
+    white-space: nowrap;
+}
+
+.view-subadmin-scope-text {
+    margin: 4px 0 0;
+    font-size: 12.5px;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+/* Loading & Empty States */
+.view-subadmin-loading,
+.view-subadmin-error {
+    padding: 80px 20px;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e1eaf5;
+}
+
+.view-subadmin-loading p,
+.view-subadmin-error p {
+    color: #6983a5;
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+.view-subadmin-error h2 {
+    margin: 12px 0 6px;
+    font-size: 18px;
+    color: #16365f;
+}
+
+@keyframes subadminSpinner {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.view-subadmin-spinner {
+    animation: subadminSpinner 1s linear infinite;
+    color: #1267e8;
+}

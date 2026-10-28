@@ -749,7 +749,7 @@ class EmailTemplateService
 
         if (! $template) {
             throw new RuntimeException(
-                'The New Admin Invitation email template is inactive or unavailable.'
+                'The New Admin Invitaation email template is inactive or unavailable.'
             );
         }
 
@@ -860,5 +860,23 @@ class EmailTemplateService
         );
 
         return new TemplateEmail($subject, $fromName, $bodyHtml);
+    }
+
+    /**
+     * Build the email for a new Sub Admin invitation.
+     * Reuses the same invitation template variables as admin (admin_name / admin_email).
+    */
+    public function buildSubAdminInvitationEmail(
+        User $subAdmin,
+        string $activationUrl,
+        ?string $companyName = null,
+        ?string $branchNames = null
+    ): TemplateEmail {
+        // Reuse the working admin invitation flow
+        return $this->buildAdminInvitationEmail(
+            $subAdmin,
+            $activationUrl,
+            $companyName
+        );
     }
 }

@@ -5,6 +5,7 @@ import {
     Eye,
     EyeOff,
     ShieldCheck,
+    Building2,
 } from "lucide-react";
 
 import api from "../../../services/api";
@@ -97,6 +98,27 @@ export default function Login({
 
     const [isVerifyingTwoFactor, setIsVerifyingTwoFactor] =
         useState(false);
+
+    
+// =====================================================
+// COMPANY SELECTION STATE
+// =====================================================
+
+const [requiresCompanySelection, setRequiresCompanySelection] =
+    useState(false);
+
+const [availableCompanies, setAvailableCompanies] =
+    useState([]);
+
+const [selectedCompanyId, setSelectedCompanyId] =
+    useState("");
+
+const [companySelectionToken, setCompanySelectionToken] =
+    useState("");
+
+const [isSelectingCompany, setIsSelectingCompany] =
+    useState(false);
+    
 
 
     // =====================================================
@@ -374,6 +396,37 @@ export default function Login({
             }
 
 
+        
+// =================================================
+// COMPANY SELECTION REQUIRED
+// =================================================
+
+if (response.data?.requires_company_selection === true) {
+    const companies = response.data?.companies ?? [];
+
+    if (companies.length === 0) {
+        setErrorMessage("No available companies were returned.");
+        return;
+    }
+
+    setAvailableCompanies(companies);
+    setCompanySelectionToken(response.data?.company_selection_token || "");
+
+    // Automatically preselect the first available company if any.
+    setSelectedCompanyId(
+        companies.length === 1
+            ? String(companies[0].id)
+            : ""
+    );
+
+    setRequiresCompanySelection(true);
+    setErrorMessage("");
+
+    return;
+}
+
+
+
             // =================================================
             // NORMAL LOGIN
             // =================================================
@@ -483,11 +536,40 @@ export default function Login({
 
 
             // =================================================
+            // STORE ACTIVE COMPANY (FOR COMPANY ADMINS)
+            // =================================================
+
+            if (response.data?.company) {
+
+                storage.setItem(
+                    "active_company",
+                    JSON.stringify(response.data.company)
+                );
+
+                otherStorage.removeItem(
+                    "active_company"
+                );
+
+            } else {
+
+                storage.removeItem(
+                    "active_company"
+                );
+
+                otherStorage.removeItem(
+                    "active_company"
+                );
+
+            }
+
+
+            // =================================================
             // LOGIN CALLBACK
             // =================================================
 
             onLogin(
-                response.data?.user
+                response.data?.user,
+                response.data?.company
             );
 
         } catch (error) {
@@ -589,6 +671,31 @@ export default function Login({
 
 
             // =================================================
+            // CHECK IF COMPANY SELECTION REQUIRED AFTER 2FA
+            // =================================================
+
+            if (response.data?.requires_company_selection === true) {
+                const companies = response.data?.companies ?? [];
+
+                if (companies.length === 0) {
+                    setErrorMessage("No available companies were returned.");
+                    return;
+                }
+
+                setRequiresTwoFactor(false);
+                setTwoFactorCode("");
+                setTwoFactorToken("");
+                setAvailableCompanies(companies);
+                setCompanySelectionToken(response.data?.company_selection_token || "");
+                setSelectedCompanyId(
+                    companies.length === 1 ? String(companies[0].id) : ""
+                );
+                setRequiresCompanySelection(true);
+                setErrorMessage("");
+                return;
+            }
+
+            // =================================================
             // LOGIN SUCCESS AFTER 2FA
             // =================================================
 
@@ -658,6 +765,34 @@ export default function Login({
 
 
             // =================================================
+            // STORE ACTIVE COMPANY (FOR COMPANY ADMINS)
+            // =================================================
+
+            if (response.data?.company) {
+
+                storage.setItem(
+                    "active_company",
+                    JSON.stringify(response.data.company)
+                );
+
+                otherStorage.removeItem(
+                    "active_company"
+                );
+
+            } else {
+
+                storage.removeItem(
+                    "active_company"
+                );
+
+                otherStorage.removeItem(
+                    "active_company"
+                );
+
+            }
+
+
+            // =================================================
             // CLEAR 2FA STATE
             // =================================================
 
@@ -675,7 +810,8 @@ export default function Login({
             // =================================================
 
             onLogin(
-                response.data?.user
+                response.data?.user,
+                response.data?.company
             );
 
         } catch (error) {
@@ -736,6 +872,96 @@ export default function Login({
         setTwoFactorToken("");
 
         setErrorMessage("");
+
+    };
+
+
+    // =====================================================
+    // SELECT COMPANY SUBMIT
+    // =====================================================
+
+    const handleSelectCompany = async () => {
+
+        if (!selectedCompanyId) {
+            setErrorMessage("Please select a company to continue.");
+            return;
+        }
+
+        setIsSelectingCompany(true);
+        setErrorMessage("");
+
+        try {
+
+            const response = await api.post("/select-company", {
+                company_id: selectedCompanyId,
+                company_selection_token: companySelectionToken,
+            });
+
+            const effectiveRememberMe = Boolean(
+                response.data?.remember_me ?? rememberMe
+            );
+
+            const storage =
+                effectiveRememberMe
+                    ? localStorage
+                    : sessionStorage;
+
+            const otherStorage =
+                effectiveRememberMe
+                    ? sessionStorage
+                    : localStorage;
+
+            otherStorage.removeItem("auth_token");
+            otherStorage.removeItem("user");
+            otherStorage.removeItem("active_company");
+
+            if (response.data?.token) {
+                storage.setItem("auth_token", response.data.token);
+            }
+
+            if (response.data?.user) {
+                storage.setItem(
+                    "user",
+                    JSON.stringify(response.data.user)
+                );
+            }
+
+            if (response.data?.company) {
+                storage.setItem(
+                    "active_company",
+                    JSON.stringify(response.data.company)
+                );
+            }
+
+            setRequiresCompanySelection(false);
+            setAvailableCompanies([]);
+            setSelectedCompanyId("");
+            setCompanySelectionToken("");
+            setErrorMessage("");
+
+            onLogin(
+                response.data?.user,
+                response.data?.company
+            );
+
+        } catch (error) {
+
+            const validationErrors = error.response?.data?.errors;
+            const firstError = validationErrors
+                ? Object.values(validationErrors).flat()[0]
+                : null;
+
+            setErrorMessage(
+                firstError ||
+                error.response?.data?.message ||
+                "Failed to access the selected company. Please try again."
+            );
+
+        } finally {
+
+            setIsSelectingCompany(false);
+
+        }
 
     };
 
@@ -1195,6 +1421,99 @@ export default function Login({
                         </>
 
                     )}
+
+                  
+{/* =================================================
+    COMPANY SELECTION POPUP
+================================================= */}
+
+{requiresCompanySelection && (
+    <div
+        className="maxus-company-modal-overlay"
+        role="presentation"
+    >
+        <div
+            className="maxus-company-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="maxus-company-modal-title"
+        >
+            <div className="maxus-company-modal-icon">
+                <Building2 size={28} />
+            </div>
+
+            <h2 id="maxus-company-modal-title">
+                Select Your Company
+            </h2>
+
+            <p>
+                Choose the company you want to access.
+            </p>
+
+            <div className="maxus-company-list">
+                {availableCompanies.map((company) => (
+                    <label
+                        key={company.id}
+                        className={`maxus-company-option ${
+                            selectedCompanyId === String(company.id)
+                                ? "selected"
+                                : ""
+                        }`}
+                    >
+                        <input
+                            type="radio"
+                            name="selectedCompany"
+                            value={company.id}
+                            checked={
+                                selectedCompanyId === String(company.id)
+                            }
+                            onChange={(e) =>
+                                setSelectedCompanyId(e.target.value)
+                            }
+                        />
+
+                        <span className="maxus-company-option-name">
+                            {company.name}
+                        </span>
+                    </label>
+                ))}
+            </div>
+
+            {errorMessage && (
+                <div className="maxus-login-error" role="alert">
+                    {errorMessage}
+                </div>
+            )}
+
+            <button
+                type="button"
+                className="maxus-login-button"
+                disabled={!selectedCompanyId || isSelectingCompany}
+                onClick={handleSelectCompany}
+            >
+                {isSelectingCompany
+                    ? "Verifying..."
+                    : "Continue to Dashboard"}
+            </button>
+
+            <button
+                type="button"
+                className="maxus-company-cancel"
+                disabled={isSelectingCompany}
+                onClick={() => {
+                    setRequiresCompanySelection(false);
+                    setAvailableCompanies([]);
+                    setSelectedCompanyId("");
+                    setCompanySelectionToken("");
+                    setErrorMessage("");
+                }}
+            >
+                Cancel
+            </button>
+        </div>
+    </div>
+)}
+
 
 
                     {/* =================================================

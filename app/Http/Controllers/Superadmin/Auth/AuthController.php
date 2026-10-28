@@ -19,6 +19,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use App\Models\Company;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+
 
 class AuthController extends Controller
 {
@@ -350,70 +354,203 @@ class AuthController extends Controller
         );
     }
 
-    private function completeLogin(
+    /**
+     * Complete the login flow based on user role and company access.
+     */
+    // private function completeLogin(
+    //     User $user,
+    //     bool $rememberMe,
+    //     Request $request
+    // ): JsonResponse {
+    //     $normalizedType = strtolower(str_replace(' ', '_', (string) $user->user_type));
+
+    //     if ($normalizedType === 'super_admin') {
+    //         return $this->issueLoginResponse($user, null, $rememberMe, $request);
+    //     }
+
+    //     if ($normalizedType === 'admin') {
+    //         $companies = $this->getEligibleCompanies($user);
+
+    //         if ($companies->isEmpty()) {
+    //             return response()->json([
+    //                 'message' => 'You do not have access to any active company.',
+    //             ], 403);
+    //         }
+
+    //        // Only Real Estate companies are supported for login right now
+    //         $realEstateCompanies = $companies->filter(
+    //             fn ($company) => $this->isRealEstateIndustry($company)
+    //         )->values();
+    //         if ($realEstateCompanies->isEmpty()) {
+    //             return $this->industryNotAvailableResponse();
+    //         }
+
+
+    //         // If admin has 2 or more companies: require company selection popup
+    //         $selectionToken = Str::random(64);
+    //         $cacheKey = 'login_company:'.hash('sha256', $selectionToken);
+
+    //         Cache::put(
+    //             $cacheKey,
+    //             [
+    //                 'user_id' => $user->id,
+    //                 'remember_me' => $rememberMe,
+    //             ],
+    //             now()->addMinutes(10)
+    //         );
+
+    //         return response()->json([
+    //             'message' => 'Please select a company to continue.',
+    //             'requires_company_selection' => true,
+    //             'company_selection_token' => $selectionToken,
+    //             'companies' => $realEstateCompanies->map(fn ($company) => [                    
+    //                 'id' => $company->id,
+    //                 'name' => $company->name,
+    //                 'code' => $company->code ?? null,
+    //                 'industry' => $company->industry ?? null,
+    //             ])->values(),
+    //         ]);
+    //     }
+
+    //     return response()->json([
+    //         'message' => 'Your account role is not authorized to log in.',
+    //     ], 403);
+    // }
+
+    
+private function completeLogin(
+    User $user,
+    bool $rememberMe,
+    Request $request
+): JsonResponse {
+    $normalizedType = strtolower(
+        str_replace(' ', '_', (string) $user->user_type)
+    );
+
+    if ($normalizedType === 'super_admin') {
+        return $this->issueLoginResponse(
+            $user,
+            null,
+            $rememberMe,
+            $request
+        );
+    }
+
+    if ($normalizedType !== 'admin') {
+        return response()->json([
+            'success' => false,
+            'message' => 'Your account role is not authorized to log in.',
+        ], 403);
+    }
+
+    // Get every active company this admin is authorized to access.
+    $companies = $this->getEligibleCompanies($user)->values();
+
+    if ($companies->isEmpty()) {
+        return response()->json([
+            'success' => false,
+            'message' => 'You do not have access to any active company.',
+            'code' => 'no_active_company',
+        ], 403);
+    }
+
+    // If there is only one company, validate its industry before login.
+    if ($companies->count() === 1) {
+        $company = $companies->first();
+
+        if (! $this->isRealEstateIndustry($company)) {
+            return $this->industryNotAvailableResponse();
+        }
+
+        return $this->issueLoginResponse(
+            $user,
+            $company,
+            $rememberMe,
+            $request
+        );
+    }
+
+    // Multiple companies: show ALL eligible companies.
+    $selectionToken = Str::random(64);
+
+    $cacheKey = 'login_company:' . hash(
+        'sha256',
+        $selectionToken
+    );
+
+    Cache::put(
+        $cacheKey,
+        [
+            'user_id' => $user->id,
+            'remember_me' => $rememberMe,
+            'allowed_company_ids' => $companies
+                ->pluck('id')
+                ->values()
+                ->all(),
+        ],
+        now()->addMinutes(10)
+    );
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Please select a company to continue.',
+        'requires_company_selection' => true,
+        'company_selection_token' => $selectionToken,
+        'companies' => $companies->map(fn ($company) => [
+            'id' => $company->id,
+            'name' => $company->name,
+            'code' => $company->code ?? null,
+            'industry' => $company->industry ?? null,
+        ])->values(),
+    ]);
+}
+
+
+
+    
+
+    /**
+     * Issue authenticated Sanctum token and user/company payload.
+     */
+    private function issueLoginResponse(
         User $user,
+        ?Company $company,
         bool $rememberMe,
         Request $request
     ): JsonResponse {
-
-        /*
-        |--------------------------------------------------------------------------
-        | Update Last Login
-        |--------------------------------------------------------------------------
-        */
-
         $user->update([
             'last_login_at' => now(),
         ]);
-
-        /*
-        |--------------------------------------------------------------------------
-        | Login Activity
-        |--------------------------------------------------------------------------
-        */
 
         ActivityLog::create([
             'user_id' => $user->id,
             'module' => 'Authentication',
             'action' => 'login',
-            'description' => $user->name.' logged into the platform.',
+            'description' => $company
+                ? $user->name . ' logged into company ' . $company->name . '.'
+                : $user->name . ' logged into the platform.',
             'ip_address' => $request->ip(),
             'user_agent' => $request->userAgent(),
             'metadata' => [
                 'login_type' => $user->user_type,
                 'two_factor' => (bool) $user->two_factor_enabled,
+                'company_id' => $company?->id,
+                'company_name' => $company?->name,
             ],
         ]);
 
-        /*
-        |--------------------------------------------------------------------------
-        | Create Sanctum Token
-        |--------------------------------------------------------------------------
-        */
-
         $accessToken = $user->createToken('api-token');
-
         $accessToken->accessToken->forceFill([
             'last_activity_at' => now(),
         ])->save();
 
         $token = $accessToken->plainTextToken;
 
-        /*
-        |--------------------------------------------------------------------------
-        | Final Login Response
-        |--------------------------------------------------------------------------
-        */
-
-        return response()->json([
+        $response = [
             'message' => 'Login successful.',
-
             'token' => $token,
-
             'token_type' => 'Bearer',
-
             'remember_me' => $rememberMe,
-
             'user' => [
                 'id' => $user->id,
                 'name' => $user->name,
@@ -425,7 +562,125 @@ class AuthController extends Controller
                 'avatar' => $user->avatar,
                 'last_login_at' => $user->last_login_at,
             ],
+        ];
+
+        if ($company) {
+            $response['company'] = [
+                'id' => $company->id,
+                'name' => $company->name,
+                'code' => $company->code ?? null,
+                'industry' => $company->industry ?? null,
+                'logo_url' => $company->logo_path ?? null,
+                'database' => $company->database ?? null,
+            ];
+        }
+
+        return response()->json($response);
+    }
+
+    /**
+     * Select company for admin login when multiple companies exist.
+     */
+    public function selectCompany(Request $request): JsonResponse
+    {
+        
+        $request->validate([
+            'company_id' => ['required', 'integer'],
+            'company_selection_token' => ['nullable', 'string'],
         ]);
+
+        $user = null;
+        $rememberMe = false;
+
+        if ($request->filled('company_selection_token')) {
+            $selectionToken = (string) $request->input('company_selection_token');
+            $cacheKey = 'login_company:'.hash('sha256', $selectionToken);
+            $challenge = Cache::get($cacheKey);
+
+            if (! $challenge) {
+                return response()->json([
+                    'message' => 'Your company selection session has expired. Please log in again.',
+                ], 422);
+            }
+
+            $user = User::where('id', $challenge['user_id'])
+                ->where('status', 'active')
+                ->first();
+
+            $rememberMe = (bool) ($challenge['remember_me'] ?? false);
+
+            if (! $user) {
+                Cache::forget($cacheKey);
+
+                return response()->json([
+                    'message' => 'Unable to complete company authentication.',
+                ], 422);
+            }
+
+            Cache::forget($cacheKey);
+        } else {
+            $user = $request->user();
+        }
+
+        if (! $user) {
+            return response()->json([
+                'message' => 'Unauthenticated or invalid session.',
+            ], 401);
+        }
+
+        
+        $companies = $this->getEligibleCompanies($user);
+
+        $company = $companies->firstWhere(
+            'id',
+            (int) $request->input('company_id')
+        );
+
+        if (! $company) {
+            return response()->json([
+                'message' => 'You do not have access to this company.',
+            ], 403);
+        }
+
+        // Check industry BEFORE issuing the login token.
+        if (! $this->isRealEstateIndustry($company)) {
+            return $this->industryNotAvailableResponse();
+        }
+
+        return $this->issueLoginResponse(
+            $user,
+            $company,
+            $rememberMe,
+            $request
+        );
+
+    }
+
+
+  
+
+    private function isRealEstateIndustry(?Company $company): bool
+    {
+        if (! $company) {
+            return false;
+        }
+
+        $industry = strtolower(trim((string) ($company->industry ?? '')));
+
+        return in_array($industry, [
+            'real estate',
+            'realestate',
+            'real-estate',
+        ], true);
+    }
+
+    private function industryNotAvailableResponse(): JsonResponse
+    {
+        return response()->json([
+            'success' => false,
+            'message' => 'This company industry is under maintenance. Currently only Real Estate companies are supported. Additional industries will be available soon.',
+            'code' => 'industry_not_available',
+        ], 403);
     }
 
     public function loginSettings(): JsonResponse
@@ -439,6 +694,37 @@ class AuthController extends Controller
             ],
         ]);
     }
+
+    /**
+     * Get companies the admin is currently allowed to access.
+     */
+    private function getEligibleCompanies(User $user)
+    {
+        $query = Company::query()
+            ->where('companies.status', 'active')
+            ->whereHas('users', function ($query) use ($user) {
+                $query->where('users.id', $user->id)
+                    ->where(function ($q) {
+                        $q->where('company_user_access.role', 'admin')
+                            ->orWhere('company_user_access.role', 'Admin');
+                    })
+                    ->where('company_user_access.status', 'active');
+            });
+
+
+        return $query->select([
+            'companies.id',
+            'companies.name',
+            'companies.code',
+            'companies.industry',
+            'companies.logo_path',
+        ])
+        ->when(Schema::hasColumn('companies', 'database'), function ($q) {
+            $q->addSelect('companies.database');
+        })
+        ->get();
+    }
+
 
     // details of login user function
     public function user(Request $request): JsonResponse

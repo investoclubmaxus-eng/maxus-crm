@@ -1,0 +1,201 @@
+/* =========================================================
+   MAXUS COMPANY REAL ESTATE FOOTER
+   ========================================================= */
+
+.company-re-footer {
+    width: 100%;
+    flex-shrink: 0;
+
+    background: #ffffff;
+    border-top: 1px solid #e7eaf0;
+
+    color: #667085;
+
+    transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease;
+}
+
+.company-re-footer__inner {
+    width: 100%;
+    min-height: 64px;
+
+    padding: 14px 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 20px;
+}
+
+/* =========================================================
+   COPYRIGHT
+   ========================================================= */
+
+.company-re-footer__copyright {
+    font-size: 13px;
+    line-height: 20px;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.company-re-footer__copyright strong {
+    color: #2457d6;
+    font-weight: 700;
+}
+
+/* =========================================================
+   LINKS
+   ========================================================= */
+
+.company-re-footer__links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+}
+
+.company-re-footer__links a {
+    color: #667085;
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    transition: color 0.2s ease;
+}
+
+.company-re-footer__links a:hover {
+    color: #2457d6;
+}
+
+/* =========================================================
+   VERSION
+   ========================================================= */
+
+.company-re-footer__version {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 12px;
+    color: #98a2b3;
+
+    white-space: nowrap;
+}
+
+.footer-divider {
+    color: #c7ccd5;
+}
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+[data-theme="dark"] .company-re-footer {
+    background: #111827;
+    border-top-color: #273244;
+    color: #98a2b3;
+}
+
+[data-theme="dark"] .company-re-footer__copyright strong {
+    color: #6d8df7;
+}
+
+[data-theme="dark"] .company-re-footer__links a {
+    color: #98a2b3;
+}
+
+[data-theme="dark"] .company-re-footer__links a:hover {
+    color: #8aa4ff;
+}
+
+[data-theme="dark"] .company-re-footer__version {
+    color: #667085;
+}
+
+[data-theme="dark"] .footer-divider {
+    color: #344054;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .company-re-footer__inner {
+        padding: 14px 20px;
+        gap: 14px;
+    }
+
+    .company-re-footer__links {
+        gap: 15px;
+    }
+
+    .company-re-footer__links a {
+        font-size: 12px;
+    }
+
+    .company-re-footer__copyright {
+        font-size: 12px;
+    }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .company-re-footer__inner {
+        min-height: auto;
+
+        padding: 18px 16px;
+
+        flex-direction: column;
+        justify-content: center;
+
+        text-align: center;
+
+        gap: 12px;
+    }
+
+    .company-re-footer__copyright {
+        white-space: normal;
+        font-size: 12px;
+    }
+
+    .company-re-footer__links {
+        width: 100%;
+
+        flex-wrap: wrap;
+
+        gap: 8px 16px;
+    }
+
+    .company-re-footer__links a {
+        font-size: 12px;
+    }
+
+    .company-re-footer__version {
+        font-size: 11px;
+    }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .company-re-footer__inner {
+        padding: 16px 12px;
+    }
+
+    .company-re-footer__links {
+        gap: 7px 12px;
+    }
+}

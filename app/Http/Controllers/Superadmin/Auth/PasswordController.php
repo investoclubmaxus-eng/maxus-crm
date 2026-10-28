@@ -174,7 +174,8 @@ class PasswordController extends Controller
                 }
 
                 // Only Admin accounts may accept Admin invitations.
-                if (strtolower((string) $user->user_type) !== 'admin') {
+                $userType = strtolower(trim((string) $user->user_type));
+                if (! in_array($userType, ['admin', 'sub admin'], true)) {
                     throw ValidationException::withMessages([
                         'token' => [
                             'This invitation is not for an Admin account.',

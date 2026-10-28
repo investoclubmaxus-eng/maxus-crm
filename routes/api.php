@@ -6,10 +6,15 @@ use App\Http\Controllers\Superadmin\Auth\PasswordController;
 use App\Http\Controllers\Superadmin\Company\CompanyController;
 use App\Http\Controllers\Superadmin\Settings\SuperadminSettingController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CompanyRealEstate\BranchController;
+use App\Http\Controllers\CompanyRealEstate\SubAdminController;
+use App\Http\Controllers\CompanyRealEstate\DepartmentController;
+use App\Http\Controllers\CompanyRealEstate\DesignationController;
 
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::get('/login-settings', [AuthController::class, 'loginSettings'])->name('auth.login-settings');
 Route::post('/login/2fa', [AuthController::class, 'verifyLoginTwoFactor'])->name('auth.login.2fa');
+Route::post('/select-company', [AuthController::class, 'selectCompany'])->name('auth.select-company');
 Route::middleware('throttle:forgot-password')->post('/forgot-password', [PasswordController::class, 'forgot'])->name('auth.forgot-password');
 Route::post('/admin-invitations/validate', [PasswordController::class, 'validateInvitation'])->middleware('throttle:10,1');
 Route::post('/reset-password', [PasswordController::class, 'reset'])->name('auth.reset-password');
@@ -19,7 +24,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class,  'logout'])->name('auth.logout');
     Route::get('/user', [AuthController::class, 'user'])->name('auth.user');
     Route::get('/profile/activity-logs', [AuthController::class, 'activities'])->name('auth.activities');
-    Route::put('/superadmin/profile', [AuthController::class, 'update'])->name('auth.profile.update');
+    Route::match(['put', 'post'], '/superadmin/profile', [AuthController::class, 'update'])->name('auth.profile.update');
     Route::put('/superadmin/password', [AuthController::class, 'updatePassword'])->name('auth.password.update');
 
     // =====================================================
@@ -184,3 +189,48 @@ Route::middleware(['auth:sanctum', 'super.admin'])->prefix('superadmin')->group(
     Route::patch('/admins-set-default/{admin}/companies/{company}/default', [AdminController::class, 'setDefaultCompany']);
 
 });
+
+// Company Real Estate / Tenant Branches Routes
+Route::middleware('auth:sanctum')->prefix('company')->group(function () {
+    // Branches APIs
+    Route::get('/branches', [BranchController::class, 'index'])->name('company.branches.index');
+    Route::post('/branches-store', [BranchController::class, 'store'])->name('company.branches.store');
+    Route::get('/branches-show/{id}', [BranchController::class, 'show'])->name('company.branches.show');
+    Route::put('/branches-update/{id}', [BranchController::class, 'update'])->name('company.branches.update');
+    Route::patch('/branches-status/{id}', [BranchController::class, 'updateStatus'])->name('company.branches.status');
+    Route::delete('/branches-destroy/{id}', [BranchController::class, 'destroy'])->name('company.branches.destroy');
+
+    // Sub Admin APIs
+    Route::get('/sub-admins', [SubAdminController::class, 'index'])->name('company.sub-admins.index');
+    Route::get('/sub-admins-companies/available-companies', [SubAdminController::class, 'availableCompanies'])->name('company.sub-admins.available-companies');
+    Route::post('/sub-admins-store', [SubAdminController::class, 'store'])->name('company.sub-admins.store');
+    Route::get('/sub-admins-show/{subAdmin}', [SubAdminController::class, 'show'])->name('company.sub-admins.show');
+    Route::get('/sub-admins/{subAdmin}', [SubAdminController::class, 'show']);
+    Route::put('/sub-admins-update/{subAdmin}', [SubAdminController::class, 'update'])->name('company.sub-admins.update');
+    Route::put('/sub-admins/{subAdmin}', [SubAdminController::class, 'update']);
+    Route::patch('/sub-admins-status/{subAdmin}', [SubAdminController::class, 'updateStatus'])->name('company.sub-admins.status');
+    Route::get('/sub-admins/{subAdmin}/branch-access', [SubAdminController::class, 'branchAccess'])->name('company.sub-admins.branch-access');
+    Route::put('/sub-admins-access-update/{subAdmin}/branch-access', [SubAdminController::class, 'updateBranchAccess'])->name('company.sub-admins.branch-access.update');
+    Route::delete('/sub-admins-destroy/{subAdmin}', [SubAdminController::class, 'destroy'])->name('company.sub-admins.destroy');
+    Route::delete('/sub-admins/{subAdmin}', [SubAdminController::class, 'destroy']);
+    Route::post('/sub-admins/{subAdmin}/send-invitation',[SubAdminController::class, 'sendInvitation'])->name('company.sub-admins.send-invitation');
+
+    // Department APIs
+    Route::get('/departments', [DepartmentController::class, 'index'])->name('company.departments.index');
+    Route::get('/departments/next-code', [DepartmentController::class, 'nextCode'])->name('company.departments.next-code');
+    Route::post('/departments-store', [DepartmentController::class, 'store'])->name('company.departments.store');
+    Route::get('/departments-show/{id}', [DepartmentController::class, 'show'])->name('company.departments.show');
+    Route::put('/departments-update/{id}', [DepartmentController::class, 'update'])->name('company.departments.update');
+    Route::patch('/departments-status/{id}', [DepartmentController::class, 'updateStatus'])->name('company.departments.status');
+    Route::delete('/departments-destroy/{id}', [DepartmentController::class, 'destroy'])->name('company.departments.destroy');
+
+    // Designation APIs
+    Route::get('/designations', [DesignationController::class, 'index'])->name('company.designations.index');
+    Route::get('/designations/next-code', [DesignationController::class, 'nextCode'])->name('company.designations.next-code');
+    Route::post('/designations-store', [DesignationController::class, 'store'])->name('company.designations.store');
+    Route::get('/designations-show/{id}', [DesignationController::class, 'show'])->name('company.designations.show');
+    Route::put('/designations-update/{id}', [DesignationController::class, 'update'])->name('company.designations.update');
+    Route::patch('/designations-status/{id}', [DesignationController::class, 'updateStatus'])->name('company.designations.status');
+    Route::delete('/designations-destroy/{id}', [DesignationController::class, 'destroy'])->name('company.designations.destroy');
+});
+
